@@ -42,7 +42,7 @@ Chinese/English documents are paired deliverables. Update compatibility, default
 
 Retain historical failures and distinguish obsolete fixtures from current defects. Do not remove safety gates or replace assertions with unconditional success to obtain a green test count.
 
-Suggested GitHub settings: main branch; clearly experimental/dimming-only description; Issues, Discussions, Wiki and Projects may be disabled to match the no-maintenance policy. No automatic publishing, inherited private remotes or upload credentials.
+Suggested GitHub settings: main branch; clearly experimental/dimming-only description; Issues, Discussions and pull requests remain open for feedback and discussion, without promised replies, maintenance, fixes or merges. Wiki and Projects stay disabled. No automatic publishing, inherited private remotes or upload credentials.
 
 ## Executable checks
 
@@ -94,7 +94,7 @@ The policy binds pristine 0.9.26 fingerprints to reviewed overlays. Unknown code
 
 Run the maintained Python suite, `tests/test_release_0926.js`, public-contract and documentation checks. Model checks require the publisher's own locally prepared inputs; missing fixtures must be reported, not filled by distributing the author's derived cache. ABL changes cover full off-state, one-snapshot submission, invalidated/late results, fixed/cyclic/unresolved outcomes, draw-only spacing and XY/ZY consistency. ADB changes cover foreign serials, private IPv4 ranges, connect/pair ports, authorization, duplicate transports and multiple devices. Simulations are not cross-device acceptance.
 
-Keep the portrait-A4 native default. Tutorial captures are dark MONO 1000×1414 PNGs. Palette views belong at the README footer, preferably in parameter areas away from concentrated notices; do not delete warnings for presentation. Refresh provenance after replacing images. Use the APP Exit button; automated lifecycle checks use the app-owned shutdown API, with actual native-button/title-close checks recorded separately.
+Keep the portrait-A4 native default. Tutorial captures are dark MONO 1000×1414 PNGs. Palette views belong at the README footer and show the APL/ABL page top with real ADB connectivity and live debugging off. Follow the approved reference proportions: currently an 885×1454 viewport, 100% UI and native 2× PNG. Mask connection addresses only; never rewrite connection state or curves. Refresh provenance after replacing images. Use the APP Exit button; automated lifecycle checks use the app-owned shutdown API, with actual native-button/title-close checks recorded separately.
 
 ### Full development regression entry
 
@@ -112,11 +112,11 @@ Parallel-cache changes require serial equivalence, cache reuse and samples acros
 
 ## GitHub setup and later updates
 
-Repository: [https://github.com/Korhii/MI-HDR-Control](https://github.com/Korhii/MI-HDR-Control). This is a personal-use experiment shared as-is. Issues, Pull Requests, Discussions, Wiki and Projects are disabled; maintenance and contribution acceptance are not promised. Normal owner commits to `main` remain possible, with force pushes and deletion blocked. Published `v*` tags are not overwritten or deleted.
+Repository: [https://github.com/Korhii/MI-HDR-Control](https://github.com/Korhii/MI-HDR-Control). This is a personal-use experiment shared as-is. Issues, Pull Requests and Discussions are open for feedback, comments and proposed changes; replies, maintenance, updates, fixes and merges are not promised. Wiki and Projects remain disabled. Normal owner commits to `main` remain possible, with force pushes and deletion blocked. Published `v*` tags are not overwritten or deleted.
 
-**Public package checks** runs on main updates and manually from Actions. It has read-only contents permission, no secrets, no monitor access, no derived-firmware preparation and no automatic release. Full model/GPU/device checks remain local and change-scoped.
+**Public package checks** runs on main updates, pull requests and manually from Actions. It has read-only contents permission, no secrets, no monitor access, no derived-firmware preparation and no automatic release. Full model/GPU/device checks remain local and change-scoped.
 
-For each update: (1) exit the old controller and choose a new SOURCE, external OUTPUT and VERSION; (2) prepare the clean exports and complete relevant checks/docs/CHANGELOG/license updates, reviewing changed fingerprints; (3) explicitly approve that candidate and package it; (4) commit only the clean repository tree and wait for Actions; (5) use Releases → Draft a new release, create `vVERSION` on the intended commit, mark pre-release and upload the portable ZIP/checksums using the [notes template](release-notes-template.md); (6) download/check the draft assets, publish, then verify public downloads. Keep previous tags and artifacts unchanged. The automatic Source code ZIP lacks the full runtime.
+For each update: (1) exit the old controller and choose a new SOURCE, external OUTPUT and VERSION; (2) prepare the clean exports and complete relevant checks/docs/CHANGELOG/license updates, reviewing changed fingerprints; (3) explicitly approve that candidate and package it; (4) commit only the clean repository tree and wait for Actions; (5) use Releases → Draft a new release, create `vVERSION` on the intended commit, retain “Experimental preview” in the title, leave **Set as a pre-release** unchecked, select **Set as latest release**, and upload the portable ZIP/checksums using the [notes template](release-notes-template.md); (6) download/check the draft assets, publish, then verify public downloads. Keep previous tags and artifacts unchanged. The automatic Source code ZIP lacks the full runtime.
 
 ```powershell
 .\tools\python\python.exe .\release-tools\release.py approve --candidate "OUTPUT\portable" --repository "https://github.com/Korhii/MI-HDR-Control" --tag "vVERSION"
@@ -124,3 +124,5 @@ For each update: (1) exit the old controller and choose a new SOURCE, external O
 ```
 
 Replace SOURCE/OUTPUT/VERSION. Approval records one owner decision and never uploads; a new prepare returns to an unapproved candidate. Source commits do not update existing release assets. There is no automatic updater. Git identity is repository-local and uses the public handle/noreply address.
+
+GitHub Latest provides the current download entry. The title and project maturity remain “Experimental preview”. GitHub does not allow a prerelease to be Latest, so this channel leaves the Pre-release checkbox off. Verify the version/Latest link in the repository sidebar and that `releases/latest` resolves to this version. See [GitHub release settings](https://docs.github.com/en/rest/releases/releases#update-a-release).

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 交流与参数讨论 / Discussions
+    url: https://github.com/Korhii/MI-HDR-Control/discussions
+    about: 使用体验、参数讨论和一般交流；不承诺维护或回复。

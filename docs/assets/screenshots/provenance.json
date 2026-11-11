@@ -581,152 +581,206 @@
   ],
   "theme_screenshots": [
     {
+      "path": "docs/assets/themes/mono.png",
+      "kind": "theme",
+      "example": "real-ADB-readonly-APL-ABL-module-top",
+      "theme": "dark",
+      "unit": "mono",
+      "title": "APL与ABL控制",
+      "format": "PNG",
+      "pixel_width": 1770,
+      "pixel_height": 2908,
+      "viewport_width": 885,
+      "viewport_height": 1454,
+      "ui_scale": "1",
+      "device_connected": true,
+      "live_debug": false,
+      "scroll_y": 0,
+      "synthetic_success": false,
+      "generative_editing": false,
+      "privacy_edit": {
+        "kind": "opaque address/status-field mask only",
+        "rects": [
+          {
+            "x": 340,
+            "y": 318,
+            "w": 962,
+            "h": 46,
+            "color": "rgb(23, 23, 23)"
+          }
+        ],
+        "pixels_outside_mask_changed": 0
+      },
+      "sha256": "f200be371f329936292d80da1f44ee1e05945647f5f978b697759f3fd837182d"
+    },
+    {
       "path": "docs/assets/themes/unit01.png",
       "kind": "theme",
-      "example": "halo-module-parameter-area-offline",
-      "adb": "ADB 未连接",
-      "docHeight": 3741,
-      "dpr": 0.999999984002919,
-      "height": 1414,
-      "scale": "1",
+      "example": "real-ADB-readonly-APL-ABL-module-top",
       "theme": "dark",
-      "title": "光晕与控光",
       "unit": "unit01",
-      "version": "PORTABLE 0.9.26-public-preview · CUSTOM FRAME本地运行 · 不依赖云端",
-      "width": 1000,
-      "pixel_width": 1000,
-      "pixel_height": 1414,
+      "title": "APL与ABL控制",
       "format": "PNG",
-      "device_connected": false,
+      "pixel_width": 1770,
+      "pixel_height": 2908,
+      "viewport_width": 885,
+      "viewport_height": 1454,
+      "ui_scale": "1",
+      "device_connected": true,
+      "live_debug": false,
+      "scroll_y": 0,
       "synthetic_success": false,
-      "capture": "actual 0.9.26 frontend/native backend; 1000x1414 CSS viewport and matching lossless PNG; crop only, no generative editing",
-      "sha256": "978f0503166d2597e828261e0c31aac3acdda5d0c3fba46207b01bac54bdf6d6",
       "generative_editing": false,
-      "revision": "ui-performance-20261111"
+      "privacy_edit": {
+        "kind": "opaque address/status-field mask only",
+        "rects": [
+          {
+            "x": 340,
+            "y": 318,
+            "w": 962,
+            "h": 46,
+            "color": "rgb(8, 9, 12)"
+          }
+        ],
+        "pixels_outside_mask_changed": 0
+      },
+      "sha256": "45f1b9c00bfd11e671ef8ded88024368e834f40fec24cb2539e863124d768b2a"
     },
     {
       "path": "docs/assets/themes/unit00.png",
       "kind": "theme",
-      "example": "halo-module-parameter-area-offline",
-      "adb": "ADB 未连接",
-      "docHeight": 3741,
-      "dpr": 0.999999984002919,
-      "height": 1414,
-      "scale": "1",
+      "example": "real-ADB-readonly-APL-ABL-module-top",
       "theme": "dark",
-      "title": "光晕与控光",
       "unit": "unit00",
-      "version": "PORTABLE 0.9.26-public-preview · CUSTOM FRAME本地运行 · 不依赖云端",
-      "width": 1000,
-      "pixel_width": 1000,
-      "pixel_height": 1414,
+      "title": "APL与ABL控制",
       "format": "PNG",
-      "device_connected": false,
+      "pixel_width": 1770,
+      "pixel_height": 2908,
+      "viewport_width": 885,
+      "viewport_height": 1454,
+      "ui_scale": "1",
+      "device_connected": true,
+      "live_debug": false,
+      "scroll_y": 0,
       "synthetic_success": false,
-      "capture": "actual 0.9.26 frontend/native backend; 1000x1414 CSS viewport and matching lossless PNG; crop only, no generative editing",
-      "sha256": "684c1a7dba58ecc7c0e137d90627c4372a27e6549d81e61e8adb81d7f0cadec7",
       "generative_editing": false,
-      "revision": "ui-performance-20261111"
+      "privacy_edit": {
+        "kind": "opaque address/status-field mask only",
+        "rects": [
+          {
+            "x": 340,
+            "y": 318,
+            "w": 962,
+            "h": 46,
+            "color": "rgb(8, 9, 12)"
+          }
+        ],
+        "pixels_outside_mask_changed": 0
+      },
+      "sha256": "f46d5eabca87d307c7267f421a05809cafc2c9302b9f52ba437a9ad282676174"
     },
     {
       "path": "docs/assets/themes/unit02.png",
       "kind": "theme",
-      "example": "halo-module-parameter-area-offline",
-      "adb": "ADB 未连接",
-      "docHeight": 3741,
-      "dpr": 0.999999984002919,
-      "height": 1414,
-      "scale": "1",
+      "example": "real-ADB-readonly-APL-ABL-module-top",
       "theme": "dark",
-      "title": "光晕与控光",
       "unit": "unit02",
-      "version": "PORTABLE 0.9.26-public-preview · CUSTOM FRAME本地运行 · 不依赖云端",
-      "width": 1000,
-      "pixel_width": 1000,
-      "pixel_height": 1414,
+      "title": "APL与ABL控制",
       "format": "PNG",
-      "device_connected": false,
+      "pixel_width": 1770,
+      "pixel_height": 2908,
+      "viewport_width": 885,
+      "viewport_height": 1454,
+      "ui_scale": "1",
+      "device_connected": true,
+      "live_debug": false,
+      "scroll_y": 0,
       "synthetic_success": false,
-      "capture": "actual 0.9.26 frontend/native backend; 1000x1414 CSS viewport and matching lossless PNG; crop only, no generative editing",
-      "sha256": "7e7ab609dcbfec96d7c5feb8984cd56a0e5f05dd3214ad77f08002fcda3ca8f9",
       "generative_editing": false,
-      "revision": "ui-performance-20261111"
+      "privacy_edit": {
+        "kind": "opaque address/status-field mask only",
+        "rects": [
+          {
+            "x": 340,
+            "y": 318,
+            "w": 962,
+            "h": 46,
+            "color": "rgb(8, 9, 12)"
+          }
+        ],
+        "pixels_outside_mask_changed": 0
+      },
+      "sha256": "762a881ac0c7824d3bbe0233de931e38ab3186bbf9288b8ef158d99cc6408595"
     },
     {
       "path": "docs/assets/themes/unit08.png",
       "kind": "theme",
-      "example": "halo-module-parameter-area-offline",
-      "adb": "ADB 未连接",
-      "docHeight": 3741,
-      "dpr": 0.999999984002919,
-      "height": 1414,
-      "scale": "1",
+      "example": "real-ADB-readonly-APL-ABL-module-top",
       "theme": "dark",
-      "title": "光晕与控光",
       "unit": "unit08",
-      "version": "PORTABLE 0.9.26-public-preview · CUSTOM FRAME本地运行 · 不依赖云端",
-      "width": 1000,
-      "pixel_width": 1000,
-      "pixel_height": 1414,
+      "title": "APL与ABL控制",
       "format": "PNG",
-      "device_connected": false,
+      "pixel_width": 1770,
+      "pixel_height": 2908,
+      "viewport_width": 885,
+      "viewport_height": 1454,
+      "ui_scale": "1",
+      "device_connected": true,
+      "live_debug": false,
+      "scroll_y": 0,
       "synthetic_success": false,
-      "capture": "actual 0.9.26 frontend/native backend; 1000x1414 CSS viewport and matching lossless PNG; crop only, no generative editing",
-      "sha256": "010c82db2d4179b09333e0ead53ae87c7f79580764a0fe7010ca09a24fe8d1f7",
       "generative_editing": false,
-      "revision": "ui-performance-20261111"
+      "privacy_edit": {
+        "kind": "opaque address/status-field mask only",
+        "rects": [
+          {
+            "x": 340,
+            "y": 318,
+            "w": 962,
+            "h": 46,
+            "color": "rgb(8, 9, 12)"
+          }
+        ],
+        "pixels_outside_mask_changed": 0
+      },
+      "sha256": "222a3e745ae0aeb0db646c7096da643020590b32e1b833345cada3378ce5bcb8"
     },
     {
       "path": "docs/assets/themes/mark06.png",
       "kind": "theme",
-      "example": "halo-module-parameter-area-offline",
-      "adb": "ADB 未连接",
-      "docHeight": 3741,
-      "dpr": 0.999999984002919,
-      "height": 1414,
-      "scale": "1",
+      "example": "real-ADB-readonly-APL-ABL-module-top",
       "theme": "dark",
-      "title": "光晕与控光",
       "unit": "mark06",
-      "version": "PORTABLE 0.9.26-public-preview · CUSTOM FRAME本地运行 · 不依赖云端",
-      "width": 1000,
-      "pixel_width": 1000,
-      "pixel_height": 1414,
+      "title": "APL与ABL控制",
       "format": "PNG",
-      "device_connected": false,
+      "pixel_width": 1770,
+      "pixel_height": 2908,
+      "viewport_width": 885,
+      "viewport_height": 1454,
+      "ui_scale": "1",
+      "device_connected": true,
+      "live_debug": false,
+      "scroll_y": 0,
       "synthetic_success": false,
-      "capture": "actual 0.9.26 frontend/native backend; 1000x1414 CSS viewport and matching lossless PNG; crop only, no generative editing",
-      "sha256": "c525dfc585a527e1c2a4f4bec251898b4f20e7903cdd4e080f5c51eb6669ccf2",
       "generative_editing": false,
-      "revision": "ui-performance-20261111"
-    },
-    {
-      "path": "docs/assets/themes/mono.png",
-      "kind": "theme",
-      "example": "halo-module-parameter-area-offline",
-      "adb": "ADB 未连接",
-      "docHeight": 3619,
-      "dpr": 0.999999984002919,
-      "height": 1414,
-      "scale": "1",
-      "theme": "dark",
-      "title": "光晕与控光",
-      "unit": "mono",
-      "version": "PORTABLE 0.9.26-public-preview · CUSTOM FRAME本地运行 · 不依赖云端",
-      "width": 1000,
-      "pixel_width": 1000,
-      "pixel_height": 1414,
-      "format": "PNG",
-      "device_connected": false,
-      "synthetic_success": false,
-      "capture": "actual 0.9.26 frontend/native backend; 1000x1414 CSS viewport and matching lossless PNG; crop only, no generative editing",
-      "sha256": "543a3d42c889c840333c8f108220fe6c20836ae7d322da010157bccc707f20fb",
-      "generative_editing": false,
-      "revision": "ui-performance-20261111"
+      "privacy_edit": {
+        "kind": "opaque address/status-field mask only",
+        "rects": [
+          {
+            "x": 340,
+            "y": 318,
+            "w": 962,
+            "h": 46,
+            "color": "rgb(8, 9, 12)"
+          }
+        ],
+        "pixels_outside_mask_changed": 0
+      },
+      "sha256": "163b64c02063c35e1145893da36c7ff92a6ae67687033e2ec146786f6bd43192"
     }
   ],
   "tutorial_appearance": "dark MONO",
-  "theme_gallery_placement": "README footer; halo parameter area, away from warning-heavy fitting page",
+  "theme_gallery_placement": "README footer; real ADB-connected APL/ABL page top; UI100%, reference proportions, native2x PNG",
   "source_sha256": {
     "lab/portable.html": "4841585fb3c1d54ad49fc5198bbea6716d415c702618bf6e8f66f5ca4e6f2ff3",
     "lab/dialogs.js": "ec6afde892b210f15577701d6ffab6d8af867d5144620e4cf65bd982e8f47183",
@@ -746,5 +800,6 @@
     "lab/modules.js": "7197d2203532b2f92c2f37260adc9bf18231295962c486cac133d06bd3add0ad",
     "lab/responsive.js": "08a3b6eb81f9c79187c55e2d63baa08241de4d01c53d3e1e6bbb24cf0d8abdae"
   },
-  "post_capture_change": "Startup notice recaptured after AI-assisted creation disclosure. Other UI images retain the unchanged 0.9.26 content from ui-performance-20261111."
+  "post_capture_change": "Startup notice recaptured after AI-assisted creation disclosure. Other UI images retain the unchanged 0.9.26 content from ui-performance-20261111.",
+  "theme_capture_note": "Real readonly connection; live debugging off; address/status field masked, no generative changes. UI parameter values were not applied."
 }

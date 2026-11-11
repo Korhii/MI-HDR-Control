@@ -13,8 +13,8 @@ The source is the complete personal **0.9.26** package, left unchanged. The publ
 | Native build and lifecycle | Rebuilt public 0.9.26 EXE; observed portrait-A4 default layout. Normal close removed the native window and stopped its backend, while offline. |
 | Public/documentation contracts | **13 public checks and 9 documentation checks passed** in the freshly exported portable directory. |
 | Java bridge and GPU | **33 JVM bridge/receipt/provider checks passed**; all **10 hidden-window D3D11 pattern-readback cases** reported wrong_pixels=0, without visible high-brightness test windows or device writes. |
-| APP captures | **21** current dark-MONO tutorial PNGs and **6** palette PNGs, all actual 1000×1414 portrait-A4 frontend captures. Only the sensor-page local record path was masked; pixels outside that rectangle are unchanged. |
-| Palette revision | All six moved to the halo-parameter area, away from the fitting page's concentrated notices. Existing offline notices remain; no warnings were removed or rewritten for capture. |
+| APP captures | **21** dark-MONO tutorial PNGs remain 1000×1414. **6** real ADB-connected APL/ABL page-top themes use an 885×1454 viewport, 100% UI and native 2× PNGs (1770×2908). Connection addresses and the existing sensor-path privacy rectangle are masked; outside pixels are unchanged. |
+| Palette revision | All six now show the APL/ABL page top at the supplied reference proportions. ADB was genuinely connected, live debugging stayed off, no tuning was applied and UI state was not rewritten. |
 | Local preparation | Re-prepared budget/model components from 25 existing owner inputs; ready, with no device write. Derived OEM KO/ELF/firmware backups are not distributed. |
 | Packaging | The release tool checks scope, licenses, links, defaults and provenance. Actual ZIP, extraction/startup, documentation, patch reconstruction and rollback commands are retained in the external verification record. |
 
@@ -67,3 +67,9 @@ Program: GPL-2.0-only. Original documentation/figures and independent materials:
 ## GitHub publication supplement
 
 The paired disclaimers, READMEs and startup notice now disclose AI-assisted creation. Only curated source, documentation and the portable bundle are published. GitHub checks cover public files, documentation and JavaScript coupling; they never connect a monitor or automatically release new versions. Hardware, 27-inch and persistence limitations are unchanged.
+
+## Connected themes, portable relocation and feedback
+
+This update changes the homepage, documentation, gallery and feedback entry points only; the published 0.9.26 ZIP and tag remain unchanged. Issues, Discussions and PRs are open without promised replies, updates, fixes or merges. Following real read-only ADB capture, the package was moved to a Unicode/space path and launched from an outside directory. Actual reconnection reused one identical backup, retained valid prepared caches and unchanged native dimming readback, then exited normally with status 0. Existing package-root path behavior required no runtime change.
+
+The current GitHub download is marked Latest while the title remains Experimental preview. This metadata adjustment did not change the version tag, portable ZIP or checksum asset.

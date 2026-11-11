@@ -1,5 +1,7 @@
 # 发布说明模板 / Release notes template
 
+<!-- 发布时保留实验预览标题；Pre-release 不勾选，Latest 勾选。Keep the experimental-preview title, leave Pre-release off and set Latest. -->
+
 ## VERSION · 实验预览 / Experimental preview
 
 个人自用调光实验，借助 AI 工具制作，顺便分享。作者并非专业开发者，不承诺维护、修复、更新或处理请求。

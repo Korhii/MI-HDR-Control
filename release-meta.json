@@ -36,6 +36,10 @@
     "repository": "https://github.com/Korhii/MI-HDR-Control",
     "tag": "v0.9.26-public-preview",
     "channel": "experimental-preview",
-    "ai_assisted": true
-  }
+    "ai_assisted": true,
+    "github_latest": true,
+    "github_prerelease": false
+  },
+  "documentation_revision": "connected-gallery-community-20261111",
+  "published_download_unchanged": true
 }

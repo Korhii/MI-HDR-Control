@@ -112,6 +112,9 @@ class Documentation(unittest.TestCase):
   self.assertEqual({r['unit'] for r in p['theme_screenshots']},{'mono','unit01','unit00','unit02','unit08','mark06'})
   for row in p['theme_screenshots']:
    self.assertEqual(row['theme'],'dark')
+   self.assertTrue(row['device_connected']);self.assertFalse(row['live_debug']);self.assertEqual(row['title'],'APL与ABL控制')
+   self.assertEqual(row['scroll_y'],0);self.assertEqual((row['pixel_width'],row['pixel_height']),(1770,2908))
+   self.assertEqual(row['privacy_edit']['pixels_outside_mask_changed'],0)
    self.assertEqual(hashlib.sha256((ROOT/row['path']).read_bytes()).hexdigest(),row['sha256'])
   for name in ('README.md','README.en.md'):
    text=(ROOT/name).read_text('utf-8');gallery=text[text.index('<a id="themes">'):]

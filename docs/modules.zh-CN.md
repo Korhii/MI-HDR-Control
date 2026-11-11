@@ -91,6 +91,8 @@ flowchart LR
 
 范围为 0–86 个内部单位；24、36、41 都不表示 nit、电流或已认证安全值。提高预算能否改变某个小窗口，要看该画面是否已经受到总负载限制。[曲线对照](RESEARCH.zh-CN.md#budget)
 
+本机备份及缓存均以当前便携目录为根；各文件夹与移动方法见[便携数据位置](guide.zh-CN.md#portable-data)。
+
 ### B. 再决定是否研究时间回落
 
 [![未启用时，整个 ABL 区域灰化](assets/screenshots/app-06-abl.png)](assets/screenshots/app-06-abl.png)

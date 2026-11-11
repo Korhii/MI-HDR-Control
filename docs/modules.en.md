@@ -91,6 +91,8 @@ The global budget bounds the digital output available at that moment. Cumulative
 
 The range is 0–86 internal units. Values such as 24, 36 and 41 are not nits, electrical current or certified safe settings. A small window changes only if the relevant load is constrained. [Curve comparison](RESEARCH.en.md#budget)
 
+Backup/cache paths follow the current package root; see [portable locations and moving](guide.en.md#portable-data).
+
 ### B. Decide whether to study time-dependent dimming
 
 [![ABL off: the entire area is inactive](assets/screenshots/app-06-abl.png)](assets/screenshots/app-06-abl.png)

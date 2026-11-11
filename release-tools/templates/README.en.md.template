@@ -12,7 +12,7 @@
 
 </div>
 
-**[Download Windows portable](https://github.com/Korhii/MI-HDR-Control/releases/tag/v{{PUBLIC_VERSION}}) · [All releases](https://github.com/Korhii/MI-HDR-Control/releases)**
+**[Download Windows portable](https://github.com/Korhii/MI-HDR-Control/releases/latest) · [All releases](https://github.com/Korhii/MI-HDR-Control/releases)**
 
 Download `MI-HDR-Control-{{PUBLIC_VERSION}}-Windows.zip` from Releases and extract the complete folder. GitHub’s automatic Source code ZIP is for source inspection and does not include the complete runtime.
 
@@ -134,10 +134,13 @@ The palettes remain **01 Green/Purple, 00 Blue/Silver, 02 Red/Orange, 08 Pink/Gr
 
 [Personal-to-public release rules](docs/RELEASING.en.md) define checks for documentation fixes, parameter changes and native-component updates. The [connection guide](docs/guide.en.md#adb) now includes actual monitor-menu captures.
 
+
+[Issues](https://github.com/Korhii/MI-HDR-Control/issues), [Discussions](https://github.com/Korhii/MI-HDR-Control/discussions) and pull requests are open for feedback, discussion and proposed changes. Replies, maintenance, updates, fixes and merges are not promised.
+
 <a id="themes"></a>
 ## 07 / Interface palettes
 
-**Six palettes**, defaulting to **素·黑白 (MONO)**. Tutorials consistently use dark MONO. The top-right theme button selects appearance and palette independently, changing UI colours only. These are actual views of the halo-parameter area, away from the warning-heavy fitting page; existing offline notices remain. Open an image for full resolution.
+**Six palettes**, defaulting to **素·黑白 (MONO)**. Tutorials consistently use dark MONO. The top-right theme button selects appearance and palette independently, changing UI colours only. These actual captures show the **top of APL与ABL控制**, with ADB connected and live debugging off; no tuning was applied. The layout follows the supplied reference at 100% UI size, rendered directly as lossless 2× PNGs (1770×2908). Connection addresses are masked. Curves are numerical references, without new optical measurements. Open an image for full resolution.
 
 | 素·黑白 · MONO | 初·绿紫 · 01 | 零·蓝银 · 00 |
 | :---: | :---: | :---: |

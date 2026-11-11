@@ -139,6 +139,29 @@ PC backup is mandatory; a monitor copy is optional. Click **保存选择** (save
 
 This selects storage; connection later creates or verifies the backup. It records the device state at first connection and is used with matching firmware defaults for restoration. The completed-backup notice has only **知道了** (understood).
 
+
+<a id="portable-data"></a>
+### Portable data: backup and runtime locations
+
+PC backups are located relative to the **current extracted package root**, expanded to full paths at runtime. The author's drive/install path and the launch working directory are not used. The UI displays the resolved path for convenience.
+
+| Data | Relative to the portable folder |
+| :--- | :--- |
+| Initial device backup | `state/device-backups/DEVICE_KEY/initial-v1.json` |
+| Controller configuration | `profiles/controller.json`, `profiles/models/` |
+| Locally prepared components/models | `state/prepared/` |
+| Fitting-response cache | `state/response-model/` |
+| ADB authorization files | `state/android/` |
+| WebView2 data/cache | `state/webview/` |
+| App logs/operation records | `logs/`, `experiments/` |
+| Temporary files/pattern records | `tmp/`, `captures/` |
+
+Exit normally with **退出控制器**, then move/rename the complete folder, including `state` and `profiles`. Moving only the EXE loses its supporting files. Public packages exclude the author's personal runtime data.
+
+**Manual JSON export** uses the location you choose in Save As, inside or outside the package. The optional monitor-side backup stays on the device and is selected separately.
+
+The test package was moved/renamed to a Unicode/space-containing directory and launched from an outside working directory. Actual ADB reconnection reused the identical backup without duplication, retained usable prepared caches and left dimming readback values unchanged.
+
 ### 3.3 Connect and prepare locally
 
 1. Click **自动寻找并连接** (find and connect), and authorize RSA on the monitor.

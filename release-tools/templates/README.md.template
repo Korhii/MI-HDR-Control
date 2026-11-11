@@ -12,7 +12,7 @@
 
 </div>
 
-**[下载 Windows 便携包](https://github.com/Korhii/MI-HDR-Control/releases/tag/v{{PUBLIC_VERSION}}) · [全部版本](https://github.com/Korhii/MI-HDR-Control/releases)**
+**[下载 Windows 便携包](https://github.com/Korhii/MI-HDR-Control/releases/latest) · [全部版本](https://github.com/Korhii/MI-HDR-Control/releases)**
 
 下载 Releases 中的 `MI-HDR-Control-{{PUBLIC_VERSION}}-Windows.zip`，完整解压后运行。GitHub 自动生成的 Source code ZIP 用于查看源码，不含完整运行环境。
 
@@ -134,10 +134,13 @@ SF1=255 时，本例没有新增数字扩展；128 时，外一格是输入峰�
 
 [从自用包生成干净公开包](docs/RELEASING.zh-CN.md)说明版本小修、参数变更和原生组件升级各自需要重验的内容。显示器 ADB 的实拍路径见[连接教程](docs/guide.zh-CN.md#adb)。
 
+
+欢迎通过 [Issues](https://github.com/Korhii/MI-HDR-Control/issues)指出错误，在 [Discussions](https://github.com/Korhii/MI-HDR-Control/discussions)交流，也可提交 PR。交流入口保持开放；作者不承诺回复、维护、更新、修复或合并提交。
+
 <a id="themes"></a>
 ## 07 / 界面配色
 
-共 **6 种配色**，默认 **素·黑白（MONO）**；教程统一使用暗黑 MONO。右上角主题按钮可分别选择明暗和配色，只改变界面外观。以下为光晕页参数区的实际截图，避开提示集中的自动拟合页；原有离线提示保留。点击查看原图。
+共 **6 种配色**，默认 **素·黑白（MONO）**；教程统一使用暗黑 MONO。右上角主题按钮可分别选择明暗和配色，只改变界面外观。以下为 **APL与ABL控制页顶部**的实际截图：ADB 已连接，实时调试关闭，未应用参数。构图参考用户示例，UI 大小为 100%；使用原生 2× 像素的无损 PNG（1770×2908），连接地址已遮挡。曲线为数字模型参考，未做光学测量。点击查看原图。
 
 | 素·黑白 · MONO | 初·绿紫 · 01 | 零·蓝银 · 00 |
 | :---: | :---: | :---: |

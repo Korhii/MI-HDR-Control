@@ -50,7 +50,7 @@
 
 ## GitHub 设置建议
 
-项目说明注明 Windows、仅调光、32U 实测范围与 27U 推算。默认主分支 main；Issues、Discussions、Wiki、Projects 可关闭，符合无维护承诺。不开自动发布，不继承私用 remotes，不配置上传密钥。统一署名 MI HDR Control contributors；原创文档/图表为 CC BY-NC-SA 4.0，程序与功能性界面代码为 GPL-2.0-only，第三方保持原许可。本次首次上传已获作者明确授权；后续每次发布仍需单独批准。
+项目说明注明 Windows、仅调光、32U 实测范围与 27U 推算。默认主分支 main；Issues、Discussions 和 PR 保持开放供评论、纠错和交流，Wiki、Projects 关闭；不承诺维护、回复、修复或合并。不开自动发布，不继承私用 remotes，不配置上传密钥。统一署名 MI HDR Control contributors；原创文档/图表为 CC BY-NC-SA 4.0，程序与功能性界面代码为 GPL-2.0-only，第三方保持原许可。本次首次上传已获作者明确授权；后续每次发布仍需单独批准。
 
 ## Windows 命令
 
@@ -98,7 +98,7 @@ Git 属性保留原始字节，避免检出时换行转换使组件指纹失效�
 - 先跑当前 Python 套件、`tests/test_release_0926.js` 与公开版/文档专项。模型测试需要发布者自己的本机准备输入；无夹具时明确标记不适用，不能分发派生缓存来凑通过。
 - ABL 改动须检查关闭整区不可用、快照一致、旧结果失效、稳定/循环/未收敛、时间间隔仅影响绘图、XY/ZY 与实际参数一致。
 - ADB 改动至少覆盖陌生序列号、不同 IPv4 网段、配对/连接端口、未授权、USB+网络同机去重与多设备选择。没有跨设备实测就明确写模拟，不声称各个局域网都能自动找到。
-- 默认原生窗口竖向 A4。教程暗黑 MONO，PNG 1000×1414；配色图放在 README 末尾，优先选参数区，避开集中提示的页面，不为展示删除警告。更新配色图也同步来源记录和图片指纹。
+- 默认原生窗口竖向 A4。教程暗黑 MONO，PNG 1000×1414；配色图放在 README 末尾，使用真实 ADB 在线、实时调试关闭的 APL与ABL控制页首。构图和 UI 大小参考用户确认的示例；当前为 885×1454 视口、100% UI、原生 2× PNG。只遮挡连接地址，不改写连接状态或曲线。更新配色图也同步来源记录和图片指纹。
 - 正常退出用 APP 按钮；自动化启动测试使用本程序的 shutdown 接口，不结束未知进程。原生按钮/标题栏关闭由真实 UI 验证另记。
 
 ### 完整开发回归入口
@@ -117,9 +117,9 @@ node .\tests\test_ui_followup.js
 
 ## GitHub：当前设置与以后更新
 
-仓库为 [https://github.com/Korhii/MI-HDR-Control](https://github.com/Korhii/MI-HDR-Control)。定位是个人自用实验、顺便分享：Issues、Pull Requests、Discussions、Wiki 和 Projects 关闭；不承诺维护或接收贡献。`main` 禁止强制推送和删除，作者可以直接提交普通更新；`v*` 版本标签发布后不覆盖、不删除。
+仓库为 [https://github.com/Korhii/MI-HDR-Control](https://github.com/Korhii/MI-HDR-Control)。定位是个人自用实验、顺便分享：Issues、Pull Requests 和 Discussions 开放，供反馈、评论和提交改动；不承诺回复、维护、更新、修复或合并。Wiki 和 Projects 关闭。`main` 禁止强制推送和删除，作者可以直接提交普通更新；`v*` 版本标签发布后不覆盖、不删除。
 
-GitHub 的 **Public package checks** 在 main 更新后执行，也可在 Actions 手动运行。它只有源码读取权限，不含密钥、不连接显示器、不生成固件缓存、不自动发布。完整模型、GPU 和实机测试仍由发布者按本次改动在本机完成。
+GitHub 的 **Public package checks** 在 main 更新和 Pull Request 时执行，也可在 Actions 手动运行。它只有源码读取权限，不含密钥、不连接显示器、不生成固件缓存、不自动发布。完整模型、GPU 和实机测试仍由发布者按本次改动在本机完成。
 
 ### 下一次小版本：六步
 
@@ -127,7 +127,7 @@ GitHub 的 **Public package checks** 在 main 更新后执行，也可在 Action
 2. 按本文命令生成干净 `repository/` 与 `portable/`，完成对应回归，更新中英文文档、实际截图、CHANGELOG 和依赖许可。代码或依赖变化触发 `REVIEW_REQUIRED` 时先审阅差异，再更新已审阅策略；不绕过指纹检查。
 3. 明确决定发布后，执行下方 **approve**。它只记录这一次授权，不联网、不上传；每次 prepare 仍生成未批准候选。然后 package 得到 ZIP。
 4. 只在独立的源码仓库中更新 `repository/` 的干净内容。使用 GitHub Desktop 提交、推送普通 commit，或使用 Git 命令；不要把自用目录、private-audit、基线归档或差异补丁拖进去。等 Actions 检查通过。
-5. 在 GitHub **Releases → Draft a new release** 中选择当前 main 的提交，新建与 VERSION 一致的 `vVERSION` 标签，勾选 **Set as a pre-release**。按 [发布说明模板](release-notes-template.md) 填变化、测试和已知限制，上传完整便携 ZIP 与校验文件；先保留草稿。
+5. 在 GitHub **Releases → Draft a new release** 中选择当前 main 的提交，新建与 VERSION 一致的 `vVERSION` 标签，保留标题中的“实验预览”，不勾选 **Set as a pre-release**，勾选 **Set as latest release**。按 [发布说明模板](release-notes-template.md) 填变化、测试和已知限制，上传完整便携 ZIP 与校验文件；先保留草稿。
 6. 下载草稿附件核对大小与校验值，确认下载的是便携 ZIP，最后点 **Publish release**。发布后再核对匿名可访问的下载页。GitHub 自动生成的 Source code ZIP 不替代便携包。
 
 ```powershell
@@ -136,3 +136,5 @@ GitHub 的 **Public package checks** 在 main 更新后执行，也可在 Action
 ```
 
 把 VERSION、SOURCE、OUTPUT 换成自己的本次值。仅更新源码不会自动更新已发布附件；程序没有自动更新服务。GitHub 提交只对本仓库设置公开昵称与 noreply 邮箱，不修改电脑的全局 Git 身份。
+
+GitHub 的 Latest 用作最新下载入口。当前版本标题和项目成熟度仍为“实验预览”；GitHub 不允许 Pre-release 同时标为 Latest，因此此渠道不使用 Pre-release 复选框。核对仓库侧栏出现版本链接与 Latest，并确认 `releases/latest` 指向本次版本。发布标记的规则见 [GitHub 文档](https://docs.github.com/en/rest/releases/releases#update-a-release)。

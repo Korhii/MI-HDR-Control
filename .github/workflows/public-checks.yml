@@ -3,6 +3,7 @@ name: Public package checks
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -24,3 +25,5 @@ jobs:
         run: node tests/test_release_0926.js
       - name: Dialogs, hover, ABL availability and export contract
         run: node tests/test_ui_followup.js
+      - name: Portable roots after folder relocation
+        run: python3 tests/test_portable_paths.py

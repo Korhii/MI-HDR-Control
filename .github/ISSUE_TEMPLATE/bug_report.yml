@@ -1,0 +1,18 @@
+name: 问题反馈 / Report a problem
+description: 记录错误、重现方式或说明中的疑问。
+body:
+  - type: markdown
+    attributes:
+      value: 欢迎指出问题。项目主要自用，不承诺回复、修复或更新。截图和日志请遮挡个人信息，设备备份、密钥和厂商固件不要上传。
+  - type: textarea
+    attributes:
+      label: 现象 / What happened
+  - type: textarea
+    attributes:
+      label: 重现方式 / Steps
+  - type: textarea
+    attributes:
+      label: 软件、显示器与固件版本 / Environment
+  - type: textarea
+    attributes:
+      label: 补充截图或日志 / Screenshots or logs
