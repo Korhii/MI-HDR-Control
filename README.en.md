@@ -46,6 +46,8 @@ Research environment: HyperOS **OS3.0.120.0.UFFMAMN**, Android 14, kernel `5.15.
 | **4** | [Read back, then change one parameter](docs/guide.en.md#first-adjustment). | A fresh apply receipt is present. Drafts, predictions and device state stay distinct. |
 | **5** | [End temporary tuning or separately save a resident plan](docs/guide.en.md#save-restore). | Temporary restoration is confirmed; persistence needs a separate reboot check. |
 
+**Watch for permission prompts during connection:** if the PC or monitor asks you to authorize ADB debugging or approve administrator access for this ADB connection, choose **Allow** (or **Yes** in Windows), then return to the app and wait for connection to finish. Prompts depend on the system and its current authorization state.
+
 Python, ADB and project components are included. The native window needs the system **WebView2 Runtime**. On first connection, original inputs are read from the user's own monitor and prepared on their own PC. The public bundle excludes the author's extracted vendor modules and private device backups.
 
 ## 02 / SF: which neighbours, and how strongly?

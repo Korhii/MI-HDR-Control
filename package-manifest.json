@@ -42,8 +42,8 @@
     },
     {
       "path": "docs/27与32寸机型与预测说明.md",
-      "bytes": 21156,
-      "sha256": "1061344b09a54f95455c1caacdda059257f5be8e4164d50b729c0e3f5eb252e0"
+      "bytes": 21540,
+      "sha256": "f6f7a7029317b24b87fd796a3f8e7912ebd314c80465bcb172a4050397623e0c"
     },
     {
       "path": "docs/assets/brightness-bloom.svg",
@@ -362,13 +362,13 @@
     },
     {
       "path": "docs/guide.en.md",
-      "bytes": 21851,
-      "sha256": "3eb5de67b394ef53623f7d4fb142a267b543e0edeadf9f4672d7e01e13678315"
+      "bytes": 22321,
+      "sha256": "e9d28c55e7fcfe783234bd3255ea5f5d9bb780946da1a6ec8bf66942f22362e1"
     },
     {
       "path": "docs/guide.zh-CN.md",
-      "bytes": 21156,
-      "sha256": "1061344b09a54f95455c1caacdda059257f5be8e4164d50b729c0e3f5eb252e0"
+      "bytes": 21540,
+      "sha256": "f6f7a7029317b24b87fd796a3f8e7912ebd314c80465bcb172a4050397623e0c"
     },
     {
       "path": "docs/LEGAL.en.md",
@@ -447,8 +447,8 @@
     },
     {
       "path": "docs/使用说明.md",
-      "bytes": 21156,
-      "sha256": "1061344b09a54f95455c1caacdda059257f5be8e4164d50b729c0e3f5eb252e0"
+      "bytes": 21540,
+      "sha256": "f6f7a7029317b24b87fd796a3f8e7912ebd314c80465bcb172a4050397623e0c"
     },
     {
       "path": "lab/abl.css",
@@ -687,13 +687,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 14891,
-      "sha256": "fc7496c1e204174d8da879173d192fa1b2bb47efb11a5eb620fdba5344ab17c4"
+      "bytes": 15226,
+      "sha256": "c3a887db0bf518beeb97c9d9a8b07828067e50ebf19598daa5774995efd7e1da"
     },
     {
       "path": "README.md",
-      "bytes": 14052,
-      "sha256": "1eba6891641fd0f9760a73d6ddaf44fb5a94f4cc9819d2903ed09b4360da61eb"
+      "bytes": 14338,
+      "sha256": "321317ad41728d870ea5ca0f605e5623fab1161e7c4a804f926b916cacbccdde"
     },
     {
       "path": "release-meta.json",
@@ -703,7 +703,7 @@
     {
       "path": "release-tools/policy.json",
       "bytes": 124918,
-      "sha256": "3f675df6fcf51331e494c9612a7971fe4735eb2be6343ce225d25d64df19c622"
+      "sha256": "e1bd21e6d66b3e78a3df6260fe7bcb2f92282c9182e32d977fd5a8cacd2c1c85"
     },
     {
       "path": "release-tools/redact_debug_paths.py",
@@ -732,13 +732,13 @@
     },
     {
       "path": "release-tools/templates/docs/guide.en.md.template",
-      "bytes": 21884,
-      "sha256": "ef18345409a80256749485d575975af7381fbd059a42318cdea6ed71f0157ff8"
+      "bytes": 22354,
+      "sha256": "47e32199f84eaa6ddee20a3bb9fa0134e315404b19dc3684270fa51db769829d"
     },
     {
       "path": "release-tools/templates/docs/guide.zh-CN.md.template",
-      "bytes": 21189,
-      "sha256": "9d8cb33a28c7a7e740899e47f6f6ffca10f196f0c82a059f56983e9fb73592c3"
+      "bytes": 21573,
+      "sha256": "3e6b086c54d7b1a2bbaf43924b811c0935266b86338c1229aa96490a3c494022"
     },
     {
       "path": "release-tools/templates/docs/LEGAL.en.md.template",
@@ -822,13 +822,13 @@
     },
     {
       "path": "release-tools/templates/README.en.md.template",
-      "bytes": 14897,
-      "sha256": "30d22279173c3b4deb80385fe5b8277e61e0e2d48eb8f7cc5f406f5a76259ace"
+      "bytes": 15232,
+      "sha256": "1c12bba0424e979a11df957ad21b6d91067de8a492d242f5f5d9b9dc2dbbb43f"
     },
     {
       "path": "release-tools/templates/README.md.template",
-      "bytes": 14058,
-      "sha256": "471230f62524521c016d72384cdfa7be38168e7875e773a5da9ef57d07c1d9d1"
+      "bytes": 14344,
+      "sha256": "af636e1a4d357406cdbf3f11c6175bc854db75fa23ec682477ed181a13b1aea8"
     },
     {
       "path": "release-tools/templates/third_party/BUILD-SOURCES.md.template",

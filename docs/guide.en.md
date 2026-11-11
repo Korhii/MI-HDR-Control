@@ -82,6 +82,8 @@ Use Up/Down to focus **ADB调试**. If off, Confirm and follow the system permis
 
 Connect the USB data channel or use the same trusted LAN, then click **自动寻找并连接** in the app. If a first-time RSA prompt appears, allow the PC on the monitor; “always allow” is optional for a trusted personal PC. This device was already authorized; its keys were not revoked or a first-time dialog fabricated for the guide.
 
+**Watch for permission prompts during connection:** if the PC or monitor asks you to authorize ADB debugging or approve administrator access for this ADB connection, choose **Allow** (or **Yes** in Windows), then return to the app and wait for connection to finish. Prompts depend on the system and its current authorization state.
+
 #### ⑤ Check the system version
 
 Return to vendor Settings and select **关于** (About). The recorded screen shows **3.0.120.0**, with full system identifier **OS3.0.120.0.UFFMAMN**. Viewing this page does not require updating firmware.
@@ -164,7 +166,7 @@ The test package was moved/renamed to a Unicode/space-containing directory and l
 
 ### 3.3 Connect and prepare locally
 
-1. Click **自动寻找并连接** (find and connect), and authorize RSA on the monitor.
+1. Click **自动寻找并连接** (find and connect). Watch both the PC and monitor; accept the RSA debugging authorization or administrator-access confirmation for this ADB connection with **Allow**/**Yes** when prompted.
 2. Wait for active-panel, firmware and backup checks. First connection reads originals from your own monitor and prepares the required adapter/model cache locally.
 3. Check status and errors. Resolve incomplete preparation, fingerprint mismatch or backup failure before tuning.
 4. After connection, click **开启实时调试 · 自动连接ADB** in the top bar and wait for debugging readiness. Then select **分区档位** (local-dimming level) and **亮暗模式** (tone mode), and click **选择配置** (select profile). There are 3×4=12 combinations.
