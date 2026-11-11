@@ -227,7 +227,7 @@ int wmain(int argc,wchar_t** argv){
                 DXGI_HDR_METADATA_HDR10 metadata{{35400,14600},{8500,39850},{6550,2300},{15635,16450},10000,1,10000,10000};check(chain->SetHDRMetaData(DXGI_HDR_METADATA_TYPE_HDR10,sizeof(metadata),&metadata),"HDR metadata");
             }
             footer.Reset();if(patternAnnotationVisible(current.label)){
-                bool full=geometryPixels==uint64_t(width)*height;double bg=full?current.nits:current.background,fg=bg>=1?bg*.65:bg+1;
+                bool full=geometryPixels==uint64_t(width)*height;double bg=full?current.nits:current.background,fg=bg>=10?0:100;
                 footerData=annotation(width,footerHeight,fg,bg,status);D3D11_TEXTURE2D_DESC fd{};fd.Width=width;fd.Height=footerHeight;fd.MipLevels=1;fd.ArraySize=1;fd.Format=DXGI_FORMAT_R10G10B10A2_UNORM;fd.SampleDesc.Count=1;fd.Usage=D3D11_USAGE_IMMUTABLE;fd.BindFlags=D3D11_BIND_SHADER_RESOURCE;D3D11_SUBRESOURCE_DATA init{footerData.data(),UINT(width*4),0};check(device->CreateTexture2D(&fd,&init,&footer),"Annotation");
             }
         };

@@ -1,6 +1,6 @@
 {
   "format": "mi-public-candidate-v1",
-  "version": "0.9.26-public-preview",
+  "version": "0.9.26-public-preview.1",
   "recipe": "dimming-only-owner-assets-v17-public-0926",
   "release_ready": true,
   "publication_authorized": true,
@@ -34,12 +34,12 @@
   ],
   "publication": {
     "repository": "https://github.com/Korhii/MI-HDR-Control",
-    "tag": "v0.9.26-public-preview",
+    "tag": "v0.9.26-public-preview.1",
     "channel": "experimental-preview",
     "ai_assisted": true,
     "github_latest": true,
-    "github_prerelease": false
+    "github_prerelease": false,
+    "previous_tag": "v0.9.26-public-preview"
   },
-  "documentation_revision": "connected-gallery-community-20261111",
-  "published_download_unchanged": true
+  "documentation_revision": "connected-gallery-community-20261111"
 }

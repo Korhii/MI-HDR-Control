@@ -1,4 +1,4 @@
-# First use: from extraction to restoration · 0.9.26-public-preview
+# First use: from extraction to restoration · 0.9.26-public-preview.1
 
 [简体中文](guide.zh-CN.md) · [Home](../README.en.md) · [Module reference](modules.en.md) · [Safety](SAFETY.en.md)
 

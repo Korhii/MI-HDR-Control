@@ -6,7 +6,7 @@
 
 ### 小窗口亮度、光晕与持续亮度，按自己的偏好调整。
 
-**Windows 便携工具 · 仅调光 · 0.9.26-public-preview · 实验预览**
+**Windows 便携工具 · 仅调光 · 0.9.26-public-preview.1 · 实验预览**
 
 [English](README.en.md) · [首次使用全流程](docs/guide.zh-CN.md) · [逐模块详解](docs/modules.zh-CN.md) · [算法与研究](docs/RESEARCH.zh-CN.md) · [风险说明](docs/SAFETY.zh-CN.md)
 
@@ -14,7 +14,7 @@
 
 **[下载 Windows 便携包](https://github.com/Korhii/MI-HDR-Control/releases/latest) · [全部版本](https://github.com/Korhii/MI-HDR-Control/releases)**
 
-下载 Releases 中的 `MI-HDR-Control-0.9.26-public-preview-Windows.zip`，完整解压后运行。GitHub 自动生成的 Source code ZIP 用于查看源码，不含完整运行环境。
+下载 Releases 中的 `MI-HDR-Control-0.9.26-public-preview.1-Windows.zip`，完整解压后运行。GitHub 自动生成的 Source code ZIP 用于查看源码，不含完整运行环境。
 
 
 [![0.9.26 · Dark MONO / 素·黑白 · SF / Alpha](docs/assets/screenshots/app-04-halo.png)](docs/assets/screenshots/app-04-halo.png)
@@ -146,6 +146,6 @@ SF1=255 时，本例没有新增数字扩展；128 时，外一格是输入峰�
 
 | 素·黑白 · MONO | 初·绿紫 · 01 | 零·蓝银 · 00 |
 | :---: | :---: | :---: |
-| [![素·黑白](docs/assets/themes/mono.png)](docs/assets/themes/mono.png) | [![初·绿紫](docs/assets/themes/unit01.png)](docs/assets/themes/unit01.png) | [![零·蓝银](docs/assets/themes/unit00.png)](docs/assets/themes/unit00.png) |
+| [![素·黑白](docs/assets/themes/mono.png?rev=0926-connected)](docs/assets/themes/mono.png?rev=0926-connected) | [![初·绿紫](docs/assets/themes/unit01.png?rev=0926-connected)](docs/assets/themes/unit01.png?rev=0926-connected) | [![零·蓝银](docs/assets/themes/unit00.png?rev=0926-connected)](docs/assets/themes/unit00.png?rev=0926-connected) |
 | **二·赤橙 · 02** | **八·桃绿 · 08** | **六·蓝金 · 06** |
-| [![二·赤橙](docs/assets/themes/unit02.png)](docs/assets/themes/unit02.png) | [![八·桃绿](docs/assets/themes/unit08.png)](docs/assets/themes/unit08.png) | [![六·蓝金](docs/assets/themes/mark06.png)](docs/assets/themes/mark06.png) |
+| [![二·赤橙](docs/assets/themes/unit02.png?rev=0926-connected)](docs/assets/themes/unit02.png?rev=0926-connected) | [![八·桃绿](docs/assets/themes/unit08.png?rev=0926-connected)](docs/assets/themes/unit08.png?rev=0926-connected) | [![六·蓝金](docs/assets/themes/mark06.png?rev=0926-connected)](docs/assets/themes/mark06.png?rev=0926-connected) |

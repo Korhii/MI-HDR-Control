@@ -1,4 +1,4 @@
-# 第一次使用：从解压到结束调节 · 0.9.26-public-preview
+# 第一次使用：从解压到结束调节 · 0.9.26-public-preview.1
 
 [English](guide.en.md) · [主页](../README.md) · [逐模块详解](modules.zh-CN.md) · [风险说明](SAFETY.zh-CN.md)
 

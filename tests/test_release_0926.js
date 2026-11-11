@@ -71,5 +71,14 @@ async function test(name,fn){try{await fn();rows.push({name,passed:true});}catch
   let blocked=false;const target={type:'range',id:'sf1',closest:s=>s==='.workspace'?{}:s.startsWith('input,')?target:null,matches:()=>false};
   listeners.change({type:'change',target,preventDefault:()=>{blocked=true},stopImmediatePropagation:()=>{blocked=true}});assert.equal(blocked,true);
  });
+ await test('HDR annotation remains contrasted on black and full-white inputs',()=>{
+  const cpp=fs.readFileSync(path.join(root,'scripts/hdr_pattern_control.cpp'),'utf8');
+  const m=cpp.match(/fg=bg>=([0-9.]+)\?([0-9.]+):([0-9.]+);/);assert.ok(m,'annotation color selector changed; review readability');
+  const code=n=>{const p=(n/10000)**(2610/16384);return Math.round(((3424/4096+(2413/128)*p)/(1+(2392/128)*p))**(2523/32)*1023)};
+  for(const bg of [0,.1,1,9.9,10,100,1000,10000]){
+   const fg=bg>=Number(m[1])?Number(m[2]):Number(m[3]);
+   assert.ok(Math.abs(code(fg)-code(bg))>=200,`insufficient annotation code contrast at ${bg} nit`);
+  }
+ });
  console.log(JSON.stringify({tests:rows.length,passed:rows.filter(r=>r.passed).length,results:rows},null,2));process.exitCode=rows.every(r=>r.passed)?0:1;
 })();

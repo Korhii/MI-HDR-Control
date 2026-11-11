@@ -6,7 +6,7 @@
 
 ### Tune the balance between small highlights, bloom and sustained output.
 
-**Windows portable tool · Dimming only · 0.9.26-public-preview · Experimental preview**
+**Windows portable tool · Dimming only · 0.9.26-public-preview.1 · Experimental preview**
 
 [简体中文](README.md) · [First-use workflow](docs/guide.en.md) · [Module reference](docs/modules.en.md) · [Research](docs/RESEARCH.en.md) · [Safety](docs/SAFETY.en.md)
 
@@ -14,7 +14,7 @@
 
 **[Download Windows portable](https://github.com/Korhii/MI-HDR-Control/releases/latest) · [All releases](https://github.com/Korhii/MI-HDR-Control/releases)**
 
-Download `MI-HDR-Control-0.9.26-public-preview-Windows.zip` from Releases and extract the complete folder. GitHub’s automatic Source code ZIP is for source inspection and does not include the complete runtime.
+Download `MI-HDR-Control-0.9.26-public-preview.1-Windows.zip` from Releases and extract the complete folder. GitHub’s automatic Source code ZIP is for source inspection and does not include the complete runtime.
 
 
 [![0.9.26 · Dark MONO / 素·黑白 · SF / Alpha](docs/assets/screenshots/app-04-halo.png)](docs/assets/screenshots/app-04-halo.png)
@@ -146,6 +146,6 @@ The palettes remain **01 Green/Purple, 00 Blue/Silver, 02 Red/Orange, 08 Pink/Gr
 
 | 素·黑白 · MONO | 初·绿紫 · 01 | 零·蓝银 · 00 |
 | :---: | :---: | :---: |
-| [![Mono](docs/assets/themes/mono.png)](docs/assets/themes/mono.png) | [![Green/Purple](docs/assets/themes/unit01.png)](docs/assets/themes/unit01.png) | [![Blue/Silver](docs/assets/themes/unit00.png)](docs/assets/themes/unit00.png) |
+| [![Mono](docs/assets/themes/mono.png?rev=0926-connected)](docs/assets/themes/mono.png?rev=0926-connected) | [![Green/Purple](docs/assets/themes/unit01.png?rev=0926-connected)](docs/assets/themes/unit01.png?rev=0926-connected) | [![Blue/Silver](docs/assets/themes/unit00.png?rev=0926-connected)](docs/assets/themes/unit00.png?rev=0926-connected) |
 | **二·赤橙 · 02** | **八·桃绿 · 08** | **六·蓝金 · 06** |
-| [![Red/Orange](docs/assets/themes/unit02.png)](docs/assets/themes/unit02.png) | [![Pink/Green](docs/assets/themes/unit08.png)](docs/assets/themes/unit08.png) | [![Blue/Gold](docs/assets/themes/mark06.png)](docs/assets/themes/mark06.png) |
+| [![Red/Orange](docs/assets/themes/unit02.png?rev=0926-connected)](docs/assets/themes/unit02.png?rev=0926-connected) | [![Pink/Green](docs/assets/themes/unit08.png?rev=0926-connected)](docs/assets/themes/unit08.png?rev=0926-connected) | [![Blue/Gold](docs/assets/themes/mark06.png?rev=0926-connected)](docs/assets/themes/mark06.png?rev=0926-connected) |

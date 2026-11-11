@@ -1,4 +1,4 @@
-# 逐模块详解 · 0.9.26-public-preview
+# 逐模块详解 · 0.9.26-public-preview.1
 
 [English](modules.en.md) · [主页](../README.md) · [第一次使用全流程](guide.zh-CN.md) · [算法与研究](RESEARCH.zh-CN.md)
 

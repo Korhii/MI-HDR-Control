@@ -1,4 +1,4 @@
-# Module reference · 0.9.26-public-preview
+# Module reference · 0.9.26-public-preview.1
 
 [简体中文](modules.zh-CN.md) · [Home](../README.en.md) · [First-use workflow](guide.en.md) · [Research](RESEARCH.en.md)
 

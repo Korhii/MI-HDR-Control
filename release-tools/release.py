@@ -98,6 +98,9 @@ def prepare(source,output,version):
     meta['known_limitations']=['27U inferred; no physical 27U acceptance','Factory-reset developer activation and RSA prompt not re-enacted; chassis button placement not photographed']
     if not acceptance['boot_verified']:meta['known_limitations'].append('Current component uninterrupted reboot acceptance incomplete')
     dump(portable/'release-meta.json',meta)
+    # Bind deterministic rendered files after source review, for the next public rebuild.
+    policy['approved_files']={name:digest(portable/name) for name in policy['approved_files']}
+    dump(portable/'release-tools/policy.json',policy)
     for p in portable.rglob('*'):
         if not p.is_file() or not visible(p,portable):continue
         name=p.relative_to(portable).as_posix()
@@ -139,7 +142,7 @@ def check(candidate):
             if p.suffix=='.md':
                 for link in re.findall(r'\]\(([^)]+)\)',text):
                     if re.match(r'\w+://|mailto:|#',link):continue
-                    path=link.split('#')[0]
+                    path=link.split('#')[0].split('?')[0]
                     if path and not (p.parent/path).exists():errors.append('broken link: '+n+' -> '+path)
     for n in ('README.md','guide.zh-CN.md','SAFETY.zh-CN.md','LEGAL.zh-CN.md','THEME_REVIEW.zh-CN.md','RELEASING.zh-CN.md','VALIDATION.zh-CN.md'):
         zh=root/n if n=='README.md' else root/'docs'/n

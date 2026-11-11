@@ -73,3 +73,9 @@ The paired disclaimers, READMEs and startup notice now disclose AI-assisted crea
 This update changes the homepage, documentation, gallery and feedback entry points only; the published {{SOURCE_VERSION}} ZIP and tag remain unchanged. Issues, Discussions and PRs are open without promised replies, updates, fixes or merges. Following real read-only ADB capture, the package was moved to a Unicode/space path and launched from an outside directory. Actual reconnection reused one identical backup, retained valid prepared caches and unchanged native dimming readback, then exited normally with status 0. Existing package-root path behavior required no runtime change.
 
 The current GitHub download is marked Latest while the title remains Experimental preview. This metadata adjustment did not change the version tag, portable ZIP or checksum asset.
+
+### Experimental preview revision 1: HDR parameter text
+
+Fixed dim text on black and weak contrast on a 100% white window. Dark backgrounds use brighter text and bright backgrounds use black text; geometry, PQ input and annotation hiding are unchanged. Native font-pixel checks passed across eight backgrounds; ten hidden-window GPU cases returned `wrong_pixels=0`. The actual UI was checked at a 100-nit input with full-white and 10% windows. These are display/numeric checks, not new optical, electrical or thermal tests.
+
+One contrast regression was added, bringing JavaScript checks to 19. Conditional ADB administrator prompts were documented from the user report; this prompt was not re-enacted in this revision.

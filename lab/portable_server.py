@@ -178,7 +178,7 @@ class PortableBridge(lab.Bridge):
         for record in operations.values():
             if record['status']=='waiting-ack' and self.ack_sequence>=record['sequence']:
                 record.update(status='applied',message='设备执行回执已确认')
-        data.update(app='mi-hdr-control',version='0.9.26-public-preview',instance_root=str(ROOT),connection=connection(),
+        data.update(app='mi-hdr-control',version=json.loads((ROOT/'release-meta.json').read_text('utf-8'))['version'],instance_root=str(ROOT),connection=connection(),
                     adb_discovery=self.adb_discovery,debug_phase=self.debug_phase,default_restoration=self.default_restoration,model_id=self.model_id,model_confirmed=self.model_confirmed,model_detection=self.model_detection,model_spec=device_models.spec(self.model_id),model_monitor=self.model_monitor,device_model=self.device_model,initial_backup=device_backup.public(self.initial_backup),backup_policy=self.backup_policy,fit_progress=model_worker.progress(),backup_inventory=device_backup.local_inventory(),
                     auto_plan=self.auto_plans.get(f'{self.backlight_level}:{self.tone}'),
                     auto_preview=self.auto_previews.get(f'{self.backlight_level}:{self.tone}'),profile_key=f'{self.backlight_level}:{self.tone}',factory_budget=self.factory_budget,current_brightness=brightness,

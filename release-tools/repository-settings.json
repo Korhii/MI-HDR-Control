@@ -1,12 +1,11 @@
 {
-  "name": "mi-hdr-control",
+  "name": "MI-HDR-Control",
   "description": "Dimming-only experiments for REDMI G Pro 32U/27U 2026 · 个人实验，27为推算",
   "private": false,
   "default_branch": "main",
-  "has_issues": false,
+  "has_issues": true,
   "has_wiki": false,
   "has_projects": false,
-  "discussions": false,
   "topics": [
     "hdr",
     "local-dimming",
@@ -14,5 +13,7 @@
     "redmi-monitor",
     "experimental"
   ],
-  "create_or_upload_authorized": false
+  "create_or_upload_authorized": false,
+  "has_pull_requests": true,
+  "has_discussions": true
 }
