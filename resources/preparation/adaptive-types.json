@@ -1,0 +1,687 @@
+{
+  "ST_KDRV_XC_PARAM_CUST_S": {
+    "size": 104,
+    "fields": {
+      "disp_cust_hist": {
+        "offset": 0,
+        "size": 40,
+        "tag": "DW_TAG_structure_type"
+      },
+      "HdrMetaDataInfo": {
+        "offset": 40,
+        "size": 48,
+        "tag": "DW_TAG_structure_type"
+      },
+      "HdrLumaHist": {
+        "offset": 88,
+        "size": 16,
+        "tag": "DW_TAG_structure_type"
+      }
+    }
+  },
+  "ST_KDRV_XC_HDR_ADAPTIVE": {
+    "size": 40,
+    "fields": {
+      "u32SrcInOutEotfLength": {
+        "offset": 0,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "pu32SrcInOutEotf": {
+        "offset": 8,
+        "size": null,
+        "tag": "DW_TAG_pointer_type"
+      },
+      "u32TgtInOutEotfLength": {
+        "offset": 16,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "pu32TgtInOutEotf": {
+        "offset": 24,
+        "size": null,
+        "tag": "DW_TAG_pointer_type"
+      },
+      "s32APLRatio": {
+        "offset": 32,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u8SrcShift": {
+        "offset": 36,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "u8TgtShift": {
+        "offset": 37,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      }
+    }
+  },
+  "MI_HdrMetaDataInfo_s": {
+    "size": 48,
+    "fields": {
+      "au32DisplayPrimariesX": {
+        "offset": 0,
+        "size": 4,
+        "tag": "DW_TAG_array_type"
+      },
+      "au32DisplayPrimariesY": {
+        "offset": 12,
+        "size": 4,
+        "tag": "DW_TAG_array_type"
+      },
+      "u32WhitePointX": {
+        "offset": 24,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32WhitePointY": {
+        "offset": 28,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32MaxPanelLuminance": {
+        "offset": 32,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32MinPanelLuminance": {
+        "offset": 36,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32MaxContentLightLevel": {
+        "offset": 40,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32MaxPicAverageLightLevel": {
+        "offset": 44,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      }
+    }
+  },
+  "MI_HdrDisplayLumaHist_s": {
+    "size": 16,
+    "fields": {
+      "u32InPYHistLength": {
+        "offset": 0,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "pu32InPYHist": {
+        "offset": 8,
+        "size": null,
+        "tag": "DW_TAG_pointer_type"
+      }
+    }
+  },
+  "hist_info": {
+    "size": 288,
+    "fields": {
+      "GT_filter": {
+        "offset": 0,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "GT_filter_step": {
+        "offset": 1,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "KT_filter": {
+        "offset": 2,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "KT_filter_step": {
+        "offset": 3,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Panel_Min_Nits": {
+        "offset": 4,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Panel_Max_Nits": {
+        "offset": 8,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u16_Panel_Reflect": {
+        "offset": 12,
+        "size": 2,
+        "tag": "DW_TAG_base_type"
+      },
+      "Ambient_Light_Adaptive_Hdr": {
+        "offset": 14,
+        "size": 2,
+        "tag": "DW_TAG_base_type"
+      },
+      "Backlight_Adaptive_Hdr": {
+        "offset": 16,
+        "size": 2,
+        "tag": "DW_TAG_base_type"
+      },
+      "Content_Dynamic_Adaptive_Hdr": {
+        "offset": 18,
+        "size": 2,
+        "tag": "DW_TAG_base_type"
+      },
+      "Backlight_APL_Base": {
+        "offset": 20,
+        "size": 2,
+        "tag": "DW_TAG_base_type"
+      },
+      "u16_Hdr_Lux_Tab": {
+        "offset": 22,
+        "size": 2,
+        "tag": "DW_TAG_array_type"
+      },
+      "u16_Hdr_Comp_Tab": {
+        "offset": 38,
+        "size": 2,
+        "tag": "DW_TAG_array_type"
+      },
+      "u16_Hdr_Comp_Tab_Dark": {
+        "offset": 54,
+        "size": 2,
+        "tag": "DW_TAG_array_type"
+      },
+      "u16_APL_Ratio": {
+        "offset": 70,
+        "size": 2,
+        "tag": "DW_TAG_array_type"
+      },
+      "u16_APL_Nits_Table": {
+        "offset": 80,
+        "size": 2,
+        "tag": "DW_TAG_array_type"
+      },
+      "u8_Win_Lut_Tab": {
+        "offset": 90,
+        "size": 1,
+        "tag": "DW_TAG_array_type"
+      },
+      "u8_Peak_Offset_Table": {
+        "offset": 95,
+        "size": 1,
+        "tag": "DW_TAG_array_type"
+      },
+      "u8_APL_Lut_Tab": {
+        "offset": 100,
+        "size": 1,
+        "tag": "DW_TAG_array_type"
+      },
+      "u8_APL_Peak_Offset_Table": {
+        "offset": 105,
+        "size": 1,
+        "tag": "DW_TAG_array_type"
+      },
+      "u8_Dynamic_TMO_Config": {
+        "offset": 110,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Default_MaxCLL": {
+        "offset": 112,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_KneeStart": {
+        "offset": 116,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Luma_BlackLevel": {
+        "offset": 120,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Sensor_Dark_Max": {
+        "offset": 124,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u8_BR_Gain": {
+        "offset": 128,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Luma_Ratio": {
+        "offset": 132,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_TF_Luma_Gain": {
+        "offset": 136,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_TF_OOTF_Gain": {
+        "offset": 140,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Polynome_G": {
+        "offset": 144,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Polynome_K": {
+        "offset": 148,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_TF_Str": {
+        "offset": 152,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Peak_Luma_Window": {
+        "offset": 156,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Ld_Mid_Peak_Luma_Window": {
+        "offset": 160,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_K1": {
+        "offset": 164,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_K2": {
+        "offset": 168,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Ld_Mid_K2": {
+        "offset": 172,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u8_Peak_Luma_Filter": {
+        "offset": 176,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "u8_Peak_Luma_Filter_Step": {
+        "offset": 177,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "u8_Tmo_Range_Brightness": {
+        "offset": 178,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "u16_Peak_Count": {
+        "offset": 180,
+        "size": 2,
+        "tag": "DW_TAG_base_type"
+      },
+      "u16_Panel_Peak_Gain_A": {
+        "offset": 182,
+        "size": 2,
+        "tag": "DW_TAG_base_type"
+      },
+      "u16_Panel_Peak_Gain_B": {
+        "offset": 184,
+        "size": 2,
+        "tag": "DW_TAG_base_type"
+      },
+      "u16_APL_Weigth_Mix_Ratio": {
+        "offset": 186,
+        "size": 2,
+        "tag": "DW_TAG_base_type"
+      },
+      "u16_Subjctv_Eotf_Min_Nits": {
+        "offset": 188,
+        "size": 2,
+        "tag": "DW_TAG_base_type"
+      },
+      "u16_Objctv_Eotf_Min_Nits": {
+        "offset": 190,
+        "size": 2,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_WihteLevel": {
+        "offset": 192,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_BlackLevel": {
+        "offset": 196,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_APL5_Level": {
+        "offset": 200,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_APL10_Level": {
+        "offset": 204,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_APL25_Level": {
+        "offset": 208,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_APL50_Level": {
+        "offset": 212,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_APL75_Level": {
+        "offset": 216,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_APL100_Level": {
+        "offset": 220,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_APL10_High_Level": {
+        "offset": 224,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_APL25_High_Level": {
+        "offset": 228,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_APL50_High_Level": {
+        "offset": 232,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_APL75_High_Level": {
+        "offset": 236,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_APL100_High_Level": {
+        "offset": 240,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "Hdr_Oetf_Max_Nits_Lut": {
+        "offset": 248,
+        "size": null,
+        "tag": "DW_TAG_pointer_type"
+      },
+      "Hdr_Oetf_Min_Nits_Lut": {
+        "offset": 256,
+        "size": null,
+        "tag": "DW_TAG_pointer_type"
+      },
+      "Hdr_Eotf_Max_Nits_Lut": {
+        "offset": 264,
+        "size": null,
+        "tag": "DW_TAG_pointer_type"
+      },
+      "Hdr_Eotf_Min_Nits_Lut": {
+        "offset": 272,
+        "size": null,
+        "tag": "DW_TAG_pointer_type"
+      },
+      "Hdr_Cust_Pow_Lut": {
+        "offset": 280,
+        "size": null,
+        "tag": "DW_TAG_pointer_type"
+      }
+    }
+  },
+  "hist_ctl": {
+    "size": 152,
+    "fields": {
+      "GT": {
+        "offset": 0,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "Base_Comp": {
+        "offset": 4,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "Tar_Comp": {
+        "offset": 8,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "GT_Factor": {
+        "offset": 12,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "KT": {
+        "offset": 16,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "Base_KT": {
+        "offset": 20,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "Tar_KT": {
+        "offset": 24,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "KT_Factor": {
+        "offset": 28,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32enable": {
+        "offset": 32,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "Ambient_level": {
+        "offset": 36,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "Backlight_level": {
+        "offset": 40,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "HDR_Src_Type": {
+        "offset": 44,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "HDR_Pic_Mode": {
+        "offset": 48,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32HdrMode": {
+        "offset": 52,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Tgt_DBG": {
+        "offset": 56,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Tgt_KS": {
+        "offset": 60,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Tgt_P0": {
+        "offset": 64,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_Tgt_P1": {
+        "offset": 68,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_ld_apl": {
+        "offset": 72,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_ld_spi": {
+        "offset": 76,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_ld_win": {
+        "offset": 80,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_ld_level": {
+        "offset": 84,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_ld_ratio_point": {
+        "offset": 88,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_last_Peak_Luma": {
+        "offset": 92,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_last_ks_value": {
+        "offset": 96,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_cur_ld_duty": {
+        "offset": 100,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_last_ld_duty": {
+        "offset": 104,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_last_Luma": {
+        "offset": 108,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u32_last_MaxO": {
+        "offset": 112,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u8_last_frame_num1": {
+        "offset": 116,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "u8_last_frame_num2": {
+        "offset": 117,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "u8_last_frame_num3": {
+        "offset": 118,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "u8_dfx_notify": {
+        "offset": 119,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "hdr_debug": {
+        "offset": 120,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "hdr_debug_cnt": {
+        "offset": 124,
+        "size": 4,
+        "tag": "DW_TAG_base_type"
+      },
+      "u8_cfd_subtitle_triger_flag": {
+        "offset": 128,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "u16_cfd_subtitle_print_frame": {
+        "offset": 130,
+        "size": 2,
+        "tag": "DW_TAG_base_type"
+      },
+      "u8_bezier_correction": {
+        "offset": 132,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "TMO_param": {
+        "offset": 136,
+        "size": 4,
+        "tag": "DW_TAG_array_type"
+      }
+    }
+  },
+  "display_dev": {
+    "size": 24,
+    "fields": {
+      "hdr_kobj": {
+        "offset": 0,
+        "size": null,
+        "tag": "DW_TAG_pointer_type"
+      },
+      "disp_devp": {
+        "offset": 8,
+        "size": null,
+        "tag": "DW_TAG_pointer_type"
+      },
+      "HDR_init_falg": {
+        "offset": 16,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "HDR_change_flag": {
+        "offset": 17,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "HDR_mode_swtch_bypass_filter": {
+        "offset": 18,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "HDR_mode_swtch_bypass_filter_frame_count": {
+        "offset": 19,
+        "size": 1,
+        "tag": "DW_TAG_base_type"
+      },
+      "hist_lock": {
+        "offset": 20,
+        "size": 4,
+        "tag": "DW_TAG_structure_type"
+      }
+    }
+  }
+}

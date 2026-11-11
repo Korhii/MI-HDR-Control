@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="380" viewBox="0 0 1120 380" role="img" aria-label="小窗亮度与光晕 / Small highlights and blooming">
+<rect width="1120" height="380" rx="24" fill="#10161d"/>
+<style>text{font-family:Segoe UI,Microsoft YaHei,sans-serif} .t{fill:#eaf0f5;font-size:22px;font-weight:600}.s{fill:#a8bac9;font-size:16px}.b{fill:#d9e6ef;font-size:18px}.f{fill:#b5c8d8;font-size:15px}</style>
+<text x="40" y="48" class="t">小窗亮度与光晕 / Small highlights and blooming</text><text x="40" y="78" class="s">概念示意，非测量结果 / Conceptual illustration, not measured data</text>
+<rect x="40" y="120" width="240" height="166" rx="14" fill="#1a2632" stroke="#42657d"/>
+<text x="58" y="153" class="t">较低输出 / Lower</text>
+<text x="58" y="188" class="b">小窗更暗一些</text>
+<text x="58" y="215" class="b">Less visible bloom</text>
+<rect x="312" y="120" width="240" height="166" rx="14" fill="#1a2632" stroke="#42657d"/>
+<text x="330" y="153" class="t">偏好选择 / Preference</text>
+<text x="330" y="188" class="b">按观看环境比较</text>
+<text x="330" y="215" class="b">Compare your content</text>
+<rect x="584" y="120" width="240" height="166" rx="14" fill="#1a2632" stroke="#42657d"/>
+<text x="602" y="153" class="t">较高输出 / Higher</text>
+<text x="602" y="188" class="b">小窗更亮一些</text>
+<text x="602" y="215" class="b">More visible bloom</text>
+<rect x="856" y="120" width="240" height="166" rx="14" fill="#1a2632" stroke="#42657d"/>
+<text x="874" y="153" class="t">没有统一最优 / Choice</text>
+<text x="874" y="188" class="b">EOTF 与 ABL 分开看</text>
+<text x="874" y="215" class="b">Mapping ≠ load limit</text>
+<text x="40" y="338" class="f">颜色、光圈和数值不代表本机实测 / No measured luminance or halo size is represented</text></svg>

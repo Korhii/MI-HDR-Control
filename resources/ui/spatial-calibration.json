@@ -1,0 +1,59 @@
+{
+  "format": "mi-spatial-proxy-v1",
+  "sigma_zones": 2.375,
+  "fit_loss": 0.3824665407937902,
+  "kernel": "normalized separable Gaussian averaged over the window aperture",
+  "scope": "Empirical spatial proxy fitted to HIGH HGiG factory10k anchors; NOT measured PSF. Per-area/input optical anchors remain authoritative. Differential SF predictions require modified-setting optical validation.",
+  "fit": [
+    {
+      "area": 0.01,
+      "predicted_relative": 0.07996692191934342,
+      "reference_relative": 0.04660452729693742
+    },
+    {
+      "area": 0.1,
+      "predicted_relative": 0.22179115522198645,
+      "reference_relative": 0.2782956058588549
+    },
+    {
+      "area": 0.5,
+      "predicted_relative": 0.5974781846012645,
+      "reference_relative": 0.7177097203728362
+    },
+    {
+      "area": 1,
+      "predicted_relative": 1.0158479092959285,
+      "reference_relative": 1.0292942743009321
+    },
+    {
+      "area": 5,
+      "predicted_relative": 2.0581141390685054,
+      "reference_relative": 2.0572569906790945
+    },
+    {
+      "area": 10,
+      "predicted_relative": 2.4263025244891785,
+      "reference_relative": 2.466045272969374
+    },
+    {
+      "area": 25,
+      "predicted_relative": 2.34948687044355,
+      "reference_relative": 2.5286284953395475
+    },
+    {
+      "area": 50,
+      "predicted_relative": 1.6363033044170439,
+      "reference_relative": 1.785619174434088
+    },
+    {
+      "area": 75,
+      "predicted_relative": 1.1647254084961343,
+      "reference_relative": 1.2383488681757657
+    },
+    {
+      "area": 100,
+      "predicted_relative": 1.0,
+      "reference_relative": 1.0
+    }
+  ]
+}

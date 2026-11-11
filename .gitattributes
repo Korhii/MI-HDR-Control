@@ -1,0 +1,12 @@
+* -text
+*.ttf binary
+*.exe binary
+*.dll binary
+*.so binary
+*.o binary
+*.lib binary
+*.jar binary
+*.apk binary
+*.png binary
+*.jpg binary
+*.tar.gz binary

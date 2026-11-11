@@ -1,0 +1,19 @@
+{
+  "source": "Scalar reference values from the prior research package; not a redistributed gamma table or a new optical measurement",
+  "values": {
+    "APLWindow": {
+      "10": 1334,
+      "25": 1453,
+      "50": 0,
+      "75": 0,
+      "100": 718
+    },
+    "APLWindow_High": {
+      "10": 1903,
+      "25": 1883,
+      "50": 0,
+      "75": 0,
+      "100": 718
+    }
+  }
+}

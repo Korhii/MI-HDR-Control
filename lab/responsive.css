@@ -1,0 +1,26 @@
+/* User-selectable compact density down to 50%; layout reflows before shrinking. */
+html{--ui-scale:1}body{font-size:16px}
+input,select,button,.sidebar .nav button{font-size:14px!important}
+small,.muted,.note,.field-feedback,.parameter-hint,.nit-hint,.chart-scope,.top-status,.chart-key,.chart-tip{font-size:12px!important}
+.connection-strip.needs-connection{box-shadow:inset 0 -2px var(--caution)}
+.connection-strip.needs-connection #connect{outline:2px solid var(--caution);outline-offset:2px}
+.connection #port{width:86px!important;min-width:86px;flex-shrink:0}
+.workspace,.content,.inspector,.card,.fields>*{min-width:0}
+.topbar{position:sticky;top:0;z-index:40;flex-wrap:wrap}
+.desktop-actions{margin-left:auto}.top-status{overflow-wrap:anywhere}
+#themeMenu .scale-control{display:grid;gap:6px;padding:10px}#uiScale{width:100%;min-width:0}
+#uiScaleState{white-space:normal;color:var(--muted)}
+html[data-layout=compact] .workspace{gap:16px;padding:20px;grid-template-columns:minmax(0,1fr) 260px}
+html[data-layout=stack] .workspace{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:16px}
+html[data-layout=stack] .inspector{position:static;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+html[data-layout=stack] .fields,html[data-layout=stack] .auto-toolbar{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+html[data-layout=stack] .context-strip{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+html[data-layout=stack] .page-head{gap:12px;margin-bottom:16px}
+html[data-layout=stack] .card{padding:18px}
+html[data-layout=stack] .guide-steps{grid-template-columns:minmax(0,1fr)}
+.brightness-chart{min-height:0!important;overflow:hidden}
+.brightness-chart text{font-size:var(--chart-font,12px)!important}.brightness-chart .handle{r:var(--chart-handle,5.5px)}
+.card{overflow-wrap:anywhere}.card table{display:block;max-width:100%;overflow-x:auto}
+.card table input{max-width:100%;min-width:64px}
+html.sidebar-collapsed .sidebar{height:calc(100vh / var(--ui-scale));overflow-y:auto}
+@media(prefers-reduced-motion:no-preference){.sidebar{transition:transform .15s ease}}

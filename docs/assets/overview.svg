@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="380" viewBox="0 0 1120 380" role="img" aria-label="控制链路 / Control boundary">
+<rect width="1120" height="380" rx="24" fill="#10161d"/>
+<style>text{font-family:Segoe UI,Microsoft YaHei,sans-serif} .t{fill:#eaf0f5;font-size:22px;font-weight:600}.s{fill:#a8bac9;font-size:16px}.b{fill:#d9e6ef;font-size:18px}.f{fill:#b5c8d8;font-size:15px}</style>
+<text x="40" y="48" class="t">控制链路 / Control boundary</text><text x="40" y="78" class="s">个人实验工具 · Dimming-only experiment</text>
+<rect x="40" y="120" width="240" height="166" rx="14" fill="#1a2632" stroke="#42657d"/>
+<text x="58" y="153" class="t">Windows</text>
+<text x="58" y="188" class="b">界面 · 参数 · 预测</text>
+<text x="58" y="215" class="b">UI · settings · model</text>
+<path d="M 287 203 h 17 m -7 -7 l 7 7 -7 7" stroke="#6dcab2" stroke-width="2.5" fill="none"/>
+<rect x="312" y="120" width="240" height="166" rx="14" fill="#1a2632" stroke="#42657d"/>
+<text x="330" y="153" class="t">ADB</text>
+<text x="330" y="188" class="b">授权后读取原厂文件</text>
+<text x="330" y="215" class="b">Read owner originals</text>
+<path d="M 559 203 h 17 m -7 -7 l 7 7 -7 7" stroke="#6dcab2" stroke-width="2.5" fill="none"/>
+<rect x="584" y="120" width="240" height="166" rx="14" fill="#1a2632" stroke="#42657d"/>
+<text x="602" y="153" class="t">本机准备 / Prepare</text>
+<text x="602" y="188" class="b">模型 + 预算适配器</text>
+<text x="602" y="215" class="b">No vendor code in ZIP</text>
+<path d="M 831 203 h 17 m -7 -7 l 7 7 -7 7" stroke="#6dcab2" stroke-width="2.5" fill="none"/>
+<rect x="856" y="120" width="240" height="166" rx="14" fill="#1a2632" stroke="#42657d"/>
+<text x="874" y="153" class="t">显示器 / Monitor</text>
+<text x="874" y="188" class="b">临时调节 / 常驻调光</text>
+<text x="874" y="215" class="b">Readback + restore</text>
+<text x="40" y="338" class="f">公开包不改显示器桌面、频道、Home 或菜单 / No launcher, channel, Home or menu modification</text></svg>

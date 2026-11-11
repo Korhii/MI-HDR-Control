@@ -1,0 +1,146 @@
+> This project was developed with AI tools. Most of this README was also generated and organized with AI assistance; inaccuracies or unclear explanations may remain.
+
+<div align="center">
+
+# MI HDR Control
+
+### Tune the balance between small highlights, bloom and sustained output.
+
+**Windows portable tool · Dimming only · 0.9.26-public-preview · Experimental preview**
+
+[简体中文](README.md) · [First-use workflow](docs/guide.en.md) · [Module reference](docs/modules.en.md) · [Research](docs/RESEARCH.en.md) · [Safety](docs/SAFETY.en.md)
+
+</div>
+
+**[Download Windows portable](https://github.com/Korhii/MI-HDR-Control/releases/tag/v0.9.26-public-preview) · [All releases](https://github.com/Korhii/MI-HDR-Control/releases)**
+
+Download `MI-HDR-Control-0.9.26-public-preview-Windows.zip` from Releases and extract the complete folder. GitHub’s automatic Source code ZIP is for source inspection and does not include the complete runtime.
+
+
+[![0.9.26 · Dark MONO / 素·黑白 · SF / Alpha](docs/assets/screenshots/app-04-halo.png)](docs/assets/screenshots/app-04-halo.png)
+
+<p align="center"><sub>Actual local UI, captured without an ADB connection. Disabled buttons and unavailable readings are unchanged. The application UI remains Chinese; the README and guides are bilingual.</sub></p>
+
+A personal HDR and local-dimming experiment for the REDMI G Pro U series. It provides budget and SF/Alpha controls, experimental cumulative ABL, HDR patterns, model predictions, backups, temporary sessions and saved device-side configurations. **This public version contains dimming features only. It excludes launcher, channel, Home-button and system-menu modifications.**
+
+> [!WARNING]
+> This is a personal project shared with enthusiasts. Its author is not a professional developer, and substantial bugs may remain. Maintenance, fixes, updates and responses are not promised. Parameter safety, electrical limits, temperatures and lifetime have not been comprehensively tested. Incorrect settings can damage hardware. Read [Safety](docs/SAFETY.en.md) first.
+
+## 01 / Check compatibility first
+
+| Monitor | Status |
+| :--- | :--- |
+| **REDMI Monitor G Pro 32U 2026** | The author's own unit. Manual observations mainly used **High local dimming + HGiG**. See the [validation record](docs/VALIDATION.en.md). |
+| **REDMI Monitor G Pro 27U 2026** | **Inferred, experimental support. No physical 27-inch acceptance test.** Predictions, parameters, saving and restoration may have various bugs. |
+| Other models, older 27-inch panel types, unknown firmware | **Unsupported.** Do not force a supported model selection. |
+
+Research environment: HyperOS **OS3.0.120.0.UFFMAMN**, Android 14, kernel `5.15.148-android14-11-g37010446f523`; Windows 11 25H2 (26200.8037), RTX 5090 D, driver 32.0.16.2114. System updates may invalidate compatibility; the model name alone is insufficient.
+
+### First use, in order
+
+| Step | Action | What confirms it |
+| :---: | :--- | :--- |
+| **1** | [Enable Windows HDR and monitor ADB](docs/guide.en.md#prepare). | HDR is on, the ADB channel is ready, and other controllers are closed. |
+| **2** | Extract the entire ZIP; open **MI HDR Control.exe**. | Read the startup risk/exit notice, then confirm the model. No Python, JDK or compiler installation is required. |
+| **3** | [Confirm the model, choose backup storage, connect](docs/guide.en.md#first-run). | Panel/firmware checks, the initial backup and local preparation finish. |
+| **4** | [Read back, then change one parameter](docs/guide.en.md#first-adjustment). | A fresh apply receipt is present. Drafts, predictions and device state stay distinct. |
+| **5** | [End temporary tuning or separately save a resident plan](docs/guide.en.md#save-restore). | Temporary restoration is confirmed; persistence needs a separate reboot check. |
+
+Python, ADB and project components are included. The native window needs the system **WebView2 Runtime**. On first connection, original inputs are read from the user's own monitor and prepared on their own PC. The public bundle excludes the author's extracted vendor modules and private device backups.
+
+## 02 / SF: which neighbours, and how strongly?
+
+SF1–5 correspond to rings 1–5 in the algorithm grid. **Lower values allow stronger neighbouring digital output.** In this experiment, SF2–5 remain 255 and the same central 3×3 cells are bright:
+
+[![SF1 changes both the neighbouring intensity and the digital centerline profile](docs/assets/research/sf-strength.en.png)](docs/assets/research/sf-strength.en.png)
+
+With SF1=255, this case adds no digital spread. At 128, a cell just outside the input retains approximately 49.8% of its peak. At 0, it can retain the full peak. Individual SF rings produce different shapes; see the [point-stimulus experiment](docs/RESEARCH.en.md#sf).
+
+These maps are **offline digital outputs of the original function**, without panel scattering. Visible bloom also depends on the backlight optics, LCD leakage, environment and image geometry. SF is not a Gaussian radius; 255 does not eliminate physical bloom. Brighter small highlights generally make surrounding bloom more apparent, leaving a personal trade-off.
+
+## 03 / Alpha: the same 10% white area can behave very differently
+
+**Mean is the average local input; Max is its brightest input. A bin only chooses which Alpha setting applies. In Alpha0=3, 0 is the index and 3 is the weighting parameter.** See the [single-cell walkthrough and glossary](docs/RESEARCH.en.md#alpha), including raw values and the APP's actual readback.
+
+**Start with where the white pixels sit.** A solid window makes its local cells bright already. Scattered dots leave each cell mostly black with a small white patch. In this experiment, raising Alpha0 gives those isolated bright pixels more weight and increases their digital backlight requests. Equal total white area does not imply equal affected regions.
+
+[![Actual Alpha classes, cell counts, Mean/Max and before/after requests](docs/assets/research/alpha-geometry.en.png)](docs/assets/research/alpha-geometry.en.png)
+
+**Read left to right: white-pixel positions → selected Alpha per cell → before/after request for that class.** Grey bars are before, coloured bars after, on one shared scale. Map colours identify classes only. This input contains α0, α4, α7 and a pure-black background; each class is paired with its actual cell count and values.
+
+| Region in this experiment | Cells | Local Mean / Max | Selected control | After only Alpha0 changes 3 → 16 |
+| :--- | ---: | :--- | :--- | :--- |
+| Solid-window edges | 32 | 153 / 255 | Alpha4 stays 11 | 57088 → 57088, unchanged |
+| Solid-window interior | 96 | 255 / 255 | Alpha7 stays 16 | 65280 → 65280, unchanged |
+| Black outside the window | 1024 | 0 / 0 | No bright input to lift | 0 → 0, unchanged |
+| Every cell containing a scattered highlight | 1152 | 25 / 255 | Alpha0, 3 → 16 | 17408 → 65280; +47872 raw per cell |
+
+**Technical explanation:** with Dynamic=1, local Mean selects one of eight Alpha bins: 0–31, 32–63, through 224–255. The selected value participates in mixing local Max and other statistics. All SF values stay 255, DC=8 and Blend=8. Bright solid-window cells select α4/α7; scattered patches have Mean=25 while Max remains 255, selecting α0 everywhere. Pure-black cells also have Mean=0, but Max=0 and no bright input; they stay at zero in this experiment.
+
+These are **digital requests before budgeting**, not screen-luminance ratios. SF, global budgeting and panel optics still affect the final result. Alpha0 has no universal small-window percentage; a large dim region can also select a low-Mean bin. Alignment, shape and input encoding change the distribution. [Full sweep and reproduction](docs/RESEARCH.en.md#alpha) · [APP controls](docs/modules.en.md#halo)
+
+## 04 / Uniform budget: look closely beyond 10%
+
+The uniform budget is a single global value in **0–86 internal units**. When the budget is already sufficient, increasing it may leave a small window unchanged. Larger-window curves separate as total-load limiting becomes active.
+
+[![Budgets 16, 24 and 41: full window-area curves and a 10%–100% enlargement](docs/assets/research/budget-curves.en.png)](docs/assets/research/budget-curves.en.png)
+
+Conditions: **32U 2026 / High / HGiG / 10000-nit PQ input / cumulative ABL off**. With factory SF/Alpha, the 10% result is about **1852 nit** for all three budgets; full-screen reference estimates are about **501, 751 and 1283 nit**. Changing SF1 changes the load distribution and where limiting becomes visible.
+
+**Nits are estimates from the current software model, not new meter measurements. The 10% split is a viewing aid, not a fixed firmware trigger.** The values are experimental comparisons, not recommendations or certified safety limits.
+
+### Keep EOTF remapping separate
+
+The monitor's **HGiG, Bright, Gradation and Dynamic** modes change the content's input/output mapping and EOTF. This differs from load- or time-dependent APL/ABL limiting. HGiG is the project's reference closer to standard PQ; existing observations do not establish perfect EOTF tracking.
+
+The software can select existing monitor modes; **it does not edit their complete EOTF curves**. Budget research mainly concerns the output ceiling under **10000-nit PQ input**. That is a content-input condition, not measured monitor peak luminance or a value to copy into Windows HDR peak calibration.
+
+<details>
+<summary><strong>Driver input, output, raw and nits: what is different?</strong></summary>
+
+[![One 10% window: LDF Mean/Max inputs, spatial-filter output and MCU-returned buffer](docs/assets/research/driver-stages.en.png)](docs/assets/research/driver-stages.en.png)
+
+- The top row contains historical **96×48, 0–255** LDF input statistics. The bottom row contains **48×24, 16-bit** offline outputs. These are different numeric domains.
+- APP `raw` / `raw_apl` is a current global AW statistic, not the brightest output zone. `raw_spi` keeps its original field name and is not labelled LED current or power.
+- The MCU-returned buffer, SPI-related statistics and physical screen luminance remain separate stages. This figure does not claim to capture final LED current.
+- Estimated luminance needs a matching pattern, mode and fresh readback. “—” means the required context is unavailable.
+
+[Signal domains, historical inputs and reproduction](docs/RESEARCH.en.md#driver)
+
+</details>
+
+## 05 / Modules and stack
+
+| Module | Purpose | Guide |
+| :--- | :--- | :--- |
+| **00 Joint adjustment** | Edit targets, search shared parameters, inspect residuals. Experimental; manual tuning is preferred. | [Fitting](docs/modules.en.md#auto) |
+| **01 APL / ABL** | Global budget, load threshold, peak allowance, decay/recovery and time surfaces. | [Budget / ABL](docs/modules.en.md#budget) |
+| **02 Bloom / dimming** | SF1–5, Alpha0–7, DC, Blend and Dynamic. | [Bloom controls](docs/modules.en.md#halo) |
+| **04 HDR patterns** | Windows, pixels, arrays, PQ input and GPU pixel readback. | [Patterns](docs/modules.en.md#pattern) |
+| **05 Sensors / logs** | Actual returned labels and values; raw when provenance is uncertain. | [Readback](docs/modules.en.md#readback) |
+| **06 Configuration / device** | Twelve drafts, backup, persistence, removal and dimming restoration. | [Saving / recovery](docs/modules.en.md#save-restore) |
+
+**Desktop:** C++ / Win32 / WebView2, HTML / CSS / JavaScript. **Control:** Python 3.13, local HTTP and an independent Java bridge. **Research model:** Unicorn ARM64 execution and project-native numerical components. Preparation and computation run locally without cloud AI.
+
+## 06 / Status, licensing and participation
+
+This is primarily a personal dimming-research project. Public distribution is incidental. Its non-professional author recognizes limitations in code quality, compatibility and stability. Maintenance, replies, fixes, updates, adaptation and feature requests are not promised.
+
+The first release is an **experimental preview**. The 27-inch branch, automatic fitting and current resident components have documented limitations. The current build has not completed uninterrupted reboot acceptance without another controller intervening. See [Validation](docs/VALIDATION.en.md) for coverage, inherited failing fixtures and restoration evidence.
+
+Credit: **MI HDR Control contributors**. Original software and functional UI code use **GPL-2.0-only**; original documentation, figures and independent artwork use **CC BY-NC-SA 4.0**. GPL code retains commercial-use rights; the noncommercial materials do not acquire commercial permission through bundling. [License scope](docs/LEGAL.en.md) · [NOTICE](NOTICE.md)
+
+The palettes remain **01 Green/Purple, 00 Blue/Silver, 02 Red/Orange, 08 Pink/Green, 06 Blue/Gold and Mono**. Included Noto Serif SC, Roboto Condensed and Share Tech Mono retain their open licenses. Matisse is not bundled. See the [palette/font record](docs/THEME_REVIEW.en.md).
+
+[Personal-to-public release rules](docs/RELEASING.en.md) define checks for documentation fixes, parameter changes and native-component updates. The [connection guide](docs/guide.en.md#adb) now includes actual monitor-menu captures.
+
+<a id="themes"></a>
+## 07 / Interface palettes
+
+**Six palettes**, defaulting to **素·黑白 (MONO)**. Tutorials consistently use dark MONO. The top-right theme button selects appearance and palette independently, changing UI colours only. These are actual views of the halo-parameter area, away from the warning-heavy fitting page; existing offline notices remain. Open an image for full resolution.
+
+| 素·黑白 · MONO | 初·绿紫 · 01 | 零·蓝银 · 00 |
+| :---: | :---: | :---: |
+| [![Mono](docs/assets/themes/mono.png)](docs/assets/themes/mono.png) | [![Green/Purple](docs/assets/themes/unit01.png)](docs/assets/themes/unit01.png) | [![Blue/Silver](docs/assets/themes/unit00.png)](docs/assets/themes/unit00.png) |
+| **二·赤橙 · 02** | **八·桃绿 · 08** | **六·蓝金 · 06** |
+| [![Red/Orange](docs/assets/themes/unit02.png)](docs/assets/themes/unit02.png) | [![Pink/Green](docs/assets/themes/unit08.png)](docs/assets/themes/unit08.png) | [![Blue/Gold](docs/assets/themes/mark06.png)](docs/assets/themes/mark06.png) |

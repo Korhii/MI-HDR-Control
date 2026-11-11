@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="380" viewBox="0 0 1120 380" role="img" aria-label="自用包 → 公开包 / Personal → public">
+<rect width="1120" height="380" rx="24" fill="#10161d"/>
+<style>text{font-family:Segoe UI,Microsoft YaHei,sans-serif} .t{fill:#eaf0f5;font-size:22px;font-weight:600}.s{fill:#a8bac9;font-size:16px}.b{fill:#d9e6ef;font-size:18px}.f{fill:#b5c8d8;font-size:15px}</style>
+<text x="40" y="48" class="t">自用包 → 公开包 / Personal → public</text><text x="40" y="78" class="s">每次更新重新生成；未变组件可以复用限定范围内的证据 / Rebuild each release</text>
+<rect x="40" y="120" width="240" height="166" rx="14" fill="#1a2632" stroke="#42657d"/>
+<text x="58" y="153" class="t">自用源包 / Source</text>
+<text x="58" y="188" class="b">原件保留 · 外部工作区</text>
+<text x="58" y="215" class="b">Original stays intact</text>
+<path d="M 287 203 h 17 m -7 -7 l 7 7 -7 7" stroke="#6dcab2" stroke-width="2.5" fill="none"/>
+<rect x="312" y="120" width="240" height="166" rx="14" fill="#1a2632" stroke="#42657d"/>
+<text x="330" y="153" class="t">审阅规则 / Recipe</text>
+<text x="330" y="188" class="b">清隐私 · 核对依赖</text>
+<text x="330" y="215" class="b">Changed core → review</text>
+<path d="M 559 203 h 17 m -7 -7 l 7 7 -7 7" stroke="#6dcab2" stroke-width="2.5" fill="none"/>
+<rect x="584" y="120" width="240" height="166" rx="14" fill="#1a2632" stroke="#42657d"/>
+<text x="602" y="153" class="t">验证 / Validate</text>
+<text x="602" y="188" class="b">界面 · 模型 · 实机分级</text>
+<text x="602" y="215" class="b">Tests follow changes</text>
+<path d="M 831 203 h 17 m -7 -7 l 7 7 -7 7" stroke="#6dcab2" stroke-width="2.5" fill="none"/>
+<rect x="856" y="120" width="240" height="166" rx="14" fill="#1a2632" stroke="#42657d"/>
+<text x="874" y="153" class="t">干净导出 / Export</text>
+<text x="874" y="188" class="b">源码仓库 + 便携 ZIP</text>
+<text x="874" y="215" class="b">No private history</text>
+<text x="40" y="338" class="f">候选包不代表已授权上传 / A candidate archive is not permission to publish</text></svg>

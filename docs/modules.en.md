@@ -1,0 +1,264 @@
+# Module reference · 0.9.26-public-preview
+
+[简体中文](modules.zh-CN.md) · [Home](../README.en.md) · [First-use workflow](guide.en.md) · [Research](RESEARCH.en.md)
+
+Complete connection, backup and temporary restoration with the [first-use workflow](guide.en.md). This reference follows the sidebar modules: **purpose → operations → parameter effects → receipts → restore scope**. All APP images are native lossless dark-MONO PNGs; open them for full resolution. Offline states and missing readings are genuine.
+
+| Module | Question | Application method |
+| :--- | :--- | :--- |
+| [00 Joint fitting](#auto) | How closely can shared parameters approach a target curve? | Edit target → inspect residual → apply once. |
+| [01 APL/ABL](#budget) | Change global budget and sustained-highlight decay. | Preview draft → apply budget/ABL together. |
+| [02 Bloom](#halo) | Change neighbour spread and local-highlight weighting. | Edits can submit live in the selected profile. |
+| [04 Patterns](#pattern) | Hold input, area and position constant. | Show → update → close and restore. |
+| [05 Sensors/logs](#readback) | Inspect real values, sources and receipts. | Read once or every ten seconds. |
+| [06 Configuration](#save-restore) | Separate PC files, resident saves and restoration. | Use the button matching the intended scope. |
+
+## Shared prerequisites: three distinct states
+
+A **draft** lives on the PC; a **prediction** uses the current model conditions; **device state** needs an online connection, matching receipt or fresh readback. Verify identity, initial backup, HDR input, backlight conditions and profile before enabling top-bar live debugging. Low/Medium/High × HGiG/Bright/Layered/Dynamic form twelve independent profiles.
+
+The top-bar switch controls the whole temporary session. Module 02's live switch controls further submissions only; 01 and 00 require Apply. See the [restore-scope table](#restore-scope). Read unavailable, pending and unchanged indicators literally.
+
+<details>
+<summary>Feature map: PC-only work, temporary control and device persistence</summary>
+
+```mermaid
+flowchart LR
+  A[Dimming only] --- B[Local preparation and preview]
+  A --- C[Temporary device tuning]
+  A --- D[Independent monitor execution]
+  B --- B1[04 HDR patterns]
+  B --- B2[Prediction and 00 fitting]
+  B --- B3[PC drafts and JSON]
+  C --- C1[02 SF and Alpha]
+  C --- C2[01 budget and ABL]
+  C --- C3[05 readback and logs]
+  D --- D1[06 persistent save]
+  D --- D2[Remove and restore]
+```
+
+A local preview is not a device write; saving on the PC is not persistence on the monitor.
+
+</details>
+
+<a id="auto"></a>
+## 00 / Joint adjustment · experimental
+
+**Purpose:** approach several window targets using one shared set of SF, Alpha and budget values. Cumulative ABL is excluded from fitting.
+
+[![Dark MONO: full target and predicted curves](assets/screenshots/app-18-auto-chart.png)](assets/screenshots/app-18-auto-chart.png)
+
+[![Further down: residual and single-apply controls](assets/screenshots/app-11-auto.png)](assets/screenshots/app-11-auto.png)
+
+1. Fix profile/input conditions and edit targets; dragging only edits targets.
+2. Inspect the white prediction and residuals. One shared SF/Alpha/budget configuration cannot realize every independent window target.
+3. Apply with **应用可达方案 · 写入设备** only if appropriate; it submits one scheme. Otherwise tune manually.
+4. After other manual edits, **按当前已手动修改的值刷新** refreshes fitting context. It does not read the device to overwrite drafts.
+
+Fit completion is not measured brightness achievement. Substantial errors may remain.
+
+**Read in order:** target dashed line → white predicted line → RMS and worst-window error. Lower residual does not prove actual luminance. The maximum-budget field bounds the search; increasing it may expand the reachable set and device load.
+
+**Undo:** unapplied targets remain local. Restore an applied scheme through the temporary-session procedure. The top reset affects this profile's related parameters, leaving the other eleven profiles intact.
+
+### ABL enabled: the entire module is inactive
+
+An enabled ABL draft or current device state disables the full automatic-adjustment area: ceiling, target editing and Apply. To fit automatically, disable timed ABL in **APL与ABL控制 01**, then click **应用统一亮度设置 · 一次写入**. An unapplied off draft does not override ABL still running on the monitor. Alternatively, keep ABL and tune manually.
+
+[![ABL enabled: inactive fitting controls, with a readable explanation above](assets/screenshots/app-20-auto-disabled.png)](assets/screenshots/app-20-auto-disabled.png)
+
+This is an offline PC-JSON example, not a monitor write or recommended preset. Node details appear while the pointer is on a curve node and disappear when it moves onto empty chart space.
+
+### First cache and subsequent runs
+
+Factory-response caching runs the original numerical algorithm on the PC. Independent processes handle Alpha combinations, each with its own emulator, up to 16 workers. Later fits reuse the local cache. Changes in model, tone, level, input or model code select a matching cache or rebuild it.
+
+On a Ryzen 9 9950X (16 cores / 32 threads), the **32U / High / HGiG / 4000-nit PQ input** 729-combination cold build changed from **35.05 s to 4.59 s**, approximately **7.63×**. Warm cache reading took about **0.36 ms**. All 98,415 float results were byte-identical. Other computers, contexts and refinement stages will differ. This establishes numerical equivalence, not optical accuracy or hardware safety.
+
+<a id="budget"></a>
+## 01 / Global budget and cumulative ABL · 0.9.26
+
+The global budget bounds the digital output available at that moment. Cumulative ABL models what happens after a sustained high load. Larger windows tend to separate more when budget-constrained. The research figure's 10% split is a viewing aid, not a fixed firmware trigger.
+
+[![Global budget and the shared Apply button](assets/screenshots/app-17-budget-value.png)](assets/screenshots/app-17-budget-value.png)
+
+### A. Adjust the instantaneous budget first
+
+1. Connect ADB, enable top-bar live debugging, choose the level/tone pair and click **选择配置**.
+2. Edit **统一预算**. Its slider, number box and presets edit the selected PC draft. **折算窗口** changes only the reference area used for conversion; it does not display a white patch.
+3. Check the curve, then click **应用统一亮度设置 · 一次写入**. Budget and cumulative ABL submit one snapshot captured at click time. Later edits are separate drafts.
+4. Check the current receipt. Changing profiles while submission waits rejects that submission; reconfirm on the intended profile.
+
+The range is 0–86 internal units. Values such as 24, 36 and 41 are not nits, electrical current or certified safe settings. A small window changes only if the relevant load is constrained. [Curve comparison](RESEARCH.en.md#budget)
+
+### B. Decide whether to study time-dependent dimming
+
+[![ABL off: the entire area is inactive](assets/screenshots/app-06-abl.png)](assets/screenshots/app-06-abl.png)
+
+ABL is **off by default**. Controls, load classification and predictions are inactive, with an explicit off state instead of a stale graph. Disabling this experiment does not disable every factory limiter.
+
+1. Check **启用计时 ABL · 随统一设置应用** and read the experimental notice.
+2. Edit the parameters below; duration, stable result or cycle range update from one shared snapshot.
+3. Return to **应用统一亮度设置 · 一次写入**. Merely checking or editing does not change the device mechanism.
+4. To disable it, uncheck and Apply again. Reapplying starts a new cumulative state; ordinary lease renewal does not.
+
+[![Enabled offline draft: threshold, window outcomes and allowance](assets/screenshots/app-19-abl-enabled.png)](assets/screenshots/app-19-abl-enabled.png)
+
+This is an **offline PC-configuration example**, using budget 36 to make the controls and graph visible. No device connection or write occurred; no sensor readings were fabricated. These values are not a recommendation. The custom mechanism targets Medium/High; Low retains its factory cumulative path.
+
+| Control | Practical effect | Technical meaning |
+| :--- | :--- | :--- |
+| Load threshold `L_th` | Higher: fewer loads consume credit. Lower: more loads participate. | Debit occurs only when L is **strictly greater**. Raw load, not watts; reference 18288. |
+| Peak allowance `E₀` | More credit usually lasts longer; duration also depends on load. | Not seconds. Each charged call debits the entire `min(L,31243)`, not merely the excess. Reference 37491600; device execution requires u32 range. |
+| Fall speed | Right generally dims faster; left slower. | 1 is at the slider midpoint; reference divisor 600 and ΔK=22 per call. The fixed floor is unchanged. |
+| Recovery sensitivity `R_reset` | Higher values restore full credit more easily; excessive values can keep resetting it. | Reset uses the **previous** R strictly below the threshold; reference 9760. R is not temperature or APL. |
+| `K_min / K_max` | Not editable here. | Fixed 18288 / 31243; algorithm constants, not a hardware safety rating. |
+| Driver call rate | Changes estimated seconds. | Pending readback, the UI explicitly uses a provisional 60 Hz. This is not the display refresh rate. |
+
+[![Fall speed and recovery controls](assets/screenshots/app-15-abl-controls.png)](assets/screenshots/app-15-abl-controls.png)
+
+### C. Read the 0.9.26 graphs
+
+| Mark | Meaning |
+| :--- | :--- |
+| Single stable value | A fixed state was actually reached in the simulation. |
+| `—（≈value）` | Debit stopped before reaching the fixed floor; read the approximate value with its state explanation. |
+| `↕`, hatching and range | Repeating dim/recovery cycle, with no single final brightness. Hover for the period. |
+| Unresolved / limit | No steady state was confirmed before the observation limit; the last simulated frame is not called final. |
+| Peak duration `∞` | This static rule does not debit or repeatedly resets. It is not an unlimited thermal-safety guarantee. |
+
+[![Transparent time slices with XY and ZY projections](assets/screenshots/app-14-budget-chart.png)](assets/screenshots/app-14-budget-chart.png)
+
+The waterfall uses **X=window area, Y=estimated nits, Z=time toward the lower left**. Upper-right XY shows area/brightness profiles; lower-right ZY shows each area's brightness over time. Red precedes dimming; later colours run from red to blue with observation time, without proving convergence.
+
+The vertical slider changes only the **drawn interval Δt**, not device parameters, driver call rate or peak duration. Its midpoint suggests roughly 11 slices for the current range. A changed model range retains the selected seconds and relocates the handle. A blinking closed white dashed plane marks the exact earliest dimming time; this extra annotation does not alter regular spacing. The graph is display-only.
+
+End the temporary session through the [normal exit sequence](guide.en.md#save-restore). Permanent saving and removal are covered in 06.
+
+<a id="halo"></a>
+## 02 / Bloom and local dimming
+
+**Purpose:** SF changes digital spread into neighbours; Alpha changes how each local cell weighs average input against its brightest pixels. A brighter highlight often makes surrounding bloom more visible.
+
+[![SF/Alpha controls and module live switch](assets/screenshots/app-04-halo.png)](assets/screenshots/app-04-halo.png)
+
+1. Open **光晕与控光 02**; confirm level and mode.
+2. Change one SF or Alpha number after reading the [research explanation](RESEARCH.en.md). Accepted input range is not a safety range.
+3. After connection/profile selection, **开始实时调节** controls automatic submission. In this build, editing a selected profile again can also enable submission automatically; confirm the connection/profile first.
+4. Check **下发序号 / 设备回执** (submission/device receipt). A star only means different from default, not applied.
+5. Use the individual reset arrow or this page's **重置当前控制区参数 · 光晕与控光**. The module reset leaves budget unchanged.
+
+| Parameter | Range | Meaning |
+| :--- | :--- | :--- |
+| SF1–5 | 0–255 each | Neighbouring rings 1–5; lower usually strengthens the relevant digital spread. |
+| Alpha0–7 | 0–16 each | Local-mean statistical bins, not fixed whole-screen white-window areas. |
+| DCMax / LDF Blend | 0–8 each | Local-statistics weighting/mixing; retain defaults initially. |
+| Dynamic | 0/1 | Current mean-bin path at 1, fixed-weight path at 0; not a thermal switch. |
+
+Turning off the module switch only pauses further submissions; written values remain. **Turning off the top-bar live-debug switch** restores the temporary session and disconnects ADB.
+
+### Visible change and algorithmic explanation
+
+| Change | Likely visible consequence | Technical scope |
+| :--- | :--- | :--- |
+| Lower one SF | Stronger requests in that neighbour ring may increase bloom extent/intensity. | Smaller subtraction in a maximum-envelope filter; SF1–5 select logical rings 1–5. Panel optics also matter. |
+| Raise the selected Alpha | In this high-Max/low-Mean experiment, isolated highlights receive a higher request. Final gain can be budget-limited. | Dynamic=1 selects the local-Mean bin; DC/Blend and statistical corrections also participate. Alpha0 is Mean 0–31, not a fixed window percentage. |
+| Dynamic 1→0 | Switch local statistics to the fixed-weight path. | Do not apply the mean-bin explanation unchanged; retain the original setting for first use. |
+| Edit DC/Blend | Change mixing jointly with Alpha. | No independent universal nit increment; compare one item at a time. |
+
+[![Dark MONO: Alpha explanations and number fields](assets/screenshots/app-16-alpha.png)](assets/screenshots/app-16-alpha.png)
+
+A solid window has locally bright cells. Scattered dots leave each cell mostly black with a small white patch. Raising Alpha0 increases the latter requests in this experiment. Equal 10% total white area can therefore behave differently; see the [counts and before/after values](RESEARCH.en.md#alpha). The offline 3→16 comparison is not a first-use recommendation.
+
+**Restore scope:** an arrow resets one item; the module reset restores this profile's SF/Alpha/DC/Blend/Dynamic, leaving budget intact. The module live switch pauses submissions and holds written values; the top-bar switch ends/restores the whole temporary session.
+
+<a id="pattern"></a>
+## 04 / Compare with HDR patterns
+
+**Purpose:** compare under fixed input conditions, including equal total white area with different spatial distributions.
+
+[![Area, PQ input, arrays and display mode](assets/screenshots/app-07-pattern.png)](assets/screenshots/app-07-pattern.png)
+
+1. Open **HDR 图样 04**; begin with **窗口预览** (window preview), desired area and PQ input.
+2. Click **显示 HDR 图样**; use **更新图样参数** for changes.
+3. A single window uses 1 row×1 column. Arrays model scattered highlights. **总面积占比** is the combined area of all windows; **每窗像素尺寸** is the size of each window.
+4. Preview may scale. Use **全屏像素精确** only for physical-pixel verification, checking display index and GPU readback.
+5. `Esc` exits full-screen; the backtick key shows/hides its menu. End with **关闭图样并恢复临时调节**, then check restoration feedback.
+
+Input nit differs from screen output. Labels, menus and other windows affect image statistics. Detailed bottom parameters can be hidden, but the nit label remains; record actual overlays during comparisons. Duration zero means unlimited, not safe unattended bright full-screen operation.
+
+| Setting | What it means |
+| :--- | :--- |
+| 总面积占比 | Combined white-window area as a percentage of the screen; individual windows adjust with array count. |
+| 每窗像素尺寸 | Width/height of each window; more windows change the total area. |
+| PQ input/background | Content encoding, not guaranteed screen-output nits. |
+| 显示器索引 | Check the intended screen before displaying a pattern. |
+| 全屏像素精确 | Verify GPU area, pixel count and error pixels; ordinary preview may scale. |
+| Detail text/menu | Text participates in scene statistics; keep its state constant. |
+
+**End:** `Esc` returns, the backtick key toggles the menu, and **关闭图样并恢复临时调节** closes/restores with a receipt. Resident removal is a separate action.
+
+<a id="readback"></a>
+## 05 / Readback and estimates
+
+**Sequence:** **传感器与记录 05** → **读取传感器** → verify timestamp, label and units → inspect **设备读回与执行记录**. Enable **每10秒读取** only for continuous sampling and turn it off afterward.
+
+[![Dark MONO: real sensor table, sampling and execution records](assets/screenshots/app-12-sensors.png)](assets/screenshots/app-12-sensors.png)
+
+- **设置 / 驱动读回** is the state check. Verify freshness and matching pattern/profile first.
+- Alpha/Blend/Dynamic lack an independent live system query. Their status uses factory initialization and write receipts; pending connection is not a verified readback.
+- `raw`/`raw_apl` is global AW; `raw_spi` preserves its original field. Neither is LED current, watts or maximum-zone nits.
+- **传感器与记录 05 → 读取传感器** shows actual returned labels/values. A node name alone does not establish backlight-board temperature. Unknown source/unit remains raw/unavailable.
+- Estimated luminance needs matching context. “—” means unavailable, not zero. [Signal domains](RESEARCH.en.md#driver)
+
+**Restore scope:** this module's reset disables automatic sampling and retains history; it does not restore dimming parameters. A sensor value only describes its identified source. Without a verified backlight-board mapping, it cannot establish LED-board safety.
+
+<a id="save-restore"></a>
+## 06 / Saving and restoring: three distinct layers
+
+**Purpose:** select between PC files, temporary-session restoration and independent resident execution before pressing a button.
+
+### A. PC-only saving
+
+Values, patterns, themes and fitting targets autosave on the PC; no manual Save button is needed. For a separate file, open **配置与设备 06 → 导出 JSON** and choose a location/name in the Windows Save As dialog. Use **载入 JSON** to select a saved file. Canceling Save As leaves no export. PC saving does not install monitor persistence.
+
+[![Dark MONO: PC export/import with automatic saving](assets/screenshots/app-13-profiles.png)](assets/screenshots/app-13-profiles.png)
+
+### B. End a temporary session
+
+1. Stop editing and close the pattern.
+2. **Turn off top-bar live debugging**, wait for restoration and disconnection.
+3. Check the receipt, then exit. Window closure alone is not proof of restoration.
+
+PC drafts remain; an existing persistent plan is not uninstalled. Temporary takeover pauses that plan for this boot. Exiting the PC app alone does not undo the pause.
+
+### C. Save to the monitor · experimental
+
+[![Read resident status, permanently save, remove and restore](assets/screenshots/app-08-persistent.png)](assets/screenshots/app-08-persistent.png)
+
+1. Complete backup, temporary checks and restoration first. Review all twelve profiles.
+2. Use **读取本机状态**, then **永久保存到显示器**. Review the current experimental/high-risk confirmations.
+3. Check the current boot ID, configuration summary and fresh heartbeat. A save-success message does not verify post-reboot execution.
+4. Full current-build reboot acceptance remains incomplete: `boot_verified=false`. See [Validation](VALIDATION.en.md). Following this guide does not require a reboot experiment.
+5. If separately validating, close other controllers before reboot. The factory diagnostic service may take minutes; the factory path should remain active while waiting. Re-enable ADB for readback if necessary and inspect fresh current-boot status, not old logs.
+
+The monitor independently renews the saved plan; closing the PC does not remove it. This is not a factory-firmware flash. PC tuning pauses the resident plan. To resume, finish the temporary session, verify defaults, then resave or let the next normal boot load the saved plan.
+
+### D. Remove persistence or restore the affected factory dimming
+
+[![Device restoration and PC software reset have separate scopes](assets/screenshots/app-09-restore.png)](assets/screenshots/app-09-restore.png)
+
+<a id="restore-scope"></a>
+
+| Control | Effect | Leaves alone |
+| :--- | :--- | :--- |
+| Individual reset arrow | One value; follows that module's apply semantics. | Other parameters. |
+| Module page reset | Current module/profile. | Other eleven profiles. |
+| 00 page reset | Linked settings for the current profile. | Other profiles. |
+| **恢复12个 profiles 的软件设置为默认** | PC drafts only. | Current output and resident startup policy. |
+| **移除本机方案并恢复** | Stops project persistence, unloads its adapter and restores affected state. | Accounts and factory OS. |
+| **恢复设备出厂调光** | Restores tool-affected dimming using initial backup/factory references; persistently disables project persistence. | Whole-system reset, accounts and launcher. |
+
+For resident removal: connect → **读取本机状态** → **移除本机方案并恢复** → wait for lease/module/parameter checks. For all tool-affected dimming restoration, use the page-top **恢复设备出厂调光**. Black screen or unavailable ADB can also prevent software restoration; these buttons are not guaranteed unbricking tools.
+
+**ADB 随屏启动** is a separate experimental connection helper, not dimming persistence. Factory cloud policy may overwrite it. ADB availability alone does not prove dimming execution. No system-menu modification is included.

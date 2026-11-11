@@ -1,0 +1,102 @@
+{
+  "kdrv_ldm_sys.ko": {
+    "remote": "/vendor/lib/modules/kdrv_ldm_sys.ko",
+    "sha256": "eabc6d525ddd76cfaa9855b137af2df7247bccd4ec7166edef4d0dbfae5db4cd"
+  },
+  "mdrv_ldm.ko": {
+    "remote": "/vendor/lib/modules/mdrv_ldm.ko",
+    "sha256": "b23277ed8f914a4bdb759571fea940c9c37e7d85578803873d926a42c7764c01"
+  },
+  "mtk-db-tool.ko": {
+    "remote": "/vendor/lib/modules/mtk-db-tool.ko",
+    "sha256": "788c06e5a7cc112c27fe54e9463ca18ea79ae878c98dc5b72058479948345297"
+  },
+  "event.xml": {
+    "remote": "/system_ext/etc/misight/event.xml",
+    "sha256": "53ac14c84caa82fa651e7673a93711cb9ed2518969d22acc6359d55243afcaaa"
+  },
+  "event_upload.xml": {
+    "remote": "/system_ext/etc/misight/event_upload.xml",
+    "sha256": "001d4d0daa0c31a653f802c26a07b5ea2785ad4d3c9c3de36a23657cbcdcc765"
+  },
+  "adaptive_hdr_algo.ko": {
+    "remote": "/vendor/lib/modules/adaptive_hdr_algo.ko",
+    "sha256": "a061cd3df4a500965299be2e32c3acd4ac34ed9653e44c8ae9667b17c4e994bf"
+  },
+  "adaptive/luts/cust_pow.bin": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/HDR_group_0/cust_pow.bin",
+    "sha256": "cb5ce2698b2bd63fd90d4ae6627972b86a5d9d9b1e44f2bfa793a9ce193170ec"
+  },
+  "adaptive/luts/hdr_eotf_lut_0_92nit.bin": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/HDR_group_0/hdr_eotf_lut_0_92nit.bin",
+    "sha256": "5df65ebc0aef0391853e358d57b7759a3747e015e56a885a432cff9a85e3f12b"
+  },
+  "adaptive/luts/hdr_eotf_lut_1_10000nit.bin": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/HDR_group_0/hdr_eotf_lut_1_10000nit.bin",
+    "sha256": "bc4a9f37f6228f972b819c1780a1cc58165449d9ff1200d01712ca4ddd0664a5"
+  },
+  "adaptive/luts/hdr_oetf_lut_0_100nit.bin": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/HDR_group_0/hdr_oetf_lut_0_100nit.bin",
+    "sha256": "a13f6272f27f5f298e0a4681cc518df4506457a3f8bd756dc38fb5b082f3fc94"
+  },
+  "adaptive/luts/hdr_oetf_lut_1_10000nit.bin": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/HDR_group_0/hdr_oetf_lut_1_10000nit.bin",
+    "sha256": "171291363c782c9028520346a962499b63bb6f4bae8ca0c2f67eca426db2c3ae"
+  },
+  "models/27u-2026/ptfcn1l-ldm.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/ldm_xiaomi/ldm_ptfcn1l/ldm.ini",
+    "sha256": "ed50dba4ba024aa4324be23d16e0ddc93ea2836f2518daced835a41b898b6a41"
+  },
+  "models/27u-2026/ptfcn2l-ldm.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/ldm_xiaomi/ldm_ptfcn2l/ldm.ini",
+    "sha256": "ed50dba4ba024aa4324be23d16e0ddc93ea2836f2518daced835a41b898b6a41"
+  },
+  "models/32u-2026/PTBCN1L_31_3F/HDR.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/PTBCN1L_31_3F/HDR.ini",
+    "sha256": "cf0f5048a8982ef342d2ff12356f529638358e98bb59ad41076de292fbbb07f2"
+  },
+  "models/32u-2026/PTBCN1L_31_3F/HDR_BRIGHTNESS.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/PTBCN1L_31_3F/HDR_BRIGHTNESS.ini",
+    "sha256": "6b2e5285b13b8b6c11551f7bc73bed9eafb6082016ef43cf7dda6207a9017c28"
+  },
+  "models/32u-2026/PTBCN1L_31_3F/HDR_GRADATION.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/PTBCN1L_31_3F/HDR_GRADATION.ini",
+    "sha256": "a8f2c885ca6eaa2b4a85c1a2ae3b9fe08327337d1236f9e1ffbb9e2a346cb58f"
+  },
+  "models/32u-2026/PTBCN1L_31_3F/HDR_DYNAMIC.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/PTBCN1L_31_3F/HDR_DYNAMIC.ini",
+    "sha256": "cf0f5048a8982ef342d2ff12356f529638358e98bb59ad41076de292fbbb07f2"
+  },
+  "models/27u-2026/PTFCN1L_33_3F/HDR.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/PTFCN1L_33_3F/HDR.ini",
+    "sha256": "79385b113d5ebd1f22d7493e2265b717e8af5bcb3f5708c31c26f025bda6a4c3"
+  },
+  "models/27u-2026/PTFCN1L_33_3F/HDR_BRIGHTNESS.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/PTFCN1L_33_3F/HDR_BRIGHTNESS.ini",
+    "sha256": "b117561fc90ea823511bb15a9cb4a8ab26f4f292641337cbc0369fcd5398981a"
+  },
+  "models/27u-2026/PTFCN1L_33_3F/HDR_GRADATION.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/PTFCN1L_33_3F/HDR_GRADATION.ini",
+    "sha256": "fdc1355b87b6d9488a9ce28d822e487003b8b849badbf73c06a40d7ddecf7635"
+  },
+  "models/27u-2026/PTFCN1L_33_3F/HDR_DYNAMIC.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/PTFCN1L_33_3F/HDR_DYNAMIC.ini",
+    "sha256": "79385b113d5ebd1f22d7493e2265b717e8af5bcb3f5708c31c26f025bda6a4c3"
+  },
+  "models/27u-2026/PTFCN2L_32_3F/HDR.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/PTFCN2L_32_3F/HDR.ini",
+    "sha256": "79385b113d5ebd1f22d7493e2265b717e8af5bcb3f5708c31c26f025bda6a4c3"
+  },
+  "models/27u-2026/PTFCN2L_32_3F/HDR_BRIGHTNESS.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/PTFCN2L_32_3F/HDR_BRIGHTNESS.ini",
+    "sha256": "b117561fc90ea823511bb15a9cb4a8ab26f4f292641337cbc0369fcd5398981a"
+  },
+  "models/27u-2026/PTFCN2L_32_3F/HDR_GRADATION.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/PTFCN2L_32_3F/HDR_GRADATION.ini",
+    "sha256": "fdc1355b87b6d9488a9ce28d822e487003b8b849badbf73c06a40d7ddecf7635"
+  },
+  "models/27u-2026/PTFCN2L_32_3F/HDR_DYNAMIC.ini": {
+    "remote": "/vendor/tvconfig/bsp/chip/MI_HDR/PTFCN2L_32_3F/HDR_DYNAMIC.ini",
+    "sha256": "79385b113d5ebd1f22d7493e2265b717e8af5bcb3f5708c31c26f025bda6a4c3"
+  }
+}

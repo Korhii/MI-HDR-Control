@@ -1,0 +1,41 @@
+{
+  "format": "mi-public-candidate-v1",
+  "version": "0.9.26-public-preview",
+  "recipe": "dimming-only-owner-assets-v17-public-0926",
+  "release_ready": true,
+  "publication_authorized": true,
+  "pending_decisions": [],
+  "automatic_upload": false,
+  "confirmed_decisions": {
+    "credit": "MI HDR Control contributors",
+    "release_level": "experimental-preview",
+    "palettes": "retain numeric/color palettes and licensed fonts",
+    "readme_languages": [
+      "zh-CN",
+      "en"
+    ],
+    "english_gui_required": false,
+    "original_documentation_license": "CC-BY-NC-SA-4.0",
+    "program_license": "GPL-2.0-only",
+    "original_independent_artwork_license": "CC-BY-NC-SA-4.0",
+    "commercial_boundary": "GPL code retains commercial rights; original independent materials are noncommercial",
+    "privacy_capture_method": "crop-and-opaque-mask; no generative editing",
+    "monitor_adb_route": "Control → Settings → Account & security → ADB debugging"
+  },
+  "documentation_gaps": [],
+  "inherited_test_suite": "0.9.26 pristine: 128 tests, 13 failures and 48 errors; current maintained fixtures and regressions are reported separately in VALIDATION",
+  "updated_source_files": [],
+  "device_evidence": "component-scoped; resources/persistence/acceptance.json",
+  "pending_gates": [],
+  "known_limitations": [
+    "27U inferred; no physical 27U acceptance",
+    "Factory-reset developer activation and RSA prompt not re-enacted; chassis button placement not photographed",
+    "Current component uninterrupted reboot acceptance incomplete"
+  ],
+  "publication": {
+    "repository": "https://github.com/Korhii/MI-HDR-Control",
+    "tag": "v0.9.26-public-preview",
+    "channel": "experimental-preview",
+    "ai_assisted": true
+  }
+}

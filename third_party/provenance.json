@@ -1,0 +1,58 @@
+[
+  {
+    "component": "NotoSerifSC-VF.ttf",
+    "license": "OFL-1.1",
+    "upstream": "https://github.com/google/fonts/blob/main/ofl/notoserifsc/NotoSerifSC[wght].ttf",
+    "upstream_git_blob": "eab063faf229160a52d3760f5555150e4eb9e5bf",
+    "sha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+    "license_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/notoserifsc/OFL.txt",
+    "license_sha256": "5e0da210fb04058a8c0087985d2d456b931c2579811a49655721d3cf0c36b6d6",
+    "modified": false
+  },
+  {
+    "component": "RobotoCondensed-VF.ttf",
+    "license": "OFL-1.1",
+    "upstream": "https://github.com/google/fonts/blob/main/ofl/robotocondensed/RobotoCondensed[wght].ttf",
+    "upstream_git_blob": "221055572bc92e324d26337dee7b43b435e39fc8",
+    "sha256": "dace262afcee68a5276f200d8026c57221735c0118ab5fda8c2c0d3dc409a8d0",
+    "license_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/robotocondensed/OFL.txt",
+    "license_sha256": "0e4cc6ece88573545be2ed25835363662a6182ba4a4c1b5c8feda52add30e8a6",
+    "modified": false
+  },
+  {
+    "component": "ShareTechMono-Regular.ttf",
+    "license": "OFL-1.1",
+    "upstream": "https://github.com/google/fonts/blob/main/ofl/sharetechmono/ShareTechMono-Regular.ttf",
+    "upstream_git_blob": "1611474a4cc94c3cb51664597cae92a6f3c68857",
+    "sha256": "9ceab1f87414829af259c0f537573ae03ef7dd3147c0b27a36a1a0beb6732677",
+    "license_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/sharetechmono/OFL.txt",
+    "license_sha256": "9d96f445b6e9c701428811d0177f894874f8d6f07ecc30d568c506542368f3ff",
+    "modified": false
+  },
+  {
+    "component": "Unicorn 2.1.4",
+    "license": "GPL-2.0 engine plus BSD Python binding and bundled component notices",
+    "wheel": "unicorn-2.1.4-cp37-abi3-win_amd64.whl",
+    "wheel_url": "https://files.pythonhosted.org/packages/70/3d/de7be9bd1addabe6d8a1369381f8a080400c349850e978689c5e18287957/unicorn-2.1.4-cp37-abi3-win_amd64.whl",
+    "wheel_sha256": "d7107500c64ce5c168fbff6bef9485b5db1350050036f4cea568650cf8bdbdf5",
+    "installed_native_sha256": "010d85dce84b8f6ffaec3d5420f1b5f7768f859eb831be574c7da23e656ee8f1",
+    "source_archive": "third_party/sources/unicorn-2.1.4.tar.gz",
+    "source_url": "https://files.pythonhosted.org/packages/b2/1b/b4248aa8422e86de690cf8e85cf8feae4c33405a097d1ebe71570bdaa6f5/unicorn-2.1.4.tar.gz",
+    "source_sha256": "00567a70e323f749b419cd86bee4f9115beab7ebba32194581c090cbb7c59cff",
+    "source_members": 845,
+    "official_native_match": true
+  },
+  {
+    "component": "WebView2 SDK",
+    "version": "1.0.3650.58",
+    "license": "BSD-3-Clause",
+    "upstream": "https://www.nuget.org/packages/Microsoft.Web.WebView2/1.0.3650.58",
+    "files": {
+      "scripts\\windows-launcher\\webview2\\LICENSE.txt": "0af8f1b807512aae39c2ac1aa4d0cae65cabecb6fd554b8439a5162a0d6eca55",
+      "scripts\\windows-launcher\\webview2\\WebView2.h": "87af22891022df025761b3b9d056c96770ef125854c90e748e2864b0196e4d1f",
+      "scripts\\windows-launcher\\webview2\\WebView2EnvironmentOptions.h": "9ceaab0d6e06db549fdf42921797c73043b042f5d4cffc48c079494ec7d6404d",
+      "scripts\\windows-launcher\\webview2\\WebView2LoaderStatic.lib": "0659b741bde6348d4c4a6ec4ceb9af50e3d0048ed9cd3c8659bccbb61fde55ee"
+    },
+    "native_frontend_rebuilt": true
+  }
+]

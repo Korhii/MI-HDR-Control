@@ -1,0 +1,41 @@
+.factory-reset{grid-column:1/-1;display:flex;width:100%;flex-direction:column;align-items:flex-start;gap:7px;text-align:left;padding:18px 24px;margin:0 0 20px;border:2px solid var(--caution);border-left:10px solid var(--caution);background:var(--c-fff);color:var(--c-202020)}
+.factory-reset strong{font:900 clamp(25px,3.1vw,40px)/1.25 "EVA Matisse Local","Noto Serif SC Console","SimSun",serif;letter-spacing:.03em}.factory-reset small{font-family:Consolas,monospace;letter-spacing:.12em;color:var(--caution)}.factory-reset span{font-size:12px;color:var(--muted)}
+.connection-strip .connection{flex-wrap:nowrap}.connection-strip .connection label:first-child{flex:0 1 350px;min-width:120px}.connection-strip #serial{min-width:0;width:100%;flex:1}.detach-module{margin-left:auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;flex-shrink:0;white-space:nowrap}.detach-module svg{width:18px;height:18px;flex-shrink:0}@media(max-width:620px){.detach-module span{display:none}.detach-module{padding:8px!important;width:38px}}
+.metric[hidden]{display:none!important}.readout{grid-template-columns:minmax(0,1fr)!important}
+.brightness-chart .requested-curve{stroke:#72b9ed!important;stroke-dasharray:8 5;stroke-width:2;fill:none}.brightness-chart .target-long{stroke-dasharray:2 4}.brightness-chart .factory-curve{stroke:#999;stroke-dasharray:2 6;stroke-width:2;fill:none}.brightness-chart .peak{stroke-width:2.8}
+.chart-legend .legend-target:before{border-top-style:dashed;border-color:#72b9ed}.chart-legend .legend-factory:before{border-top-style:dotted;border-color:#999}
+html[data-module-window] .sidebar,html[data-module-window] .sidebar-edge,html[data-module-window] .connection-strip,html[data-module-window] .inspector,html[data-module-window] .factory-reset{display:none!important}
+html[data-module-window] .app-shell{margin-left:0!important}html[data-module-window] .workspace{display:block;max-width:none;padding:16px}html[data-module-window] .page-head{min-height:0}html[data-module-window] .eva-chapter{display:none}
+html[data-module-window] .topbar-label{display:none!important}html[data-module-window] #exitController{display:none}
+
+:root{--curve-accent:var(--plot-accent)}html[data-unit=mono]{--curve-accent:var(--plot-accent)}.brightness-chart .requested-curve{stroke:var(--curve-accent)!important;stroke-width:2!important;stroke-dasharray:7 5!important;fill:none}.brightness-chart .peak{stroke:var(--plot-fit)!important;stroke-width:2.4!important;stroke-dasharray:none!important;fill:none}.brightness-chart .factory-curve{stroke:var(--plot-factory)!important;stroke-width:1!important;stroke-dasharray:none!important;fill:none}.brightness-chart .factory-fill{fill:var(--curve-accent);opacity:.055}.brightness-chart .requested-handle{fill:var(--curve-accent)!important;stroke:var(--c-fff)!important}.chart-legend .legend-target:before{border-color:var(--curve-accent)}.chart-legend .legend-factory:before{border-top-style:solid}input:disabled{opacity:.38!important;cursor:not-allowed}
+
+.brightness-chart{background:var(--plot-bg)!important;color:var(--plot-text)}.brightness-chart .axis{fill:var(--plot-muted)!important}
+.overlay-hint{display:block;color:var(--c-666);padding:0 0 12px;font-size:12px}
+
+.eotf-mode-switch{margin-left:auto;display:inline-flex;align-self:center;flex-shrink:0}.eotf-mode-switch[hidden]{display:none}.eotf-mode-switch button{display:flex;align-items:center;gap:8px;border-radius:0;margin:0;padding:9px 12px}.eotf-mode-switch button:first-child{border-radius:7px 0 0 7px}.eotf-mode-switch button:last-child{border-radius:0 7px 7px 0;margin-left:-1px}.eotf-mode-switch button[aria-pressed=true]{background:var(--c-efefef);border-color:var(--curve-accent);z-index:1}.eotf-mode-switch svg{width:18px;height:18px}.page-head{flex-wrap:wrap}.chart-tip{background:color-mix(in srgb,var(--plot-bg) 72%,transparent)!important;color:var(--plot-text)!important;box-shadow:none!important;max-width:320px}.nav button[hidden]{display:none!important}
+
+.app-dialog p{white-space:pre-line;overflow-wrap:anywhere}.app-dialog h2{font-size:clamp(22px,3vw,40px)!important}.app-dialog{max-height:90vh;overflow:auto}.app-dialog .flex button{min-width:90px}#selectProfile:disabled{opacity:.42;cursor:default}
+
+.connection{flex-wrap:wrap;align-items:center}#autoDeviceStatus{flex:1;min-width:160px;font-size:11px;overflow-wrap:anywhere}.connection-advanced{font-size:11px}.connection-advanced[open]{flex-basis:100%;padding:10px;border:1px solid var(--line)}.connection-advanced small{display:block;margin-top:8px;color:var(--muted)}
+
+
+/* Opening advanced connection never changes the trigger or row geometry. */
+.connection-strip{position:relative;z-index:30}
+.connection-strip .connection{position:relative}
+.connection-strip .connection-advanced,.connection-strip .connection-advanced[open]{position:static;flex:0 0 auto;padding:0;border:0}
+.connection-advanced>summary{white-space:nowrap;cursor:pointer;padding:8px 4px;min-height:38px}
+.connection-panel{position:absolute;inset-inline-end:0;inset-block-start:calc(100% + 8px);inline-size:min(600px,100%);max-block-size:70vh;overflow:auto;padding:18px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--c-202020);box-shadow:0 8px 30px rgb(0 0 0 / .18);z-index:1}
+.connection-panel>.flex{display:grid;grid-template-columns:120px minmax(0,1fr);align-items:end}
+.connection-panel>.flex>label{display:grid;gap:6px;min-width:0}
+.connection-panel>.flex>label:first-child{grid-column:1/-1;min-width:0}
+.connection-panel #serial,.connection-panel #port{width:100%;min-width:0}
+.connection-panel #connectManual{justify-self:end;max-width:100%}
+.connection-panel-actions{display:flex;justify-content:flex-end;margin-top:12px}
+.connection-strip #connect{flex-shrink:0;white-space:nowrap}
+.connection-strip #autoDeviceStatus{min-width:0}
+
+.auto-controls{border:0;padding:0;margin:0;min-width:0}
+.auto-controls.auto-disabled{filter:grayscale(1);opacity:.48}
+.auto-controls:disabled input,.auto-controls:disabled select,.auto-controls:disabled button{cursor:not-allowed}
+.auto-controls.auto-disabled .chart-host{cursor:not-allowed}

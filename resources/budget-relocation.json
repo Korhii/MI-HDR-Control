@@ -1,0 +1,98 @@
+{
+  "schema": "mi-hdr-module-addresses-v1",
+  "module": "mi_oemabl",
+  "bytes": 133696,
+  "sha256": "fa56d7421623ac8bdf8f1d36cb5b6c8f46029f6235b296c8681f73179a0cacf2",
+  "entries": [
+    {
+      "offset": 106600,
+      "region": "text",
+      "addend": 194524,
+      "expected": 18446743798880069596
+    },
+    {
+      "offset": 106608,
+      "region": "text",
+      "addend": 196140,
+      "expected": 18446743798880071212
+    },
+    {
+      "offset": 106616,
+      "region": "text",
+      "addend": 197720,
+      "expected": 18446743798880072792
+    },
+    {
+      "offset": 106696,
+      "region": "text",
+      "addend": 194524,
+      "expected": 18446743798880069596
+    },
+    {
+      "offset": 106704,
+      "region": "text",
+      "addend": 196140,
+      "expected": 18446743798880071212
+    },
+    {
+      "offset": 106712,
+      "region": "text",
+      "addend": 197720,
+      "expected": 18446743798880072792
+    },
+    {
+      "offset": 119424,
+      "region": "text",
+      "addend": 194528,
+      "expected": 18446743798880069600
+    },
+    {
+      "offset": 119472,
+      "region": "text",
+      "addend": 196144,
+      "expected": 18446743798880071216
+    },
+    {
+      "offset": 119520,
+      "region": "text",
+      "addend": 197724,
+      "expected": 18446743798880072796
+    },
+    {
+      "offset": 119664,
+      "region": "data",
+      "addend": 456,
+      "expected": 18446743798880498216
+    },
+    {
+      "offset": 119688,
+      "region": "data",
+      "addend": 460,
+      "expected": 18446743798880498220
+    },
+    {
+      "offset": 119712,
+      "region": "data",
+      "addend": 464,
+      "expected": 18446743798880498224
+    },
+    {
+      "offset": 119736,
+      "region": "data",
+      "addend": 468,
+      "expected": 18446743798880498228
+    },
+    {
+      "offset": 125048,
+      "region": "data",
+      "addend": 0,
+      "expected": 18446743798880497760
+    },
+    {
+      "offset": 125056,
+      "region": "bss",
+      "addend": 0,
+      "expected": 18446743798880120832
+    }
+  ]
+}

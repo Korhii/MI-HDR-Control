@@ -1,0 +1,26 @@
+name: Public package checks
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # official v4, pinned
+        with:
+          persist-credentials: false
+      - name: Public scope, syntax, licenses and local links
+        run: python3 release-tools/release.py check --candidate .
+      - name: Paired documentation, actual captures and research data
+        run: python3 tests/test_documentation.py
+      - name: Parameter coupling
+        run: node tests/test_release_0926.js
+      - name: Dialogs, hover, ABL availability and export contract
+        run: node tests/test_ui_followup.js

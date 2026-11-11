@@ -1,0 +1,29 @@
+{
+  "NotoSerifSC-VF.ttf": {
+    "0": "(c) 2017-2024 Adobe (http://www.adobe.com/).",
+    "1": "Noto Serif SC ExtraLight",
+    "5": "Version 2.003-H1;hotconv 1.1.1;makeotfexe 2.6.0",
+    "13": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://openfontlicense.org",
+    "14": "https://openfontlicense.org",
+    "sha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+    "distribution_license": "OFL-1.1; historical embedded Roboto Apache notice also retained"
+  },
+  "RobotoCondensed-VF.ttf": {
+    "0": "Copyright 2011 Google Inc. All Rights Reserved.",
+    "1": "Roboto Condensed",
+    "5": "Version 3.008; 2023",
+    "13": "Licensed under the Apache License, Version 2.0",
+    "14": "http://www.apache.org/licenses/LICENSE-2.0",
+    "sha256": "dace262afcee68a5276f200d8026c57221735c0118ab5fda8c2c0d3dc409a8d0",
+    "distribution_license": "OFL-1.1; historical embedded Roboto Apache notice also retained"
+  },
+  "ShareTechMono-Regular.ttf": {
+    "0": "Copyright (c) 2012, Carrois Type Design, Ralph du Carrois (post@carrois.com www.carrois.com), with Reserved Font Name 'Share'",
+    "1": "Share Tech Mono",
+    "5": "Version 1.003",
+    "13": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL",
+    "14": "http://scripts.sil.org/OFL",
+    "sha256": "9ceab1f87414829af259c0f537573ae03ef7dd3147c0b27a36a1a0beb6732677",
+    "distribution_license": "OFL-1.1; historical embedded Roboto Apache notice also retained"
+  }
+}

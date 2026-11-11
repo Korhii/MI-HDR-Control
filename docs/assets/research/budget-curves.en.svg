@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1190" viewBox="0 0 1500 1190" role="img" aria-label="How the uniform budget changes window curves">
+<rect width="1500" height="1190" rx="20" fill="#0d1420"/>
+<text x="52.00" y="55.00" fill="#eaf2fa" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="32" font-weight="600" text-anchor="start">How the uniform budget changes window curves</text>
+<text x="52.00" y="92.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start">32U 2026 · High · HGiG · 10000-nit PQ input · cumulative ABL off. Nits are current model estimates.</text>
+<path d="M115.00,139.00 L149.00,139.00" fill="none" stroke="#36d6b5" stroke-width="4"/>
+<text x="159.00" y="145.00" fill="#eaf2fa" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start">Budget 16</text>
+<path d="M495.00,139.00 L529.00,139.00" fill="none" stroke="#9d8aff" stroke-width="4"/>
+<text x="539.00" y="145.00" fill="#eaf2fa" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start">Budget 24</text>
+<path d="M875.00,139.00 L909.00,139.00" fill="none" stroke="#ffb86b" stroke-width="4"/>
+<text x="919.00" y="145.00" fill="#eaf2fa" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start">Budget 41</text>
+<text x="55.00" y="183.00" fill="#eaf2fa" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="25" font-weight="600" text-anchor="start">Factory SF / Alpha</text>
+<rect x="110.00" y="246.00" width="580.00" height="285.00" fill="#152131" rx="0"/>
+<rect x="574.00" y="246.00" width="116.00" height="285.00" fill="#1d2d41" rx="0"/>
+<path d="M110.00,531.00 L690.00,531.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="98.00" y="538.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">0</text>
+<path d="M110.00,474.00 L690.00,474.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="98.00" y="481.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">500</text>
+<path d="M110.00,417.00 L690.00,417.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="98.00" y="424.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">1000</text>
+<path d="M110.00,360.00 L690.00,360.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="98.00" y="367.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">1500</text>
+<path d="M110.00,303.00 L690.00,303.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="98.00" y="310.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">2000</text>
+<path d="M110.00,246.00 L690.00,246.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="98.00" y="253.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">2500</text>
+<path d="M110.00,246.00 L110.00,531.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="110.00" y="560.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">0.001</text>
+<path d="M226.00,246.00 L226.00,531.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="226.00" y="560.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">0.01</text>
+<path d="M342.00,246.00 L342.00,531.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="342.00" y="560.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">0.1</text>
+<path d="M458.00,246.00 L458.00,531.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="458.00" y="560.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">1</text>
+<path d="M574.00,246.00 L574.00,531.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="574.00" y="560.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">10</text>
+<path d="M690.00,246.00 L690.00,531.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="690.00" y="560.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">100</text>
+<path d="M110.00,527.45 L165.35,527.24 L226.00,527.01 L281.35,517.55 L342.00,507.17 L397.35,481.49 L458.00,442.88 L492.92,404.98 L539.08,354.87 L574.00,319.87 L594.43,318.02 L608.92,330.30 L620.16,343.40 L629.35,388.84 L643.84,415.43 L655.08,429.09 L664.27,443.13 L675.51,460.32 L690.00,473.93" fill="none" stroke="#36d6b5" stroke-width="3.5"/>
+<path d="M110.00,527.45 L165.35,527.24 L226.00,527.01 L281.35,517.55 L342.00,507.17 L397.35,481.49 L458.00,442.88 L492.92,404.98 L539.08,354.87 L574.00,319.87 L594.43,317.50 L608.92,315.82 L620.16,314.51 L629.35,331.25 L643.84,357.65 L655.08,378.13 L664.27,399.19 L675.51,424.98 L690.00,445.39" fill="none" stroke="#9d8aff" stroke-width="3.5"/>
+<path d="M110.00,527.45 L165.35,527.24 L226.00,527.01 L281.35,517.55 L342.00,507.17 L397.35,481.49 L458.00,442.88 L492.92,404.98 L539.08,354.87 L574.00,319.87 L594.43,316.39 L608.92,311.49 L620.16,308.73 L629.35,320.76 L643.84,323.45 L655.08,324.40 L664.27,335.20 L675.51,365.11 L690.00,384.73" fill="none" stroke="#ffb86b" stroke-width="3.5"/>
+<text x="400.00" y="592.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="middle">Window area / % · log scale</text>
+<text x="110.00" y="231.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start">Reference luminance / nit (estimate)</text>
+<rect x="850.00" y="246.00" width="565.00" height="285.00" fill="#152131" rx="0"/>
+<path d="M850.00,531.00 L1415.00,531.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="838.00" y="538.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">0</text>
+<path d="M850.00,474.00 L1415.00,474.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="838.00" y="481.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">500</text>
+<path d="M850.00,417.00 L1415.00,417.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="838.00" y="424.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">1000</text>
+<path d="M850.00,360.00 L1415.00,360.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="838.00" y="367.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">1500</text>
+<path d="M850.00,303.00 L1415.00,303.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="838.00" y="310.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">2000</text>
+<path d="M850.00,246.00 L1415.00,246.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="838.00" y="253.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">2500</text>
+<path d="M850.00,246.00 L850.00,531.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="850.00" y="560.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">10</text>
+<path d="M944.17,246.00 L944.17,531.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="944.17" y="560.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">25</text>
+<path d="M1101.11,246.00 L1101.11,531.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="1101.11" y="560.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">50</text>
+<path d="M1258.06,246.00 L1258.06,531.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="1258.06" y="560.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">75</text>
+<path d="M1415.00,246.00 L1415.00,531.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="1415.00" y="560.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">100</text>
+<path d="M850.00,319.87 L881.39,318.02 L912.78,330.30 L944.17,343.40 L975.56,388.84 L1038.33,415.43 L1101.11,429.09 L1163.89,443.13 L1258.06,460.32 L1415.00,473.93" fill="none" stroke="#36d6b5" stroke-width="3.5"/>
+<path d="M850.00,319.87 L881.39,317.50 L912.78,315.82 L944.17,314.51 L975.56,331.25 L1038.33,357.65 L1101.11,378.13 L1163.89,399.19 L1258.06,424.98 L1415.00,445.39" fill="none" stroke="#9d8aff" stroke-width="3.5"/>
+<path d="M850.00,319.87 L881.39,316.39 L912.78,311.49 L944.17,308.73 L975.56,320.76 L1038.33,323.45 L1101.11,324.40 L1163.89,335.20 L1258.06,365.11 L1415.00,384.73" fill="none" stroke="#ffb86b" stroke-width="3.5"/>
+<text x="1132.50" y="592.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="middle">10%–100% enlarged</text>
+<text x="850.00" y="231.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start">Same data · linear area axis</text>
+<text x="55.00" y="628.00" fill="#eaf2fa" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="25" font-weight="600" text-anchor="start">Only SF1→0; all other values unchanged</text>
+<rect x="110.00" y="691.00" width="580.00" height="285.00" fill="#152131" rx="0"/>
+<rect x="574.00" y="691.00" width="116.00" height="285.00" fill="#1d2d41" rx="0"/>
+<path d="M110.00,976.00 L690.00,976.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="98.00" y="983.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">0</text>
+<path d="M110.00,919.00 L690.00,919.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="98.00" y="926.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">500</text>
+<path d="M110.00,862.00 L690.00,862.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="98.00" y="869.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">1000</text>
+<path d="M110.00,805.00 L690.00,805.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="98.00" y="812.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">1500</text>
+<path d="M110.00,748.00 L690.00,748.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="98.00" y="755.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">2000</text>
+<path d="M110.00,691.00 L690.00,691.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="98.00" y="698.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">2500</text>
+<path d="M110.00,691.00 L110.00,976.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="110.00" y="1005.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">0.001</text>
+<path d="M226.00,691.00 L226.00,976.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="226.00" y="1005.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">0.01</text>
+<path d="M342.00,691.00 L342.00,976.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="342.00" y="1005.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">0.1</text>
+<path d="M458.00,691.00 L458.00,976.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="458.00" y="1005.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">1</text>
+<path d="M574.00,691.00 L574.00,976.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="574.00" y="1005.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">10</text>
+<path d="M690.00,691.00 L690.00,976.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="690.00" y="1005.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">100</text>
+<path d="M110.00,953.16 L165.35,951.83 L226.00,950.36 L281.35,902.85 L342.00,866.27 L397.35,849.22 L458.00,780.25 L492.92,764.49 L539.08,732.02 L574.00,738.17 L594.43,758.45 L608.92,799.37 L620.16,810.42 L629.35,844.85 L643.84,868.80 L655.08,885.67 L664.27,897.36 L675.51,912.26 L690.00,918.93" fill="none" stroke="#36d6b5" stroke-width="3.5"/>
+<path d="M110.00,953.16 L165.35,951.83 L226.00,950.36 L281.35,902.85 L342.00,866.27 L397.35,849.22 L458.00,780.25 L492.92,764.49 L539.08,732.02 L574.00,737.96 L594.43,743.34 L608.92,749.09 L620.16,750.12 L629.35,779.27 L643.84,815.19 L655.08,840.50 L664.27,858.04 L675.51,880.38 L690.00,890.39" fill="none" stroke="#9d8aff" stroke-width="3.5"/>
+<path d="M110.00,953.16 L165.35,951.83 L226.00,950.36 L281.35,902.85 L342.00,866.27 L397.35,849.22 L458.00,780.25 L492.92,764.49 L539.08,732.02 L574.00,737.52 L594.43,738.70 L608.92,740.28 L620.16,739.39 L629.35,751.11 L643.84,761.22 L655.08,777.95 L664.27,793.07 L675.51,812.64 L690.00,829.73" fill="none" stroke="#ffb86b" stroke-width="3.5"/>
+<text x="400.00" y="1037.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="middle">Window area / % · log scale</text>
+<text x="110.00" y="676.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start">Reference luminance / nit (estimate)</text>
+<rect x="850.00" y="691.00" width="565.00" height="285.00" fill="#152131" rx="0"/>
+<path d="M850.00,976.00 L1415.00,976.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="838.00" y="983.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">0</text>
+<path d="M850.00,919.00 L1415.00,919.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="838.00" y="926.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">500</text>
+<path d="M850.00,862.00 L1415.00,862.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="838.00" y="869.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">1000</text>
+<path d="M850.00,805.00 L1415.00,805.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="838.00" y="812.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">1500</text>
+<path d="M850.00,748.00 L1415.00,748.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="838.00" y="755.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">2000</text>
+<path d="M850.00,691.00 L1415.00,691.00" fill="none" stroke="#34465c" stroke-width="1"/>
+<text x="838.00" y="698.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="end">2500</text>
+<path d="M850.00,691.00 L850.00,976.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="850.00" y="1005.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">10</text>
+<path d="M944.17,691.00 L944.17,976.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="944.17" y="1005.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">25</text>
+<path d="M1101.11,691.00 L1101.11,976.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="1101.11" y="1005.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">50</text>
+<path d="M1258.06,691.00 L1258.06,976.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="1258.06" y="1005.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">75</text>
+<path d="M1415.00,691.00 L1415.00,976.00" fill="none" stroke="#34465c" stroke-width="1" stroke-dasharray="3 5"/>
+<text x="1415.00" y="1005.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="middle">100</text>
+<path d="M850.00,738.17 L881.39,758.45 L912.78,799.37 L944.17,810.42 L975.56,844.85 L1038.33,868.80 L1101.11,885.67 L1163.89,897.36 L1258.06,912.26 L1415.00,918.93" fill="none" stroke="#36d6b5" stroke-width="3.5"/>
+<path d="M850.00,737.96 L881.39,743.34 L912.78,749.09 L944.17,750.12 L975.56,779.27 L1038.33,815.19 L1101.11,840.50 L1163.89,858.04 L1258.06,880.38 L1415.00,890.39" fill="none" stroke="#9d8aff" stroke-width="3.5"/>
+<path d="M850.00,737.52 L881.39,738.70 L912.78,740.28 L944.17,739.39 L975.56,751.11 L1038.33,761.22 L1101.11,777.95 L1163.89,793.07 L1258.06,812.64 L1415.00,829.73" fill="none" stroke="#ffb86b" stroke-width="3.5"/>
+<text x="1132.50" y="1037.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="middle">10%–100% enlarged</text>
+<text x="850.00" y="676.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start">Same data · linear area axis</text>
+<text x="52.00" y="1132.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start">10% is a reading split, not a fixed firmware switch. SF/Alpha alter load distribution and the onset of limiting.</text>
+<text x="52.00" y="1168.00" fill="#b1c2d4" font-family="Microsoft YaHei,Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" text-anchor="start">Offline comparison, not a new luminance measurement or a parameter-safety recommendation.</text>
+</svg>
