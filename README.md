@@ -6,7 +6,7 @@
 
 ### 小窗口亮度、光晕与持续亮度，按自己的偏好调整。
 
-**Windows 便携工具 · 仅调光 · 0.9.26-public-preview.1 · 实验预览**
+**Windows 便携工具 · 仅调光 · 0.9.26-public-preview.2 · 实验预览**
 
 [English](README.en.md) · [首次使用全流程](docs/guide.zh-CN.md) · [逐模块详解](docs/modules.zh-CN.md) · [算法与研究](docs/RESEARCH.zh-CN.md) · [风险说明](docs/SAFETY.zh-CN.md)
 
@@ -14,8 +14,10 @@
 
 **[下载 Windows 便携包](https://github.com/Korhii/MI-HDR-Control/releases/latest) · [全部版本](https://github.com/Korhii/MI-HDR-Control/releases)**
 
-下载 Releases 中的 `MI-HDR-Control-0.9.26-public-preview.1-Windows.zip`，完整解压后运行。GitHub 自动生成的 Source code ZIP 用于查看源码，不含完整运行环境。
+下载 Releases 中的 `MI-HDR-Control-0.9.26-public-preview.2-Windows.zip`，完整解压后运行。GitHub 自动生成的 Source code ZIP 用于查看源码，不含完整运行环境。
 
+
+**本次修订：** 顶栏默认/调节 A/B 切换、新解压包找回已有备份，以及模型进度文件占用修复。[更新记录](CHANGELOG.md) · [A/B 操作](docs/guide.zh-CN.md#comparison)
 
 [![0.9.26 · Dark MONO / 素·黑白 · SF / Alpha](docs/assets/screenshots/app-04-halo.png)](docs/assets/screenshots/app-04-halo.png)
 
@@ -42,7 +44,7 @@
 | :---: | :--- | :--- |
 | **1** | [设置 Windows HDR、开启显示器 ADB](docs/guide.zh-CN.md#prepare) | HDR 已开启，ADB 通道已准备，其他控制器已退出。 |
 | **2** | 完整解压 ZIP，双击 **MI HDR Control.exe** | 阅读启动风险与退出提示，再确认型号；无需安装 Python、JDK 或编译器。 |
-| **3** | [确认机型、选备份、连接](docs/guide.zh-CN.md#first-run) | 屏型及固件匹配，初始备份完成，本机组件准备成功。 |
+| **3** | [确认机型、连接并检查备份](docs/guide.zh-CN.md#first-run) | 屏型及固件匹配，初始备份完成，本机组件准备成功。 |
 | **4** | [先读回，再改一个参数](docs/guide.zh-CN.md#first-adjustment) | 有本次下发回执；草稿、预测和设备状态分开看。 |
 | **5** | [结束临时调节，或另行保存常驻](docs/guide.zh-CN.md#save-restore) | 临时恢复已确认；常驻须单独验证重启后的执行状态。 |
 

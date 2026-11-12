@@ -1,4 +1,4 @@
-# Module reference · 0.9.26-public-preview.1
+# Module reference · 0.9.26-public-preview.2
 
 [简体中文](modules.zh-CN.md) · [Home](../README.en.md) · [First-use workflow](guide.en.md) · [Research](RESEARCH.en.md)
 
@@ -18,6 +18,8 @@ Complete connection, backup and temporary restoration with the [first-use workfl
 A **draft** lives on the PC; a **prediction** uses the current model conditions; **device state** needs an online connection, matching receipt or fresh readback. Verify identity, initial backup, HDR input, backlight conditions and profile before enabling top-bar live debugging. Low/Medium/High × HGiG/Bright/Layered/Dynamic form twelve independent profiles.
 
 The top-bar switch controls the whole temporary session. Module 02's live switch controls further submissions only; 01 and 00 require Apply. See the [restore-scope table](#restore-scope). Read unavailable, pending and unchanged indicators literally.
+
+Use the top-bar **调节后配置 · 对比默认** / **显示器默认 · 切回调节** button for temporary A/B comparison in the current combination. Drafts and permanent schemes are preserved; return restores previously applied parameters, excluding unapplied budget/ABL drafts. [Steps](guide.en.md#comparison).
 
 <details>
 <summary>Feature map: PC-only work, temporary control and device persistence</summary>

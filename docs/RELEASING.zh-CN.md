@@ -54,7 +54,7 @@
 
 ## Windows 命令
 
-在已审阅的完整公开便携包中运行。SOURCE 指向待发布的完整自用包，OUTPUT 是源目录之外的新目录，VERSION 填本次候选版本，例如 0.9.26-public-preview.1。源码仓库不含整套 Python/ADB 运行时；配合完整自用包或完整便携包作为输入，不从作者私有目录拉取依赖。
+在已审阅的完整公开便携包中运行。SOURCE 指向待发布的完整自用包，OUTPUT 是源目录之外的新目录，VERSION 填本次候选版本，例如 0.9.26-public-preview.2。源码仓库不含整套 Python/ADB 运行时；配合完整自用包或完整便携包作为输入，不从作者私有目录拉取依赖。
 
 ```powershell
 .\tools\python\python.exe .\release-tools\release.py prepare --source "SOURCE" --output "OUTPUT" --version "VERSION"

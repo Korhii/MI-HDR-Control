@@ -1,3 +1,12 @@
+# 0.9.26-public-preview.2 · 公开修订 / Public revision
+
+- 修复新解压目录的显示器已有备份识别；先连接检查，有备份直接复用，无备份才选择位置。首次备份完成前不开始调节。
+- 顶部常驻栏增加显示器默认 / 调节后配置切换，保留未应用草稿与永久方案。
+- 修复 Windows 模型进度文件轮询占用导致的偶发拟合中断。
+- 同步中英文教程、逐模块说明、验证记录和后续发布检查。本修订设为 Latest，已发布的 .1 保留。
+
+Existing-backup discovery, top-bar default/tuned comparison and transient Windows progress-file contention fixes. Paired guides and maintained release checks updated. Published as Latest; previous .1 artifacts are retained.
+
 # 0.9.26-public-preview.1
 
 - 修复 HDR 图样顶部参数文字：黑底提高亮度，亮底改用黑字；保留原有几何、PQ 输入和隐藏文字功能。

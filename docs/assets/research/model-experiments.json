@@ -35,7 +35,7 @@
   "source_sha256": {
     "lab/firmware_scaling.py": "71b4fb474249e16851390b26ddbcdf081fbe833156d343f17dbb852340449204",
     "lab/firmware_model.py": "884d238395d06baf2a2c7fdb9f0830e402c7f1d66163adda66f6895d5bad0c6b",
-    "lab/ldf_response.py": "1cdfffe4b429151668306990458cfaca5a4e98691b81279cbb0aae4374967445",
+    "lab/ldf_response.py": "6d57641631f70596ead1470e2e3100b74f7981be137cef44202f74e3efedaba9",
     "tools/response-math.dll": "99fdc59f1b0bc9db987c9bdcb25b0e5480d7a4133f75f08d8c24b28293a27345",
     "resources/ui/ldf-samples.json": "29acbd2c9de1f40051767ff9ee0c7318be128732edba8e04ade79eedcd673cce"
   },
@@ -52275,5 +52275,14 @@
     "float_values": 98415,
     "byte_identical": true,
     "additional_sampled_contexts": 4
-  }
+  },
+  "source_revisions": [
+    {
+      "path": "lab/ldf_response.py",
+      "experiment_source_sha256": "1cdfffe4b429151668306990458cfaca5a4e98691b81279cbb0aae4374967445",
+      "current_source_sha256": "6d57641631f70596ead1470e2e3100b74f7981be137cef44202f74e3efedaba9",
+      "change": "Progress-file I/O only; algorithm AST excluding save_progress is identical to the experiment source.",
+      "algorithm_ast_unchanged": true
+    }
+  ]
 }

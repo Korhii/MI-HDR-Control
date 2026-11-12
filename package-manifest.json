@@ -22,8 +22,8 @@
     },
     {
       "path": ".github/workflows/public-checks.yml",
-      "bytes": 928,
-      "sha256": "adc87aedb1935910bb9382ab6590b171d0394e0a796e8f131717c5950502258f"
+      "bytes": 1305,
+      "sha256": "258d092fe3d85dc6793f91e2f9133930c5f7a74f23286b4613ac2f97d7c3e935"
     },
     {
       "path": ".gitignore",
@@ -32,8 +32,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 3157,
-      "sha256": "06ccc4bb2e123fbcff5175a910c52553d4b48a6e3cb78f05f9d7107183f5d098"
+      "bytes": 3932,
+      "sha256": "db06d095ca1221a045df5c745f9708acd3dc64ebdc1d953f1cad1072c7c0cbb6"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -42,8 +42,8 @@
     },
     {
       "path": "docs/27与32寸机型与预测说明.md",
-      "bytes": 21542,
-      "sha256": "36ff6e8036bbc1066ab77dc8a9e692960d08db435b7c1e29e60dcb1b6e3fd745"
+      "bytes": 22978,
+      "sha256": "5211858cbbac57eda8d2165a857fb8163f94f601e54fb800010a7e0291261acf"
     },
     {
       "path": "docs/assets/brightness-bloom.svg",
@@ -152,8 +152,8 @@
     },
     {
       "path": "docs/assets/research/model-experiments.json",
-      "bytes": 711309,
-      "sha256": "27493590800b38e9fa3131cdd062207eb308e204f5aad9dc4c3ec73b0b79b29b"
+      "bytes": 711755,
+      "sha256": "8e6f31819470c86505dcee55d86d347dec6883522e252218944b34407abdc700"
     },
     {
       "path": "docs/assets/research/sf-rings.en.png",
@@ -362,13 +362,13 @@
     },
     {
       "path": "docs/guide.en.md",
-      "bytes": 22323,
-      "sha256": "9893e8b179c610f5fa6e8b6df1d4c74014c98c6a389a300c9dc16cb6843bbab4"
+      "bytes": 23900,
+      "sha256": "a46d7de700f8c78dbf50fc8c8bdd72d4ee361394cdd3b69f7878dc92bad253f3"
     },
     {
       "path": "docs/guide.zh-CN.md",
-      "bytes": 21542,
-      "sha256": "36ff6e8036bbc1066ab77dc8a9e692960d08db435b7c1e29e60dcb1b6e3fd745"
+      "bytes": 22978,
+      "sha256": "5211858cbbac57eda8d2165a857fb8163f94f601e54fb800010a7e0291261acf"
     },
     {
       "path": "docs/LEGAL.en.md",
@@ -382,13 +382,13 @@
     },
     {
       "path": "docs/modules.en.md",
-      "bytes": 22362,
-      "sha256": "374abd58cf7a56cce5f5fb4c8591ad98b8e1b2174d485962742221465bfcc786"
+      "bytes": 22682,
+      "sha256": "765e3f83bca7da85302da09df35dde3f20a836e7fba15e23b712ae79f1744e1e"
     },
     {
       "path": "docs/modules.zh-CN.md",
-      "bytes": 22209,
-      "sha256": "92a1a267f971bf2a1685268f9341fd26297ddf7feffb7e17d9dd47b24b79ccb2"
+      "bytes": 22492,
+      "sha256": "c30470cfb7ed590ac0b1789869ffb22835e349916c7f7c9d30f0647dbe9205ae"
     },
     {
       "path": "docs/release-notes-template.md",
@@ -403,7 +403,7 @@
     {
       "path": "docs/RELEASING.zh-CN.md",
       "bytes": 15980,
-      "sha256": "6fcda9199af8e778eb7c31cc05df511658cead0ec15beff16bc48c2b88bcc68f"
+      "sha256": "c7b7aff2d26f348e4d5c9eb017e87e3d3950d21d7a4e38d8abce31d130cc2691"
     },
     {
       "path": "docs/RESEARCH.en.md",
@@ -437,18 +437,18 @@
     },
     {
       "path": "docs/VALIDATION.en.md",
-      "bytes": 10956,
-      "sha256": "ec10e2ca6fa82326b0f0f84ce059408756c016ae0495473c968c04faa5b56d50"
+      "bytes": 12568,
+      "sha256": "710ba0cf21a30ef8bf9eecaa144a88ec695ba702c9d55ed252767a930a6b1cdb"
     },
     {
       "path": "docs/VALIDATION.zh-CN.md",
-      "bytes": 9818,
-      "sha256": "a0c6b7a661fd7ad7381ca9513bb0edf8805b3bdb0c6494d6b1749e13e1d89790"
+      "bytes": 11355,
+      "sha256": "063bb23f3767eb4d453d882628af91ff351115516fe6bde2b0ef6e1e62431d0f"
     },
     {
       "path": "docs/使用说明.md",
-      "bytes": 21542,
-      "sha256": "36ff6e8036bbc1066ab77dc8a9e692960d08db435b7c1e29e60dcb1b6e3fd745"
+      "bytes": 22978,
+      "sha256": "5211858cbbac57eda8d2165a857fb8163f94f601e54fb800010a7e0291261acf"
     },
     {
       "path": "lab/abl.css",
@@ -497,8 +497,8 @@
     },
     {
       "path": "lab/dialogs.js",
-      "bytes": 6922,
-      "sha256": "ec6afde892b210f15577701d6ffab6d8af867d5144620e4cf65bd982e8f47183"
+      "bytes": 7443,
+      "sha256": "e2644069aad458f01f1254ee45498b7b5308e57d6a231f81c5a4ed35d1e9d1bd"
     },
     {
       "path": "lab/eva.css",
@@ -542,8 +542,8 @@
     },
     {
       "path": "lab/ldf_response.py",
-      "bytes": 27672,
-      "sha256": "1cdfffe4b429151668306990458cfaca5a4e98691b81279cbb0aae4374967445"
+      "bytes": 27928,
+      "sha256": "6d57641631f70596ead1470e2e3100b74f7981be137cef44202f74e3efedaba9"
     },
     {
       "path": "lab/measured_response.py",
@@ -552,8 +552,8 @@
     },
     {
       "path": "lab/model_worker.py",
-      "bytes": 4812,
-      "sha256": "41d8acded6a28de70a00005a769ee7348fc02b6594845df9040cac970cfd893b"
+      "bytes": 4849,
+      "sha256": "ef4dd6786667b433859c86566d9e59a4850a55e40b32babca6b893403b4296fb"
     },
     {
       "path": "lab/models.js",
@@ -567,8 +567,8 @@
     },
     {
       "path": "lab/modules.js",
-      "bytes": 13687,
-      "sha256": "7197d2203532b2f92c2f37260adc9bf18231295962c486cac133d06bd3add0ad"
+      "bytes": 13955,
+      "sha256": "57d66383e80ccec66e0f1d64a02e007ffbf30165cb976fb2cb92a8f3538bcb5e"
     },
     {
       "path": "lab/native_abl.py",
@@ -582,13 +582,13 @@
     },
     {
       "path": "lab/portable.html",
-      "bytes": 70820,
-      "sha256": "35e5ea1da3a2dadee163e78e76bab0138f079b19e248c0a23f21a50b61ed6032"
+      "bytes": 71057,
+      "sha256": "8860eacf148a3df4be779ccc44be477c9f4a5f4d3642dd0f8047ccf33d1aa437"
     },
     {
       "path": "lab/portable_server.py",
-      "bytes": 71935,
-      "sha256": "e57199ab0dcf2c37a0b6e6273c49ddb22fc0870f9b94690c7039f65924224554"
+      "bytes": 75889,
+      "sha256": "dd86c144a1dc327c1521de18768b2614a801f71bf087ba1ebcfd93cca5041ce9"
     },
     {
       "path": "lab/responsive.css",
@@ -602,8 +602,8 @@
     },
     {
       "path": "lab/server.py",
-      "bytes": 33322,
-      "sha256": "62e9c9dcdbec3f5dee03c11182bbe8c75eff92602cd40f521e3090bc719475b8"
+      "bytes": 33364,
+      "sha256": "d54238fa347986960e46fd6684fa61ecaf4bc775a0984ba2f4c1c6f99d06b4aa"
     },
     {
       "path": "lab/stop.py",
@@ -617,8 +617,8 @@
     },
     {
       "path": "lab/tuning.js",
-      "bytes": 20117,
-      "sha256": "39de7a8bdd6e11a82757425dd8e99766313ca625eaf835ee69061e390a5b30b4"
+      "bytes": 20881,
+      "sha256": "c4d6b89f44d5c47ce85e9e806a02bed799a86b75d709f2a0515537d97993d929"
     },
     {
       "path": "lab/ux.js",
@@ -687,23 +687,23 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 15458,
-      "sha256": "f016b439106f6b7e40d965056398787683defe11b979be130131fca3c76d4ee2"
+      "bytes": 15676,
+      "sha256": "4ed53a1a63ca4d9c01b004e1cbece264eabd8891e50fec4a878d6306e791edfb"
     },
     {
       "path": "README.md",
-      "bytes": 14570,
-      "sha256": "b8cfca9811ca3901aa02ab5ab0a3a7c7cc7e1537f7f3354f08ce59fe79d3ee24"
+      "bytes": 14778,
+      "sha256": "a0178f01949fc3ad2c65b848eda5be3b42b83a934b209931865b55cda419edef"
     },
     {
       "path": "release-meta.json",
-      "bytes": 1968,
-      "sha256": "b892379351b6b59f9b9cefaf5e6a606254a2781fd58e07fc3ccd5bf0f4d21ef8"
+      "bytes": 4248,
+      "sha256": "99f4412096beb2ce9fe7d5f384cab3f8589d8d6deadedc4c8adb64c991df7ea0"
     },
     {
       "path": "release-tools/policy.json",
-      "bytes": 124996,
-      "sha256": "3442490773c4f6cc46f9472886ed9a1ee9ff0363c66daf584b376a6d6d47150b"
+      "bytes": 125544,
+      "sha256": "a3e729a08dabb116a756d12616b62bb1634d1dff92c2871efc70978bf95a97db"
     },
     {
       "path": "release-tools/redact_debug_paths.py",
@@ -732,13 +732,13 @@
     },
     {
       "path": "release-tools/templates/docs/guide.en.md.template",
-      "bytes": 22354,
-      "sha256": "47e32199f84eaa6ddee20a3bb9fa0134e315404b19dc3684270fa51db769829d"
+      "bytes": 23931,
+      "sha256": "07400d900c187de9173909af567c4943142b0ebce7381c1da893044034d7ef1f"
     },
     {
       "path": "release-tools/templates/docs/guide.zh-CN.md.template",
-      "bytes": 21573,
-      "sha256": "3e6b086c54d7b1a2bbaf43924b811c0935266b86338c1229aa96490a3c494022"
+      "bytes": 23009,
+      "sha256": "21cb01297ad56c433beff199b547595c3393fa548bb7b2cd090b8c8a26644c3a"
     },
     {
       "path": "release-tools/templates/docs/LEGAL.en.md.template",
@@ -752,13 +752,13 @@
     },
     {
       "path": "release-tools/templates/docs/modules.en.md.template",
-      "bytes": 22381,
-      "sha256": "8998d15522c1327a8623814815dcda4e155da2532d99d0dc21037076330f8841"
+      "bytes": 22701,
+      "sha256": "16c4d4d0b10c1ed00410615ca294deebe54cb5eb4171de78d0490c102587acce"
     },
     {
       "path": "release-tools/templates/docs/modules.zh-CN.md.template",
-      "bytes": 22228,
-      "sha256": "b7150975a7297df4ce8b82ee4b1b64b111ce5001aba7633ea31fae2068fa7019"
+      "bytes": 22511,
+      "sha256": "ada95552e12f21721cb925e7d545f38c0a0fbebf3a7baa24e8369439af7e68cc"
     },
     {
       "path": "release-tools/templates/docs/RELEASING.en.md.template",
@@ -802,13 +802,13 @@
     },
     {
       "path": "release-tools/templates/docs/VALIDATION.en.md.template",
-      "bytes": 11028,
-      "sha256": "0f30067cf6ea49e1afc42a96fbf510015ee6e30c20096c32523f1e5c8c54b627"
+      "bytes": 12640,
+      "sha256": "54e3c38a25b710386a01617706be834829793653d133538711fdef630918b9d0"
     },
     {
       "path": "release-tools/templates/docs/VALIDATION.zh-CN.md.template",
-      "bytes": 9890,
-      "sha256": "414a627daccd0ec9bd770b2d2c2b26aaca60f49346ca370c8c93c425349f7cdd"
+      "bytes": 11427,
+      "sha256": "f3cfe0af1a06f25c0a7c67b1843a83633fc5256e5f726be2140a92ee4d05d629"
     },
     {
       "path": "release-tools/templates/LICENSE.template",
@@ -822,13 +822,13 @@
     },
     {
       "path": "release-tools/templates/README.en.md.template",
-      "bytes": 15460,
-      "sha256": "f6b5474ef1907a923952c9e1c79fd566b7238b7fc4ba5dcf98d0615b3c841115"
+      "bytes": 15678,
+      "sha256": "79b742eef82da0374324624e9475f561ec98531b9b8a080852d6a0aeb7dd25de"
     },
     {
       "path": "release-tools/templates/README.md.template",
-      "bytes": 14572,
-      "sha256": "ba6b6ead73711cd345d2324b4fc8491657ef5f93bcfa3d2eeebf7082bb57fa41"
+      "bytes": 14780,
+      "sha256": "836f86dfb712bab72f872ca093b00cd8db270e6c39a962cedb376613212f443f"
     },
     {
       "path": "release-tools/templates/third_party/BUILD-SOURCES.md.template",
@@ -1122,8 +1122,8 @@
     },
     {
       "path": "scripts/device_backup.py",
-      "bytes": 12966,
-      "sha256": "fc7ce4f0f87a7d2f4b3026f1857c786da09f413db9728c5659159522c70135fa"
+      "bytes": 13628,
+      "sha256": "d3ce853ec5c244e225e101bdf28e70a55bdb2b8635d9401f889a971cff184e72"
     },
     {
       "path": "scripts/docs/collect_research_data.py",
@@ -1307,8 +1307,8 @@
     },
     {
       "path": "tests/_fixtures.py",
-      "bytes": 816,
-      "sha256": "74a94a33710b374c27057828a63552e9e813af4028415074c35b2cd0d51b3e39"
+      "bytes": 841,
+      "sha256": "ea7ff6e0b3f1861a00156af08393e88ae27a8a74e72728fab01572372088c51f"
     },
     {
       "path": "tests/test_adb_discovery.py",
@@ -1321,9 +1321,24 @@
       "sha256": "7ae6151c7f6f4a418332d258cc7608f7d39d271defc268106648a267908f2296"
     },
     {
+      "path": "tests/test_backup_flow.js",
+      "bytes": 4069,
+      "sha256": "00f02da83fbf0f83602b66abc4c9bb6c46ccd6f98161e5ee3b32f88bda6f82a9"
+    },
+    {
+      "path": "tests/test_backup_flow.py",
+      "bytes": 12313,
+      "sha256": "719e2a793f03b8b6facda1b805534e4cc4e4d822c4c91eb17c738197cee274bc"
+    },
+    {
       "path": "tests/test_calibrated_model.py",
       "bytes": 3524,
       "sha256": "d136be521f10de76dab19a73aa7f6cc2ad29e719d36f5b01facb78a9a8e7e501"
+    },
+    {
+      "path": "tests/test_comparison.py",
+      "bytes": 7907,
+      "sha256": "9e276ef744788c7b3ef3d86eee044c145158b678ca3736672ae0f14dc08e02b4"
     },
     {
       "path": "tests/test_current_gates.py",
@@ -1357,8 +1372,8 @@
     },
     {
       "path": "tests/test_live_gate.py",
-      "bytes": 4451,
-      "sha256": "22c51b5f3f1c5aedc00f35168979b7380e791130270355e6144e4d7b5ef9bd39"
+      "bytes": 5231,
+      "sha256": "9377a638abf348fa5977523e291c71891d096564a5219ff6a6715d665db6ed53"
     },
     {
       "path": "tests/test_measured_response.py",
@@ -1394,6 +1409,11 @@
       "path": "tests/test_profile_workflow.py",
       "bytes": 8249,
       "sha256": "a38cef0a5b8d688598edd43f266719e8070258399f21e1b04b60f0c6dcdd0ff8"
+    },
+    {
+      "path": "tests/test_progress_files.py",
+      "bytes": 2849,
+      "sha256": "a2af63fa4382e70d4a9ecb3ab129efcc7a77b726daa70247688b1466ea5bfa0f"
     },
     {
       "path": "tests/test_public_release.py",

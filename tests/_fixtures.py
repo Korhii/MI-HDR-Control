@@ -3,6 +3,7 @@ from copy import deepcopy
 import portable_server as app
 
 def confirmed(b):
+    b.clear_comparison()
     b.model_id='32u-2026';b.model_confirmed=True
     b.device_model={'verified':True,'model_id':'32u-2026'}
     b.initial_backup={'ready':True};b.backup_policy={'pc':True,'device':False,'confirmed':True}

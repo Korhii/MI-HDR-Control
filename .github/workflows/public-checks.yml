@@ -27,3 +27,11 @@ jobs:
         run: node tests/test_ui_followup.js
       - name: Portable roots after folder relocation
         run: python3 tests/test_portable_paths.py
+      - name: Existing-backup discovery and first-run dialogs
+        run: |
+          python3 tests/test_backup_flow.py
+          node tests/test_backup_flow.js
+      - name: Factory and tuned configuration comparison
+        run: python3 tests/test_comparison.py
+      - name: Model progress under concurrent polling
+        run: python3 tests/test_progress_files.py

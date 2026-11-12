@@ -147,7 +147,7 @@ class Bridge:
             return
         with self.request_lock:
             sequence=self.wanted_sequence
-            config=validate(self.draft)
+            config=validate(getattr(self,'comparison_config',None) or self.draft)
         if sequence<=self.sent_sequence or time.monotonic()<self.pending_at:
             return
         packet=self.active['folder']/'live-config.txt'

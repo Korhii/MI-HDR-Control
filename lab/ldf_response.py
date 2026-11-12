@@ -189,7 +189,12 @@ def context(c,level,q):
     return payload,hashlib.sha256(json.dumps(payload,sort_keys=True).encode()).hexdigest()[:24]
 
 def save_progress(value):
-    p=ROOT/'state/model-progress.json';p.parent.mkdir(exist_ok=True);t=p.with_suffix('.next');t.write_text(json.dumps(value,ensure_ascii=False),encoding='utf-8');t.replace(p)
+    p=ROOT/'state/model-progress.json';p.parent.mkdir(exist_ok=True);t=p.with_suffix('.next');t.write_text(json.dumps(value,ensure_ascii=False),encoding='utf-8')
+    # Windows readers can briefly hold the destination without delete sharing.
+    # Progress is informational: a busy reader must not abort a model calculation.
+    for _ in range(5):
+        try:t.replace(p);return
+        except PermissionError:time.sleep(.01)
 
 def surface_workers():
     return min(16,max(1,(os.process_cpu_count() or 1)-1))

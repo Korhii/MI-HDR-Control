@@ -110,17 +110,24 @@ def read_info(s):
         +'if timeout 5 env LD_LIBRARY_PATH=/vendor/lib64:/vendor/lib64/hw:/system/lib64 LD_PRELOAD=/data/data/mitv.service/cache/mi-ldm-info.so /system/bin/app_process /system/bin;then echo info_exit=0;else echo info_exit=$?;fi')
     return parse_info(raw)
 
-def ensure(folder,native,session=None,home=None,policy=None):
-    policy=validate_policy(policy or read_policy())
+def ensure(folder,native,session=None,home=None,policy=None,*,existing_only=False):
+    policy=policy or read_policy()
+    if not existing_only:policy=validate_policy(policy)
     s=session or permanent.Session(folder);s.firmware();device=identity(s)
     key=digest((device['serial']+'\n'+device['device']).encode())[:24]
     parent=Path(home or ROOT/'state/device-backups')/key
-    parent.mkdir(parents=True,exist_ok=True);pc=parent/'initial-v1.json'
+    pc=parent/'initial-v1.json'
     local=pc.read_bytes() if pc.exists() else None;remote_sha=remote_digest(s)
     if local is not None:validate(local,device)
     if local is not None and remote_sha is not None and digest(local)!=remote_sha:raise ValueError('两份初始备份不一致；保留原件，未允许写入')
     raw=local if local is not None else read_remote(s) if remote_sha else None
-    if raw is not None:validate(raw,device)
+    reused=raw is not None
+    recovered_from_device=local is None and remote_sha is not None
+    if raw is not None:
+        if remote_sha is not None and digest(raw)!=remote_sha:raise ValueError('显示器备份读取前后不一致；保留原件，请重新连接')
+        validate(raw,device)
+    if raw is None and existing_only:
+        return dict(ready=False,status='missing',pc_saved=False,device_copy_exists=False,notice_pending=False,scope=SCOPE)
     if raw is None:
         current=read_info(s);ini=current['factory_ini'];files={}
         for i,name in enumerate((DRIVER,ini)):
@@ -137,14 +144,15 @@ def ensure(folder,native,session=None,home=None,policy=None):
             provenance='原厂只读vendor驱动与ldm.ini；永久方案是独立启动覆盖，不改写这些原厂默认表')
         raw=json.dumps(data,ensure_ascii=False,indent=2).encode();validate(raw,device)
     if local is None:
+        parent.mkdir(parents=True,exist_ok=True)
         with pc.open('xb') as f:f.write(raw);f.flush();os.fsync(f.fileno())
-    if policy['device'] and remote_sha is None:write_remote(s,raw);remote_sha=remote_digest(s)
-    if pc.read_bytes()!=raw or policy['device'] and remote_sha!=digest(raw):raise RuntimeError('所选备份位置读回不一致；未允许写入')
-    return dict(ready=True,id=digest(raw),pc_path=str(pc),device_path=REMOTE if remote_sha else None,
+    if not existing_only and policy['device'] and remote_sha is None:write_remote(s,raw);remote_sha=remote_digest(s)
+    if pc.read_bytes()!=raw or not existing_only and policy['device'] and remote_sha!=digest(raw):raise RuntimeError('所选备份位置读回不一致；未允许写入')
+    return dict(ready=True,status='ready',reused=reused,recovered_from_device=recovered_from_device,id=digest(raw),pc_path=str(pc),device_path=REMOTE if remote_sha else None,
         pc_saved=True,device_copy_exists=remote_sha is not None,device_selected=policy['device'],
         notice_pending=not (parent/'notice-ack').exists(),data=validate(raw,device),scope=SCOPE)
 
-def public(backup):return {k:v for k,v in (backup or dict(ready=False)).items() if k!='data'}
+def public(backup):return {k:v for k,v in (backup or dict(ready=False,status='not-checked',pc_saved=False,device_copy_exists=None)).items() if k!='data'}
 
 def acknowledge(backup):
     if not backup or not backup['ready']:raise ValueError('尚无已验证的初始备份')

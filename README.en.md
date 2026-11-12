@@ -6,7 +6,7 @@
 
 ### Tune the balance between small highlights, bloom and sustained output.
 
-**Windows portable tool · Dimming only · 0.9.26-public-preview.1 · Experimental preview**
+**Windows portable tool · Dimming only · 0.9.26-public-preview.2 · Experimental preview**
 
 [简体中文](README.md) · [First-use workflow](docs/guide.en.md) · [Module reference](docs/modules.en.md) · [Research](docs/RESEARCH.en.md) · [Safety](docs/SAFETY.en.md)
 
@@ -14,8 +14,10 @@
 
 **[Download Windows portable](https://github.com/Korhii/MI-HDR-Control/releases/latest) · [All releases](https://github.com/Korhii/MI-HDR-Control/releases)**
 
-Download `MI-HDR-Control-0.9.26-public-preview.1-Windows.zip` from Releases and extract the complete folder. GitHub’s automatic Source code ZIP is for source inspection and does not include the complete runtime.
+Download `MI-HDR-Control-0.9.26-public-preview.2-Windows.zip` from Releases and extract the complete folder. GitHub’s automatic Source code ZIP is for source inspection and does not include the complete runtime.
 
+
+**This revision:** top-bar default/tuned A/B switching, existing-backup recovery in fresh extractions and a fix for model-progress file contention. [Changelog](CHANGELOG.md) · [A/B steps](docs/guide.en.md#comparison)
 
 [![0.9.26 · Dark MONO / 素·黑白 · SF / Alpha](docs/assets/screenshots/app-04-halo.png)](docs/assets/screenshots/app-04-halo.png)
 
@@ -42,7 +44,7 @@ Research environment: HyperOS **OS3.0.120.0.UFFMAMN**, Android 14, kernel `5.15.
 | :---: | :--- | :--- |
 | **1** | [Enable Windows HDR and monitor ADB](docs/guide.en.md#prepare). | HDR is on, the ADB channel is ready, and other controllers are closed. |
 | **2** | Extract the entire ZIP; open **MI HDR Control.exe**. | Read the startup risk/exit notice, then confirm the model. No Python, JDK or compiler installation is required. |
-| **3** | [Confirm the model, choose backup storage, connect](docs/guide.en.md#first-run). | Panel/firmware checks, the initial backup and local preparation finish. |
+| **3** | [Confirm the model, connect and inspect backups](docs/guide.en.md#first-run). | Panel/firmware checks, the initial backup and local preparation finish. |
 | **4** | [Read back, then change one parameter](docs/guide.en.md#first-adjustment). | A fresh apply receipt is present. Drafts, predictions and device state stay distinct. |
 | **5** | [End temporary tuning or separately save a resident plan](docs/guide.en.md#save-restore). | Temporary restoration is confirmed; persistence needs a separate reboot check. |
 

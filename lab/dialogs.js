@@ -28,13 +28,15 @@ function showStartupNotice(){
 let backupChoiceTask=null,backupChoiceDismissed=false;
 function chooseBackupLocation(force=false){
  if(!state||new URLSearchParams(location.search).has('module'))return Promise.resolve(false);
- if(!force&&(state.backup_policy?.confirmed||backupChoiceDismissed))return Promise.resolve(!!state.backup_policy?.confirmed);
+ if(!state.connected){if(force)uiDialog('先连接 ADB，软件会检查并复用已有备份；没有备份时再选择保存位置。',{title:'先连接显示器',confirmText:'知道了',notice:true});return Promise.resolve(false)}
+ if(!force&&(state.initial_backup?.ready||backupChoiceDismissed))return Promise.resolve(!!state.initial_backup?.ready);
+ if(!force&&state.initial_backup?.status!=='missing')return Promise.resolve(false);
  if(backupChoiceTask)return backupChoiceTask;
  backupChoiceTask=dialogQueue.then(()=>new Promise(resolve=>{
   const d=document.createElement('dialog');d.className='risk-dialog app-dialog backup-choice';
   d.innerHTML='<div class="caution-stripe"></div><div class="instrument-code">INITIAL BACKUP / BEFORE DEVICE EDIT</div><h2>选择初始备份保存位置</h2><p>电脑备份是必选项，所有文件留在便携目录内。显示器副本可选；按设备序列号复用已有备份，不因IP、档位或配置改变重复创建。</p><label><input type="checkbox" checked disabled> 电脑 · 必选</label><label><input id="backupDeviceChoice" type="checkbox"> 同时保存到显示器</label><p class="backup-existing"></p><p class="muted">删除便携目录会删除电脑备份。若选择显示器副本，下次可从中恢复；否则首次状态快照丢失后不能找回。只读固件默认表仍可用于重建原厂调光依据，不意味着必须重置整机。已有显示器副本不会因改选“仅电脑”而删除。</p><div class="flex"><button class="backup-cancel">取消</button><button class="backup-confirm primary">保存选择</button></div>';
   d.querySelector('#backupDeviceChoice').checked=state.backup_policy?.device===true;
-  d.querySelector('.backup-existing').textContent='电脑已检测到 '+(state.backup_inventory?.length||0)+' 台设备的初始备份；接入后核对稳定身份与完整性。';
+  d.querySelector('.backup-existing').textContent=state.initial_backup?.ready?(state.initial_backup.device_copy_exists?'电脑与显示器已有同一份备份，原件会保留。':'已核验电脑备份，可选择增加显示器副本。'):'已连接并完成检查，未找到当前设备可复用的初始备份。';
   const cancel=d.querySelector('.backup-cancel'),dismiss=()=>{if(cancel.disabled)return;backupChoiceDismissed=true;d.close();d.remove();resolve(false)};
   cancel.onclick=dismiss;d.oncancel=e=>{e.preventDefault();dismiss()};d.querySelector('.backup-confirm').onclick=async()=>{
    const button=d.querySelector('.backup-confirm');button.disabled=cancel.disabled=true;
@@ -46,11 +48,12 @@ function chooseBackupLocation(force=false){
 function showBackupNotice(){
  if(!showStartupNotice())return;
  if(!state?.model_confirmed){showModelSelection();return}
- if(!state?.backup_policy?.confirmed){chooseBackupLocation();return}
+ if(!state?.connected)return;
+ if(state.initial_backup?.status==='missing'){chooseBackupLocation();return}
  const b=state?.initial_backup;if(!b?.ready||!b.notice_pending||backupNoticeShown===b.id||new URLSearchParams(location.search).has('module'))return;
  backupNoticeShown=b.id;
- const destination=b.device_selected?'电脑与显示器副本均已验证。':'仅电脑备份已验证。'+(b.device_copy_exists?'检测到已有显示器副本，保留但不重复写入。':'未创建显示器副本。');
- uiDialog(destination+'\n电脑：'+b.pc_path+(b.device_path?'\n已有显示器副本：'+b.device_path:'')+'\n\n备份记录本次首次连接时的设备状态，请另存一份。删除便携目录会同时删除电脑备份。调光恢复保留账号、ADB和桌面设置。',{title:'初始设备备份已就绪',confirmText:'知道了',notice:true}).then(confirmed=>confirmed&&rawApi('backup-ack').catch(e=>error(e.message)));
+ const destination=b.recovered_from_device?'已复用显示器中的已有备份，并恢复到当前便携目录。':b.device_copy_exists?'电脑与显示器已有备份均已验证，未重复创建。':'电脑备份已验证，未创建显示器副本。';
+ uiDialog(destination+'\n电脑：'+b.pc_path+(b.device_path?'\n已有显示器副本：'+b.device_path:'')+'\n\n备份记录首次保存时的设备状态，请另存一份。删除便携目录会同时删除电脑备份。调光恢复保留账号、ADB和桌面设置。',{title:'初始设备备份已就绪',confirmText:'知道了',notice:true}).then(confirmed=>confirmed&&rawApi('backup-ack').catch(e=>error(e.message)));
 }
 
 async function exportConfiguration(){

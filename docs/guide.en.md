@@ -1,4 +1,4 @@
-# First use: from extraction to restoration · 0.9.26-public-preview.1
+# First use: from extraction to restoration · 0.9.26-public-preview.2
 
 [简体中文](guide.zh-CN.md) · [Home](../README.en.md) · [Module reference](modules.en.md) · [Safety](SAFETY.en.md)
 
@@ -133,14 +133,15 @@ EDID is preliminary. ADB later checks the active panel and firmware. Stop if the
 
 **Window and navigation:** 0.9.26 opens in portrait A4 proportions, constrained by the available desktop height. In a narrow window, reveal navigation by moving to or clicking the thin left edge, then select a module. Scroll for lower controls and readback. Tutorial captures are actual 1000×1414 lossless PNGs; open the originals for detail.
 
-### 3.2 Choose initial-backup storage
+### 3.2 Connect first, then inspect existing backups
 
-PC backup is mandatory; a monitor copy is optional. Click **保存选择** (save choice). The PC copy lives inside the portable folder, so preserve another copy separately. Do not upload device backups to GitHub.
+1. Click **自动寻找并连接** (find and connect). Accept the RSA authorization or administrator confirmation for this ADB connection with **Allow**/**Yes** when prompted.
+2. Wait for active-panel, firmware and current-device backup checks. Before connection, “backup not inspected” does not mean the monitor has no backup.
+3. **Valid backup found:** reuse it. A monitor-only copy is recovered into the current portable folder. No storage-choice dialog is needed; dismiss the completion notice with **知道了**. A freshly extracted package follows the same discovery process.
+4. **No backup found after inspection:** the storage-choice dialog opens. PC backup is mandatory; optionally select **同时保存到显示器**, click **保存选择**, and wait for verification.
+5. **Read failure, corruption, wrong identity or conflicting copies:** resolve the reported error and preserve existing files. The program does not create a replacement over them; tuning writes remain unavailable.
 
-[![Backup-location dialog](assets/screenshots/app-02-backup.png)](assets/screenshots/app-02-backup.png)
-
-This selects storage; connection later creates or verifies the backup. It records the device state at first connection and is used with matching firmware defaults for restoration. The completed-backup notice has only **知道了** (understood).
-
+Keep a separate copy of the portable-folder backup; do not upload it to GitHub. It records the state at first backup and is used with matching firmware defaults during restoration. An old PC-only backup must be retained from its original portable folder.
 
 <a id="portable-data"></a>
 ### Portable data: backup and runtime locations
@@ -164,9 +165,9 @@ Exit normally with **退出控制器**, then move/rename the complete folder, in
 
 The test package was moved/renamed to a Unicode/space-containing directory and launched from an outside working directory. Actual ADB reconnection reused the identical backup without duplication, retained usable prepared caches and left dimming readback values unchanged.
 
-### 3.3 Connect and prepare locally
+### 3.3 Finish local preparation and enable live debugging
 
-1. Click **自动寻找并连接** (find and connect). Watch both the PC and monitor; accept the RSA debugging authorization or administrator-access confirmation for this ADB connection with **Allow**/**Yes** when prompted.
+1. Continue waiting for first-run local preparation; a verified existing backup needs no repeated storage choice.
 2. Wait for active-panel, firmware and backup checks. First connection reads originals from your own monitor and prepares the required adapter/model cache locally.
 3. Check status and errors. Resolve incomplete preparation, fingerprint mismatch or backup failure before tuning.
 4. After connection, click **开启实时调试 · 自动连接ADB** in the top bar and wait for debugging readiness. Then select **分区档位** (local-dimming level) and **亮暗模式** (tone mode), and click **选择配置** (select profile). There are 3×4=12 combinations.
@@ -191,6 +192,13 @@ No AI, Ghidra, JDK or compiler is needed. `state/prepared`, device backups, conn
 **Completion check:** the intended profile and single change have a matching receipt. For larger-window output, use [01 Budget](modules.en.md#budget); it requires **应用统一亮度设置 · 一次写入**, unlike the live bloom sliders.
 
 <a id="pattern"></a>
+<a id="comparison"></a>
+### Top-bar A/B comparison: default ↔ tuned
+
+With live debugging enabled and the current adjustment acknowledged, click **调节后配置 · 对比默认**. The button becomes **显示器默认 · 切回调节**; click again to restore the SF, Alpha, budget and cumulative-ABL parameters applied before this comparison. The selected local-dimming level and tone mode remain the comparison context, and the HDR pattern stays open. Cumulative ABL restarts its timing when restored; use the same observation duration when comparing sustained output.
+
+Unapplied drafts are preserved and excluded from the comparison. All twelve drafts and the saved permanent scheme remain intact. Default comparison pauses the custom budget and uses this combination's factory dimming path. Applying edits, selecting another combination or ending live debugging ends this comparison. Resolve readback errors before treating a switch as complete.
+
 ## 5. Compare a pattern briefly, then inspect readback
 
 1. Open **HDR 图样 04**. Start with **窗口预览**, one row and one column, your chosen window area and **PQ 输入 nit**.

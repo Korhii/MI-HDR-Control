@@ -4,6 +4,16 @@
 
 The source is the complete personal **0.9.26** package, left unchanged. The public copy retains current dimming functions and excludes launcher/system-menu modifications and personal runtime data. The author has authorized this experimental-preview GitHub publication.
 
+## 2026-11-12 · Public revision 2
+
+- Connect and verify the current device before inspecting existing backups. Recover a valid monitor copy into a fresh portable folder; ask for storage only after confirmed absence. Read errors, corruption, wrong identity and conflicts do not create replacement backups.
+- Two fresh portable copies independently recovered the same 254455-byte backup from the author's REDMI G Pro 32U 2026 without a saved storage preference. Reconnection after testing verified unchanged backup content.
+- Native top-bar clicks verified effective budget 20 → 24 → 20. Another round verified Alpha0 2 → 3 → 2 together with budget restoration. An unapplied budget draft of 21 remained intact. These are internal driver values, not measured nits.
+- Default-restoration receipts and a zero budget lease were confirmed before ADB disconnection. The pre-existing monitor-side scheme, paused state and its original adapter were retained.
+- Windows progress-file polling no longer aborts model computation on transient file locks. Atomic replacement briefly retries; an unavailable progress read skips that update. Calculation logic is unchanged.
+- Focused regressions cover 18 Python backup cases, 7 backup-dialog cases, 12 A/B cases, 4 progress-file cases and the first-connection backup readiness gate. No second-monitor or separate-LAN physical acceptance is claimed.
+- This revision is published as GitHub Latest. The previous .1 release, tag and ZIP are retained. Existing captures locate unchanged modules; follow the revised text for backup ordering and the new A/B button.
+
 ## Observed in this build
 
 | Check | Result and scope |

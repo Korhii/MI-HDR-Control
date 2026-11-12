@@ -17,6 +17,8 @@
 下载 Releases 中的 `MI-HDR-Control-{{PUBLIC_VERSION}}-Windows.zip`，完整解压后运行。GitHub 自动生成的 Source code ZIP 用于查看源码，不含完整运行环境。
 
 
+**本次修订：** 顶栏默认/调节 A/B 切换、新解压包找回已有备份，以及模型进度文件占用修复。[更新记录](CHANGELOG.md) · [A/B 操作](docs/guide.zh-CN.md#comparison)
+
 [![{{SOURCE_VERSION}} · Dark MONO / 素·黑白 · SF / Alpha](docs/assets/screenshots/app-04-halo.png)](docs/assets/screenshots/app-04-halo.png)
 
 <p align="center"><sub>实际本地界面，截图时未连接 ADB；灰色按钮和“—”保留原样。软件界面使用中文，提供中英文 README 与教程。</sub></p>
@@ -42,7 +44,7 @@
 | :---: | :--- | :--- |
 | **1** | [设置 Windows HDR、开启显示器 ADB](docs/guide.zh-CN.md#prepare) | HDR 已开启，ADB 通道已准备，其他控制器已退出。 |
 | **2** | 完整解压 ZIP，双击 **MI HDR Control.exe** | 阅读启动风险与退出提示，再确认型号；无需安装 Python、JDK 或编译器。 |
-| **3** | [确认机型、选备份、连接](docs/guide.zh-CN.md#first-run) | 屏型及固件匹配，初始备份完成，本机组件准备成功。 |
+| **3** | [确认机型、连接并检查备份](docs/guide.zh-CN.md#first-run) | 屏型及固件匹配，初始备份完成，本机组件准备成功。 |
 | **4** | [先读回，再改一个参数](docs/guide.zh-CN.md#first-adjustment) | 有本次下发回执；草稿、预测和设备状态分开看。 |
 | **5** | [结束临时调节，或另行保存常驻](docs/guide.zh-CN.md#save-restore) | 临时恢复已确认；常驻须单独验证重启后的执行状态。 |
 

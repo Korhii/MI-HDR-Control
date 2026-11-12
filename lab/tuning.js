@@ -5,7 +5,7 @@ let riskConsent=null,pendingUniform=null,patternEditTimer,haloEditTimer,dragPoin
 const haloEdits=new Set();
 const feedbackLocal=new Map();
 const unitNames={unit01:'初·绿紫',unit00:'零·蓝银',unit02:'二·赤橙',unit08:'八·桃绿',mark06:'六·蓝金',mono:'素·黑白'};
-const fieldForOperation={'profile-defaults':'profile-defaults','software-defaults':'software-defaults','all-defaults':'factory','auto-apply':'auto','module-defaults':'module-defaults','quick-budget':'uniform','runtime-draft':'uniform','runtime-set':'uniform','native-abl-draft':'native-abl','abl':'abl','profile-select':'profile','live-debug':'live','connect':'connection','auto-connect':'connection','permanent-write':'permanent','permanent-remove':'permanent','apply-profile':'profile','pattern-config':'pattern','pattern-draft':'pattern','pattern-start':'pattern','close-pattern':'pattern','restore':'restore','config-load':'configuration'};
+const fieldForOperation={'compare-config':'comparison','profile-defaults':'profile-defaults','software-defaults':'software-defaults','all-defaults':'factory','auto-apply':'auto','module-defaults':'module-defaults','quick-budget':'uniform','runtime-draft':'uniform','runtime-set':'uniform','native-abl-draft':'native-abl','abl':'abl','profile-select':'profile','live-debug':'live','connect':'connection','auto-connect':'connection','permanent-write':'permanent','permanent-remove':'permanent','apply-profile':'profile','pattern-config':'pattern','pattern-draft':'pattern','pattern-start':'pattern','close-pattern':'pattern','restore':'restore','config-load':'configuration'};
 const noFeedback=new Set(['backup-ack','heartbeat','sensors','permanent-status','preferences','risk-unlock','risk-lock','model-select','model-detect']);
 function modelRaw(budget,area,level){
  if(!outputModel||!Number.isFinite(+budget)||!Number.isFinite(+area))return null;
@@ -20,7 +20,8 @@ function modelRaw(budget,area,level){
 function windowEstimate(value,area,level,tone){return responseForConfig(value,area,level,tone)}
 function operationRisk(op,data){
  let values=[];
- if(op==='auto-apply')values=[data.budget];
+ if(op==='compare-config'&&data.mode==='tuned')values=[state.comparison?.saved_budget||0];
+ else if(op==='auto-apply')values=[data.budget];
  else if(['quick-budget','runtime-set','runtime-draft'].includes(op))values=[data.budget];
  else if(op==='live-debug'&&data.enabled||op==='apply-profile'){
   const p=state.configuration.profiles[state.selected_backlight_level+':'+state.tone];values=[p.budget];
@@ -162,8 +163,9 @@ function renderTuning(){
  const discovery=state.adb_discovery;$('autoDeviceStatus').textContent=discovery?.message||'先点自动寻找；未找到时可展开高级连接';$('autoDeviceStatus').title=$('autoDeviceStatus').textContent;$('connect').disabled=state.busy;
  if(state.connected&&state.connection&&state.connection.port!==lastDisplayedAdbPort){lastDisplayedAdbPort=state.connection.port;$('port').value=lastDisplayedAdbPort}
  $('liveDebug').setAttribute('aria-pressed',String(state.live_debug));$('liveDebug').textContent=['restore-error','disconnect-error'].includes(state.debug_phase)?'恢复/断开未确认 · 重试关闭':state.live_debug?'● 关闭调试 · 恢复默认并断开':'○ 开启实时调试 · 自动连接ADB';$('liveDebug').disabled=liveDebugPending||['connecting','applying','restoring','disconnecting'].includes(state.debug_phase);
+ const comparing=state.comparison?.default;$('compareConfig').setAttribute('aria-pressed',String(comparing===true));$('compareConfig').textContent=comparing===true?'显示器默认 · 切回调节':comparing===null?'切换未完成 · 重试默认':'调节后配置 · 对比默认';$('compareConfig').disabled=state.busy||!state.connected||!state.live_debug||!state.active||!state.initial_backup?.ready||state.wanted_sequence>state.ack_sequence;
  $('topAdb').textContent=state.adb_discovery?.searching?'ADB · '+state.adb_discovery.message:state.connected?'ADB 在线'+(state.adb_age_seconds>12?' · 读数待刷新':' · '+(state.adb_age_seconds??0)+'s前读回'):'ADB 未连接';
- $('topMode').textContent=state.live_debug?'LIVE / 预算与自动方案需按应用':state.persistence?.running&&!state.persistence.paused?'LOCAL / 显示器永久方案自行运行':state.connected?'DRAFT / 已连接，调试未开启':'OFFLINE / 调参前请连接ADB';
+ $('topMode').textContent=comparing===true?'DEFAULT / 当前组合默认调光，草稿保留':state.live_debug?'LIVE / 预算与自动方案需按应用':state.persistence?.running&&!state.persistence.paused?'LOCAL / 显示器永久方案自行运行':state.connected?'DRAFT / 已连接，调试未开启':'OFFLINE / 调参前请连接ADB';
  for(const id of ['runtimeLoad','runtimeStart','apply'])$(id).disabled=state.busy||!state.live_debug;
  $('uniformPreviewState').textContent=pendingUniform!==null?'DRAFT / 当前编辑值尚未确认执行':state.live_debug?'LIVE / 已提交的统一设置':'SAVED / 控制器草稿';
  renderProfileSelection();
@@ -174,6 +176,7 @@ function bindTuning(){
  try{applyUnit(localStorage.getItem('mi-hdr-unit')||'mono')}catch(e){applyUnit('mono')}
  $('riskAccept').onchange=()=>{$('riskConfirm').disabled=!$('riskAccept').checked};
  $('liveDebug').onclick=()=>{if(liveDebugPending)return;liveDebugPending=true;renderTuning();act(async()=>{try{await api('live-debug',{enabled:!['restore-error','disconnect-error'].includes(state.debug_phase)&&!state.live_debug})}finally{liveDebugPending=false;renderTuning()}})};
+ $('compareConfig').onclick=()=>act(()=>api('compare-config',{mode:state.comparison?.default===true?'tuned':'default'}));
  $('permanentWrite').onclick=()=>act(writePermanent);
  $('riskLock').onclick=()=>act(()=>rawApi('risk-lock'));
  for(const button of document.querySelectorAll('[data-unit-choice]'))button.onclick=()=>{state.ui_preferences.unit=button.dataset.unitChoice;applyUnit(button.dataset.unitChoice);act(savePreferences)};

@@ -65,6 +65,19 @@ class LiveGateTests(TestCase):
         b=self.bridge();b.activate_tuning()
         self.assertEqual([c.args[0] for c in b._perform.call_args_list],['runtime-load','apply-profile','runtime-set'])
 
+    def test_first_connection_without_backup_waits_for_choice_without_writes(self):
+        b=self.bridge();b.initial_backup={'ready':False,'status':'missing'}
+        b.prepare_adb=Mock();b.activate_tuning=Mock()
+        b.perform('live-debug',{'enabled':True,'_field':'live'})
+        b.activate_tuning.assert_not_called();b.disconnect_adb.assert_not_called()
+        self.assertTrue(b.state['connected']);self.assertFalse(b.live_debug)
+        self.assertEqual(b.operation_results['live']['status'],'draft')
+
+    def test_direct_activation_cannot_bypass_backup_readiness(self):
+        b=self.bridge();b.initial_backup={'ready':False,'status':'missing'}
+        with self.assertRaisesRegex(ValueError,'初始备份'):b.activate_tuning()
+        b._perform.assert_not_called()
+
     def test_multiple_fields_share_pending_device_ack_not_false_success(self):
         b=self.bridge();b.live_debug=True;b.active={'mode':'live'};b.wanted_sequence=7;b.ack_sequence=6
         b.perform('quick-halo',{'config':{},'_field':'halo','_fields':['sf-0','alpha-2']})

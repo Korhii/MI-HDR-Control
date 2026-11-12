@@ -34,7 +34,7 @@ function renderResetScope(){
  const markup='<small>'+(all?'DEVICE / INITIAL BACKUP':profile?'CURRENT PROFILE / 1 OF 12':'CURRENT CONTROL SECTION')+'</small><strong>'+title+'</strong><span>'+detail+'</span>';
  if(button.dataset.markup!==markup){button.innerHTML=markup;button.dataset.markup=markup;installFeedback(button,all?'factory':profile?'profile-defaults':'module-defaults')}
  button.disabled=all&&(!state?.connected||!state?.initial_backup?.ready);
- const backup=$('initialBackupStatus');if(backup){const b=state?.initial_backup;backup.textContent=b?.ready?'电脑初始备份已验证：'+b.pc_path+'\n'+(b.device_copy_exists?'显示器已有同一备份：'+b.device_path:'未创建显示器副本')+'\n不按IP、档位或配置另存初始备份。':'先选择备份位置；首次接入按稳定设备身份查重，备份验证后才允许调光写入。'}
+ const backup=$('initialBackupStatus');if(backup){const b=state?.initial_backup;backup.textContent=b?.ready?'电脑初始备份已验证：'+b.pc_path+'\n'+(b.device_copy_exists?'显示器已有同一备份：'+b.device_path:'未创建显示器副本')+'\n不按IP、档位或配置另存初始备份。':b?.status==='error'?'备份检查未完成：'+b.message:!state?.connected?'显示器备份尚未检测。点击“自动寻找并连接”后先检查已有备份。':b?.status==='missing'?'已连接并检查，未找到当前设备可复用的初始备份。请选择保存位置；完成前不允许调光写入。':'正在核验已有备份，尚未允许调光写入。'}
 }
 function renderProfileSelection(){
  const native=state.native||{},same=selectedProfileKey()===activeProfileKey()&&String(native.g_video__vid_local_dimming)===$('level').value&&String(native.g_video__vid_hdr_tone_mapping_mode)===$('tone').value;

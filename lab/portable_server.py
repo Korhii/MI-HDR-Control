@@ -51,6 +51,7 @@ class PortableBridge(lab.Bridge):
         self.debug_phase='idle'
         self.default_restoration=None
         self.initial_backup=None
+        self.comparison_default=False;self.comparison_saved=None;self.comparison_config=None
         self.model_id='32u-2026'
         self.model_confirmed=False
         self.model_detection=device_models.detect()
@@ -148,7 +149,7 @@ class PortableBridge(lab.Bridge):
         if not self.state['connected'] or raw is None or self.telemetry.get('status')!='live-driver':return dict(empty,raw=None,note='等待当前驱动采样；不显示旧数值')
         level=int(self.telemetry.get('level',self.backlight_level));tone=int(self.state['native'].get('g_video__vid_hdr_tone_mapping_mode',self.tone))
         area=self.pattern_check.get('actual_area_percent',self.pattern_config['area_percent'])
-        factory_path=level==3 and getattr(self,'factory_budget',False) and not self.native_abl['enabled'] and self.telemetry.get('budget_used',24) in (24,'24')
+        factory_path=level==3 and (self.comparison_default is True or getattr(self,'factory_budget',False) and not self.native_abl['enabled']) and self.telemetry.get('budget_used',24) in (24,'24')
         result=model_worker.current_estimate(model_id=self.model_id,raw=raw,level=level,area=area,input_nits=self.pattern_config['input_nits'],tone=tone,config=self.state.get('config',lab.STOCK_BY_LEVEL[level]),raw_kind='global-aw',factory_path=factory_path,budget_value=self.telemetry.get('budget_used',self.budget_value))
         gain=self.telemetry.get('gain_used',65535)
         if result.get('nits') is not None and gain!=65535:
@@ -180,6 +181,7 @@ class PortableBridge(lab.Bridge):
                 record.update(status='applied',message='设备执行回执已确认')
         data.update(app='mi-hdr-control',version=json.loads((ROOT/'release-meta.json').read_text('utf-8'))['version'],instance_root=str(ROOT),connection=connection(),
                     adb_discovery=self.adb_discovery,debug_phase=self.debug_phase,default_restoration=self.default_restoration,model_id=self.model_id,model_confirmed=self.model_confirmed,model_detection=self.model_detection,model_spec=device_models.spec(self.model_id),model_monitor=self.model_monitor,device_model=self.device_model,initial_backup=device_backup.public(self.initial_backup),backup_policy=self.backup_policy,fit_progress=model_worker.progress(),backup_inventory=device_backup.local_inventory(),
+                    comparison=dict(default=self.comparison_default,saved_budget=self.comparison_saved['budget'] if self.comparison_saved else None),
                     auto_plan=self.auto_plans.get(f'{self.backlight_level}:{self.tone}'),
                     auto_preview=self.auto_previews.get(f'{self.backlight_level}:{self.tone}'),profile_key=f'{self.backlight_level}:{self.tone}',factory_budget=self.factory_budget,current_brightness=brightness,
                     tuning_context=dict(hdr_input=lab.hdr_input(self.state['native']) if self.state['connected'] else None,backlight=self.state['native'].get('g_disp__disp_back_light')),live_debug=self.live_debug,risk_unlocked=self.risk_unlocked,risk_budget=RISK_BUDGET,
@@ -245,8 +247,8 @@ class PortableBridge(lab.Bridge):
         # Browser controls are the portable panel; do not create an unrelated second UI.
         pass
 
-    def read_budget(self,value=None,running=None,configure=False):
-        packet=abl_packet(self.native_abl,(time.monotonic_ns()//1000000)%2147483647) if configure else None
+    def read_budget(self,value=None,running=None,configure=False,config=None):
+        packet=abl_packet(self.native_abl if config is None else config,(time.monotonic_ns()//1000000)%2147483647) if configure else None
         previous=self.telemetry
         self.telemetry=budget.sample(self.folder/'budget-io',value,running,packet)
         if previous.get('status')=='live-driver' and self.telemetry['tick']!=previous.get('tick'):
@@ -496,6 +498,7 @@ class PortableBridge(lab.Bridge):
 
     def stop_debug(self,c=None):
         self.live_debug=False
+        self.clear_comparison()
         if self.needs_restore:
             self.debug_phase='restoring'
             try:
@@ -565,10 +568,49 @@ class PortableBridge(lab.Bridge):
 
     def select_profile_data(self,level,tone):
         if type(level) is not int or level not in lab.BACKLIGHT_LEVELS or type(tone) is not int or tone not in TONES:raise ValueError('未知档位/模式')
+        self.clear_comparison()
         p=self.profile_bank[f'{level}:{tone}']
         self.backlight_level=level;self.tone=tone;self.budget_value=p['budget'];self.native_abl=validate_abl(p['native_abl']);self.software_abl=True;self.factory_budget=p.get('factory_budget',False)
         with self.pattern_lock:self.update_pattern(validate_pattern(p.get('pattern',PATTERN)))
         self.save_draft(lab.validate(p['config']))
+
+    def clear_comparison(self):
+        self.comparison_default=False;self.comparison_saved=None;self.comparison_config=None
+
+    def compare_configuration(self,mode):
+        if mode not in ('default','tuned'):raise ValueError('未知的对比配置')
+        if not self.live_debug or not self.state['connected'] or not self.active or self.active.get('mode')!='live':raise ValueError('请先开启实时调试并应用调节配置')
+        if self.wanted_sequence>self.ack_sequence:raise ValueError('请等待当前调节的设备回执，再切换对比')
+        self.preflight()
+        native=self.state['native']
+        if (native.get('g_video__vid_local_dimming'),native.get('g_video__vid_hdr_tone_mapping_mode'))!=(str(self.backlight_level),str(self.tone)):raise ValueError('显示器档位或模式已变化，请重新应用当前组合')
+        if self.comparison_saved is None:
+            if mode=='tuned':raise ValueError('尚未保存本次对比的调节配置')
+            telemetry=self.read_budget() if self.runtime_loaded else {}
+            params={k:bool(telemetry[k]) if k=='enabled' else telemetry[k] for k in ABL_DEFAULT} if self.budget_active else dict(ABL_DEFAULT)
+            self.comparison_saved=dict(config=lab.validate(self.state['config']),budget=telemetry.get('budget',self.budget_value),active=self.budget_active,native_abl=validate_abl(params))
+        saved=self.comparison_saved
+        if mode=='tuned' and saved['active']:self.check_risk('runtime-set',{'budget':saved['budget']})
+        self.comparison_default=None
+        if self.runtime_loaded:
+            if self.read_budget(running=False).get('lease_end')!=0:raise RuntimeError('预算暂停未确认；本次配置切换未完成')
+        self.budget_active=False
+        self.comparison_config=lab.validate(lab.STOCK_BY_LEVEL[self.backlight_level] if mode=='default' else saved['config'])
+        with self.request_lock:
+            self.wanted_sequence+=1;self.pending_at=0
+        self.publish_live()
+        end=time.monotonic()+8
+        while time.monotonic()<end:
+            raw=self.device('shell','tail -n 80 '+self.active['remote']+'/result.txt')
+            acknowledgements=re.findall(r'applied_sequence=(\d+)',raw)
+            if acknowledgements and int(acknowledgements[-1])==self.wanted_sequence:
+                self.ack_sequence=self.wanted_sequence;self.state['config']=lab.validate(self.comparison_config);break
+            time.sleep(.1)
+        else:raise RuntimeError('配置切换尚未收到设备回执，请重试或关闭实时调试')
+        if mode=='tuned' and saved['active']:
+            self.read_budget(saved['budget'],True,True,config=saved['native_abl']);self.budget_active=True
+        self.comparison_default=mode=='default'
+        self.event('已切换至显示器默认调光' if mode=='default' else '已切回本次对比前的调节配置',level=self.backlight_level,tone=self.tone)
 
     def check_risk(self,op,data):
         if op=='permanent-write':
@@ -592,6 +634,8 @@ class PortableBridge(lab.Bridge):
 
     def activate_tuning(self):
         if not self.state['connected']:raise ValueError('ADB未连接；草稿已保留，请连接后再开启实时调试')
+        if not self.device_model.get('verified') or not (self.initial_backup and self.initial_backup.get('ready')):raise ValueError('请先完成机型复核与初始备份，再开启实时调试')
+        self.clear_comparison()
         if not self.runtime_loaded and not self.factory_budget:self._perform('runtime-load',{})
         native=self.state.get('native',{})
         same_context=native.get('g_video__vid_local_dimming')==str(self.backlight_level) and native.get('g_video__vid_hdr_tone_mapping_mode')==str(self.tone)
@@ -605,6 +649,7 @@ class PortableBridge(lab.Bridge):
 
     def perform(self,op,data):
         if self.shutdown_started:raise ValueError('控制器正在退出')
+        comparison_saved=self.comparison_saved
         field=data.get('_field')
         record=None
         if field:
@@ -614,15 +659,17 @@ class PortableBridge(lab.Bridge):
         try:
             if data.get('_model',self.model_id)!=self.model_id and op!='model-select':raise ValueError('机型已切换，旧窗口参数未写入')
             if op not in ('model-detect','model-select','preferences','backup-policy','backup-ack','config-save','shutdown','risk-lock','risk-unlock','close-pattern','restore') and not self.model_confirmed:raise ValueError('请先侦测并进入正确的27/32寸分支')
-            profile_bound=op in ('profile-defaults','auto-apply','quick-budget','runtime-draft','runtime-set','quick-halo','draft','update','native-abl-draft','abl','profile-select','calibration','module-defaults')
+            profile_bound=op in ('compare-config','profile-defaults','auto-apply','quick-budget','runtime-draft','runtime-set','quick-halo','draft','update','native-abl-draft','abl','profile-select','calibration','module-defaults')
             if profile_bound and data.get('_profile') is not None and data['_profile']!=f'{self.backlight_level}:{self.tone}':raise ValueError('档位/模式已切换；拒绝把旧窗口参数写入其他组合')
             device_edit=op in ('auto-apply','quick-budget','runtime-draft','runtime-set','quick-halo','draft','update','native-abl-draft','abl','profile-select','calibration') or op=='module-defaults' and data.get('module') not in ('pattern','sensors')
-            if self.state['connected'] and (device_edit or op in ('runtime-load','apply-profile','permanent-write','all-defaults','profile-defaults','run','live','backlight')) and not self.device_model.get('verified'):raise ValueError('ADB机型未复核，未允许调光写入')
+            if self.state['connected'] and (device_edit or op in ('runtime-load','apply-profile','compare-config','permanent-write','all-defaults','profile-defaults','run','live','backlight')) and not self.device_model.get('verified'):raise ValueError('ADB机型未复核，未允许调光写入')
             if device_edit and not self.state['connected']:raise ValueError('请先连接ADB，再调整显示器参数；本地图样与界面设置不需要ADB')
-            if self.state['connected'] and (device_edit or op in ('all-defaults','profile-defaults','permanent-write','apply-profile','runtime-load','live')) and not (self.initial_backup and self.initial_backup['ready']):raise ValueError('初始设备备份尚未完成所选位置读回；未允许调光写入')
+            if self.state['connected'] and (device_edit or op in ('all-defaults','profile-defaults','permanent-write','apply-profile','compare-config','runtime-load','live')) and not (self.initial_backup and self.initial_backup['ready']):raise ValueError('初始设备备份尚未完成所选位置读回；未允许调光写入')
             # Turning OFF must never be blocked by the current high-value draft.
             if op!='live-debug' or data.get('enabled'):self.check_risk(op,data)
             routed=op
+            if op in ('quick-halo','update','quick-budget','runtime-set','apply-profile','auto-apply','profile-defaults','all-defaults','restore') or op=='module-defaults' and data.get('module')!='pattern':
+                self.clear_comparison()
             if op=='risk-unlock':
                 if data.get('acknowledged') is not True:raise ValueError('必须明确确认风险说明')
                 self.risk_unlocked=True
@@ -634,6 +681,10 @@ class PortableBridge(lab.Bridge):
                     try:
                         self.prepare_adb(data.get('connection'))
                         self._perform('auto-connect',{})
+                        if not (self.initial_backup and self.initial_backup.get('ready')):
+                            self.debug_phase='idle'
+                            if record:record.update(status='draft',message='已连接，请先完成初始备份，再开启实时调试')
+                            return
                         self.debug_phase='applying';self.needs_restore=True;self.default_restoration=None
                         self.activate_tuning()
                     except Exception:
@@ -646,7 +697,8 @@ class PortableBridge(lab.Bridge):
                     elif op in ('quick-budget','runtime-set'):routed='runtime-draft'
                     elif op in ('apply-profile','runtime-load','live'):
                         raise ValueError('请先开启顶栏“实时调试”；关闭时所有调节仅保存草稿')
-                if op=='all-defaults':
+                if op=='compare-config':self.compare_configuration(data['mode'])
+                elif op=='all-defaults':
                     if data.get('confirmed') is not True:raise ValueError('恢复全部调光需要明确确认')
                     self.all_device_defaults()
                 elif op in ('profile-defaults','software-defaults'):
@@ -691,6 +743,8 @@ class PortableBridge(lab.Bridge):
                 if op=='live-debug' and not data['enabled']:record.update(message='默认状态已恢复，ADB已断开；PC草稿保留' if self.default_restoration else '未下发调试，ADB已断开')
                 if op=='module-defaults' and data['module']=='pattern' and not self.state['pattern']:record.update(status='draft',message='默认图样已保存；没有打开测试窗口')
         except Exception as error:
+            if comparison_saved is not None and self.comparison_saved is None:
+                self.comparison_saved=comparison_saved;self.comparison_default=None
             if record:record.update(status='error',message=str(error))
             raise
 
@@ -700,6 +754,8 @@ class PortableBridge(lab.Bridge):
         if op=='model-select':
             self.select_model(data);return
         if op=='backup-policy':
+            if not self.state['connected'] or not self.device_model.get('verified'):raise ValueError('请先连接ADB并核对显示器，再选择备份位置')
+            if not self.initial_backup or not (self.initial_backup.get('ready') or self.initial_backup.get('status')=='missing'):raise ValueError('请先完成已有备份检测')
             self.backup_policy=device_backup.save_policy(data['policy'])
             if self.state['connected']:
                 self.initial_backup=None
@@ -734,7 +790,6 @@ class PortableBridge(lab.Bridge):
             self._perform('runtime-set',data);return
         if op=='auto-connect':
             if not self.model_confirmed:raise ValueError('请先侦测显示器型号')
-            if not self.backup_policy['confirmed']:raise ValueError('请先选择备份保存位置')
             c=self.prepare_adb();self.count+=1
             def progress(message):self.adb_discovery={'searching':True,'message':message}
             try:
@@ -751,7 +806,7 @@ class PortableBridge(lab.Bridge):
             self.event('显示器保存方案已在本次开机暂停；PC临时调节不会与本机心跳竞争')
         if op=='connect':
             if not self.model_confirmed:raise ValueError('请先侦测显示器型号')
-            if not self.backup_policy['confirmed']:raise ValueError('请先选择备份保存位置')
+            self.initial_backup=None;self.state['connected']=False
             c=self.prepare_adb(data.get('connection'));serial=c['serial'];port=c['port']
             if ':' in serial:
                 r=subprocess.run([str(lab.ADB),'-P',str(port),'connect',serial],capture_output=True,env=lab.ENV,timeout=12,creationflags=subprocess.CREATE_NO_WINDOW)
@@ -765,11 +820,11 @@ class PortableBridge(lab.Bridge):
             deploy();self.read_state()
             try:
                 self.verify_device_model()
-                self.initial_backup=device_backup.ensure(self.folder/'initial-backup',self.state['native'],policy=self.backup_policy)
-                if self.initial_backup['data']['factory_ini']!=self.device_model['factory_ini']:raise ValueError('初始备份对应另一屏型；保留原件，未允许调光写入')
-            except Exception:
-                self.state['connected']=False;self.initial_backup=None;raise
-            self.state['phase']='所选位置初始备份读回通过，尚未应用'
+                self.initial_backup=device_backup.ensure(self.folder/'initial-backup',self.state['native'],policy=self.backup_policy,existing_only=True)
+                if self.initial_backup.get('ready') and self.initial_backup['data']['factory_ini']!=self.device_model['factory_ini']:raise ValueError('初始备份对应另一屏型；保留原件，未允许调光写入')
+            except Exception as error:
+                self.state['connected']=False;self.initial_backup=dict(ready=False,status='error',message=str(error));raise
+            self.state['phase']='已有初始备份已复用并核验，尚未应用' if self.initial_backup['ready'] else '已连接，未找到当前设备的初始备份，请选择保存位置'
             self.persistence=permanent.status(self.folder/'permanent-status')
             self.runtime_loaded=self.device('shell','test -d /sys/module/mi_oemabl && echo yes',check=False).strip()=='yes'
             if self.runtime_loaded:self.read_budget()
@@ -893,7 +948,7 @@ class Handler(lab.Handler):
 
     def do_POST(self):
         op=self.path.removeprefix('/api/')
-        custom={'model-detect','model-select','config-export','backup-policy','backup-ack','profile-defaults','software-defaults','predict-response','auto-fit','abl-predict','all-defaults','auto-preview','module-defaults','auto-apply','live-debug','risk-unlock','risk-lock','pattern-draft','preferences','auto-connect','quick-budget','quick-halo','draft','update','connect','pattern-config','pattern-start','sensors','profile-select','apply-profile','halo-stop','abl','config-save','config-load','calibration','permanent-write','close-pattern','restore','shutdown','runtime-load','runtime-draft','runtime-set','runtime-stop','runtime-unload','native-abl-draft',
+        custom={'compare-config','model-detect','model-select','config-export','backup-policy','backup-ack','profile-defaults','software-defaults','predict-response','auto-fit','abl-predict','all-defaults','auto-preview','module-defaults','auto-apply','live-debug','risk-unlock','risk-lock','pattern-draft','preferences','auto-connect','quick-budget','quick-halo','draft','update','connect','pattern-config','pattern-start','sensors','profile-select','apply-profile','halo-stop','abl','config-save','config-load','calibration','permanent-write','close-pattern','restore','shutdown','runtime-load','runtime-draft','runtime-set','runtime-stop','runtime-unload','native-abl-draft',
                 'adb-boot-status','adb-boot-enable','adb-boot-disable',
                 'permanent-status','permanent-remove'}
         if op not in custom:return super().do_POST()

@@ -52,7 +52,8 @@ def current_estimate(**data):
 
 def progress():
     path=ROOT/'state/model-progress.json'
-    return json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
+    try:return json.loads(path.read_text(encoding='utf-8'))
+    except (FileNotFoundError,PermissionError):return None
 def close():
     global _process,_log
     with _lock:
