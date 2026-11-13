@@ -1,4 +1,4 @@
-# First use: from extraction to restoration · 0.9.26-public-preview.2
+# First use: from extraction to restoration · 0.9.30-public-preview
 
 [简体中文](guide.zh-CN.md) · [Home](../README.en.md) · [Module reference](modules.en.md) · [Safety](SAFETY.en.md)
 
@@ -10,7 +10,7 @@ Follow this page in order for one temporary session: prepare, tune, check the re
 | **[Module reference](modules.en.md)** | Look up a button, parameter direction, application method or restore scope. |
 | **[Research](RESEARCH.en.md)** | Inspect the experiments behind SF, Alpha, budget and driver values. |
 
-**Screenshots:** all APP tutorial images use **dark MONO (素·黑白)**, captured directly as native lossless PNGs from the actual 0.9.26 public UI. Open an image for full resolution. ADB was disconnected: disabled controls, dashes and offline messages are genuine. Values identify controls, not recommended settings. Monitor-menu images retain the vendor UI, with cropping and privacy masking only.
+**Screenshots:** all APP tutorial images use **dark MONO (素·黑白)**, captured directly as native lossless PNGs from unchanged areas of the actual 0.9.26 public UI. Open an image for full resolution. ADB was disconnected: disabled controls, dashes and offline messages are genuine. Values identify controls, not recommended settings. Monitor-menu images retain the vendor UI, with cropping and privacy masking only.
 
 ## One main route, two endings
 
@@ -103,7 +103,7 @@ This verifies the current personal unit's menu route, not a factory-reset first-
 
 ### Automatic discovery and manual fallback
 
-0.9.26 checks connected USB/network ADB transports, advertised connect ports, successful records and known neighbours. It validates supported devices, excludes unrelated phones and separates pairing from connect ports. USB and Wi-Fi entries for one physical display are deduplicated. Two supported displays require an explicit choice.
+0.9.30 checks connected USB/network ADB transports, advertised connect ports, successful records and known neighbours. It validates supported devices, excludes unrelated phones and separates pairing from connect ports. USB and Wi-Fi entries for one physical display are deduplicated. Two supported displays require an explicit choice.
 
 There was no second physical display or LAN available. Foreign serials, different private IPv4 ranges, multiple-interface neighbours, dynamic advertised ports, authorization failure and ambiguity were simulated. Router isolation, blocked advertisements, absent neighbour records and unadvertised custom ports can still prevent discovery.
 
@@ -131,7 +131,7 @@ See the [Android ADB documentation](https://developer.android.com/tools/adb) and
 
 EDID is preliminary. ADB later checks the active panel and firmware. Stop if the branch is wrong; do not select a similar model to bypass it.
 
-**Window and navigation:** 0.9.26 opens in portrait A4 proportions, constrained by the available desktop height. In a narrow window, reveal navigation by moving to or clicking the thin left edge, then select a module. Scroll for lower controls and readback. Tutorial captures are actual 1000×1414 lossless PNGs; open the originals for detail.
+**Window and navigation:** 0.9.30 opens in portrait A4 proportions, constrained by the available desktop height. In a narrow window, reveal navigation by moving to or clicking the thin left edge, then select a module. Scroll for lower controls and readback. Tutorial captures are actual 1000×1414 lossless PNGs; open the originals for detail.
 
 ### 3.2 Connect first, then inspect existing backups
 
@@ -198,6 +198,12 @@ No AI, Ghidra, JDK or compiler is needed. `state/prepared`, device backups, conn
 With live debugging enabled and the current adjustment acknowledged, click **调节后配置 · 对比默认**. The button becomes **显示器默认 · 切回调节**; click again to restore the SF, Alpha, budget and cumulative-ABL parameters applied before this comparison. The selected local-dimming level and tone mode remain the comparison context, and the HDR pattern stays open. Cumulative ABL restarts its timing when restored; use the same observation duration when comparing sustained output.
 
 Unapplied drafts are preserved and excluded from the comparison. All twelve drafts and the saved permanent scheme remain intact. Default comparison pauses the custom budget and uses this combination's factory dimming path. Applying edits, selecting another combination or ending live debugging ends this comparison. Resolve readback errors before treating a switch as complete.
+
+### Inspect HDR mapping after Apply
+
+In **APL与ABL控制 01**, edit the budget or cumulative ABL and click **应用统一亮度设置 · 一次写入**. The HDR status at the page top reports synchronization. P0 is an input-domain TMO target, not a luminance-meter reading. Resolve zero-budget or profile/mode mismatch states as shown. Stopping debugging, lease expiry and unloading restore the factory capability table; default A/B comparison pauses the override too.
+
+If mapping fails to activate, this build stops both the custom budget and PC renewal while retaining drafts. The prediction is not an applied-state receipt. [Details](modules.en.md#hdr-mapping)
 
 ## 5. Compare a pattern briefly, then inspect readback
 

@@ -1,3 +1,25 @@
+# Validation · 0.9.30-public-preview
+
+[中文](VALIDATION.zh-CN.md) · [Release method](RELEASING.en.md)
+
+## 2026-11-14: migration from private 0.9.30
+
+- Retains HDR mapping, A/B, existing-backup discovery, warm fitting caches and startup error classification. The independent bridge, owner-local preparation, dimming-only scope, numeric palettes and clean defaults remain. Original private files are not modified.
+- All 25 owner inputs are fingerprinted before local model/module generation. The new module has 32 hash/original-value-guarded address slots including the HDR .data base. C and Python preparation outputs match byte-for-byte; absent or invalid HDR addresses are rejected.
+- Compiled public ARM code and the private reference module pass the same capability, current-frame-gain, expiry-restoration and mode-isolation vectors. This is offline execution, not a new device write or optical measurement.
+- Fixed the failure path that could stop a lease while leaving PC renewal active. Renewal now stops too, with drafts retained. The reproducible failing case and passing correction are recorded.
+- Publisher environment: Windows NT 10.0.26200.0. Device inputs are bound to verified OS3.0.120.0.UFFMAMN firmware fingerprints. No second-monitor or separate-LAN physical test is added.
+- Private 0.9.28 32U TMO/ABL and second-reboot observations remain reference evidence. This public package removes launcher components and regenerates its module: **the complete public component set has not had new boot acceptance; boot_verified=false**. The 27U still has no physical acceptance.
+- Eleven linked capability entries are not complete optical EOTF calibration. P0, AW and estimated nits remain distinct; electrical, thermal, lifetime and power-cut cold-boot coverage is not expanded.
+
+Current PC checks: **197/197** model/workflow regressions (including eight HDR cases), **13/13** public-contract/local-preparation checks, **9/9** documentation checks, **26/26** JavaScript coupling/UI/backup checks and **33/33** independent-bridge JVM fixture checks. The complete native page opened, the APL/ABL linking status was visible and Exit controller closed the app. Release checks found the redundant Save button reintroduced by the private page; the public copy removes the button and binding again. Re-executing the documented SF/Alpha/static-budget experiments produced identical numerical arrays.
+
+This run of the GPU readback test stopped because Windows HDR was off: `Windows HDR is off on selected monitor`. No display setting was changed and the attempt is not reported as a pass. Pattern-renderer source is unchanged from the previous public version; earlier GPU records remain historical.
+
+## Historical 0.9.26 public-build records
+
+The following historical tests, captures and limitations are retained, not relabelled as new 0.9.30 measurements.
+
 # Validation · 0.9.26 dimming-only experimental preview
 
 [简体中文](VALIDATION.zh-CN.md) · [Release method](RELEASING.en.md)

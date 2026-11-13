@@ -1,3 +1,13 @@
+# 0.9.30-public-preview
+
+- 同步自用 0.9.30：预算/累计 ABL 与 11 项原厂 HDR 能力联动，读回显示 P0 与生效状态；保留恢复、失联和模式边界。
+- 保留公开修订 2 的 A/B、备份发现与进度读写修复；保留新热缓存，启动后区分 HTTP/连接问题与界面错误。
+- 更新公开的本机模块生成器及地址准备器；预算模块仍从使用者自己的原件生成，不直接分发厂商模块。
+- 额外修正 HDR 映射失败后可能继续续租的状态耦合。自用原件保持不变。
+- 同步双语说明及数字测点图；原有布局未变的截图保留原 0.9.26 来源标注。
+
+Budget/ABL-linked factory HDR capabilities, current P0/status readback, retained A/B/backup/warm-cache features and corrected startup error reporting. Owner-local generation now includes HDR relocation. Fixed renewal remaining active after mapping failure. Private originals are preserved; old releases remain available.
+
 # 0.9.26-public-preview.2 · 公开修订 / Public revision
 
 - 修复新解压目录的显示器已有备份识别；先连接检查，有备份直接复用，无备份才选择位置。首次备份完成前不开始调节。

@@ -12,8 +12,9 @@ public class MIHDRRuntime {
     static final String BASE="/data/data/mitv.service/files/MIHDRControl";
     static final String RECEIPT="/sdcard/Download/Mimonitor_Toolbox/.mtk_action_11111111111111111111111111111111.txt";
     static final String[] KEYS={"g_video__picture_mode","g_dovi_info__","g_disp__disp_back_light","g_video__vid_local_dimming","g_video__vid_hdr_tone_mapping_mode"};
-    static final String[] RAW={"budget","budget_used","raw","window","frames","tick","lease_end","level","raw_spi","gain_used"};
+    static final String[] RAW={"budget","budget_used","raw","window","frames","tick","lease_end","level","raw_spi","gain_used","hdr_revision","hdr_active","hdr_p0","hdr_gain"};
     static native int[] budget(int value,int running,String packet);
+    static native void mapping(String packet);
     static File file(String name){return new File(BASE,name);}
     static String read(File f)throws Exception{return new String(Files.readAllBytes(f.toPath()),StandardCharsets.UTF_8).trim();}
     static void write(File f,String s)throws Exception{
@@ -37,6 +38,12 @@ public class MIHDRRuntime {
     static String packet(JSONObject c,int generation)throws Exception{
         return (c.getBoolean("enabled")?1:0)+","+c.getInt("l_th")+","+c.getLong("e0")+","+c.getInt("divisor")+","+c.getInt("r_reset")+","+generation;
     }
+    static String mappingPacket(JSONObject p,int level,int tone,int generation)throws Exception{
+        JSONObject m=p.getJSONObject("hdr_mapping");JSONArray scales=m.getJSONArray("scales");
+        if(m.getInt("version")!=1||m.getInt("level")!=level||m.getInt("tone")!=tone||m.getInt("budget")!=p.getInt("budget")||scales.length()!=11)throw new IOException("HDR mapping/profile mismatch");
+        StringBuilder s=new StringBuilder((m.getBoolean("enabled")?1:0)+","+level+","+tone+","+generation);
+        for(int i=0;i<11;i++)s.append(',').append(scales.getInt(i));return s.toString();
+    }
 
     static ArrayList<String> haloArgs(JSONObject p)throws Exception{
         JSONObject c=p.getJSONObject("config");ArrayList<String>a=new ArrayList<String>();
@@ -52,13 +59,17 @@ public class MIHDRRuntime {
     }
     public static void main(String[] args)throws Exception{
         System.load(BASE+"/libmi-persistence.so");
+        if(args.length==1&&args[0].equals("--verify-mapping")){
+            int[] data=budget(-1,-1,null);if(data.length!=14||data[10]!=2)throw new IOException("Mapping runtime revision mismatch");
+            System.out.println(new JSONObject().put("mapping_revision",data[10]).put("hdr_active",data[11]).put("hdr_p0",data[12]).put("hdr_gain",data[13]).put("read_only",true));return;
+        }
         MIHDRBridge.prepareSession();
         final String boot=read(new File("/proc/sys/kernel/random/boot_id"));
         write(file("runtime.pid"),""+Process.myPid());file("daemon-stopped.txt").delete();
         String lastProfile="",lastError="";long stamp=-1;int generation=1,lastBank=-1;JSONObject config=null;boolean select=true;String configHash="";
         try{
             while(file("enabled").exists()&&!file("stop").exists()){
-                JSONObject status=new JSONObject().put("boot_id",boot).put("pid",Process.myPid()).put("heartbeat_ms",System.currentTimeMillis()).put("owner","monitor");
+                JSONObject status=new JSONObject().put("boot_id",boot).put("pid",Process.myPid()).put("heartbeat_ms",System.currentTimeMillis()).put("owner","monitor").put("mapping_revision",2);
                 try{
                     if(stamp!=file("controller.json").lastModified()){
                         String text=read(file("controller.json"));config=new JSONObject(text);
@@ -90,6 +101,7 @@ public class MIHDRRuntime {
                             if(!halo.isAlive())throw new IOException("Halo worker exited; do not keep a custom budget without owner");
                             write(file("halo-live/heartbeat"),""+(System.currentTimeMillis()/1000));
                             boolean factory=p.optBoolean("factory_budget",false);
+                            if(changed&&!factory)mapping(mappingPacket(p,value(s,3),value(s,4),generation));
                             int[] data=budget(factory?-1:p.getInt("budget"),factory?0:1,factory?null:policy);for(int i=0;i<RAW.length;i++)status.put(RAW[i],data[i]);
                             status.put("state","applied").put("profile",key).put("generation",generation);
                         }

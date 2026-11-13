@@ -8,6 +8,7 @@ function syncAutoAvailability(){
  if(blocked&&!controls.disabled){fitWanted='';fitConfirmed='';fitBusy=false;if(autoFit)autoFit.fit_id=null;autoDragging=null}
  controls.disabled=blocked;controls.classList.toggle('auto-disabled',blocked);
  $('autoChartHost').inert=blocked;
+ $('autoChartHost').setAttribute('aria-disabled',String(blocked));
  if(blocked)$('autoChartTip').hidden=true;
  return blocked;
 }

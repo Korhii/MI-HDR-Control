@@ -35,7 +35,7 @@
   "source_sha256": {
     "lab/firmware_scaling.py": "71b4fb474249e16851390b26ddbcdf081fbe833156d343f17dbb852340449204",
     "lab/firmware_model.py": "884d238395d06baf2a2c7fdb9f0830e402c7f1d66163adda66f6895d5bad0c6b",
-    "lab/ldf_response.py": "6d57641631f70596ead1470e2e3100b74f7981be137cef44202f74e3efedaba9",
+    "lab/ldf_response.py": "9f009d4153621e1811b524cdd14e5b116f976efb13150fe269b387bb3d7e3e90",
     "tools/response-math.dll": "99fdc59f1b0bc9db987c9bdcb25b0e5480d7a4133f75f08d8c24b28293a27345",
     "resources/ui/ldf-samples.json": "29acbd2c9de1f40051767ff9ee0c7318be128732edba8e04ade79eedcd673cce"
   },
@@ -52283,6 +52283,21 @@
       "current_source_sha256": "6d57641631f70596ead1470e2e3100b74f7981be137cef44202f74e3efedaba9",
       "change": "Progress-file I/O only; algorithm AST excluding save_progress is identical to the experiment source.",
       "algorithm_ast_unchanged": true
+    },
+    {
+      "version": "0.9.30-public-preview",
+      "date": "2026-11-14",
+      "path": "lab/ldf_response.py",
+      "current_source_sha256": "9f009d4153621e1811b524cdd14e5b116f976efb13150fe269b387bb3d7e3e90",
+      "change": "Full documented SF, Alpha, equal-area geometry, static budget and signal-stage experiments re-executed; all numerical arrays identical. Earlier source revisions remain historical.",
+      "numerical_arrays_recomputed": true
     }
-  ]
+  ],
+  "recomputation": {
+    "version": "0.9.30-public-preview",
+    "date": "2026-11-14",
+    "all_numerical_arrays_identical": true,
+    "device_writes": false,
+    "elapsed_seconds": 2.333
+  }
 }

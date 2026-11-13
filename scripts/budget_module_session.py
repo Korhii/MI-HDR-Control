@@ -10,6 +10,7 @@ if MODE not in ('load','unload'):raise ValueError('load or unload required')
 EVENT='961099999' if MODE=='load' else '962099999'
 expected='eabc6d525ddd76cfaa9855b137af2df7247bccd4ec7166edef4d0dbfae5db4cd'
 if adb('shell','sha256sum /vendor/lib/modules/kdrv_ldm_sys.ko').split()[0]!=expected:raise RuntimeError('Firmware driver mismatch; no write performed')
+if not adb('shell','sha256sum /vendor/lib/modules/adaptive_hdr_algo.ko').startswith('a061cd3df4a500965299be2e32c3acd4ac34ed9653e44c8ae9667b17c4e994bf '):raise RuntimeError('HDR firmware mismatch; no write performed')
 if ': found' not in adb('shell','service check misight',check=False):raise RuntimeError('MiSight服务未就绪；未加载模块，未修改策略')
 from local_asset_paths import budget_module,budget_manifest,firmware_directory
 manifest=json.loads(budget_manifest().read_text(encoding='utf-8'))
@@ -84,15 +85,17 @@ echo kptr_restrict_current=$(cat /proc/sys/kernel/kptr_restrict)
 driver_text=$(cat /sys/module/kdrv_ldm_sys/sections/.text)
 driver_bss=$(cat /sys/module/kdrv_ldm_sys/sections/.bss)
 driver_data=$(cat /sys/module/kdrv_ldm_sys/sections/.data)
+hdr_data=$(cat /sys/module/adaptive_hdr_algo/sections/.data)
 echo driver_text=$driver_text driver_bss=$driver_bss driver_data=$driver_data
 base=/data/miuilog/misight/MIResearch20261106
 if [ MODULE_ACTION = load ]; then
+ if [ -d /sys/module/mi_oemabl ]; then rmmod mi_oemabl || exit 16;fi
  cp REMOTE/mi-oem-runtime.ko "$base/mi-oem-runtime.ko"
  if [ "$(sha256sum "$base/mi-oem-runtime.ko" | cut -d ' ' -f1)" != TEMPLATE_SHA ]; then echo aborted_template_changed=1;exit 10;fi
  cp REMOTE/mi-budget-prepare "$base/mi-budget-prepare"
  chmod 700 "$base/mi-budget-prepare"
  prepared="$base/PREPARED_NAME"
- "$base/mi-budget-prepare" "$base/mi-oem-runtime.ko" "$prepared" "$driver_text" "$driver_bss" "$driver_data"
+ "$base/mi-budget-prepare" "$base/mi-oem-runtime.ko" "$prepared" "$driver_text" "$driver_bss" "$driver_data" "$hdr_data"
  rc=$?;echo runtime_prepare_exit=$rc
  [ "$rc" = 0 ] || exit 11
  insmod "$prepared"

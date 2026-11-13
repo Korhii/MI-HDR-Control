@@ -160,7 +160,8 @@ function renderAvailability(){
 }
 /* Display-only budget chart is implemented in abl.js. */
 function renderTuning(){
- const discovery=state.adb_discovery;$('autoDeviceStatus').textContent=discovery?.message||'先点自动寻找；未找到时可展开高级连接';$('autoDeviceStatus').title=$('autoDeviceStatus').textContent;$('connect').disabled=state.busy;
+ const mapping=$('hdrMappingState'),t=state.telemetry||{};if(mapping){mapping.textContent=state.comparison?.default===true?'设备默认对照 · 自定义预算与HDR映射覆盖已暂停；修改方案保留':t.hdr_active?'HDR映射已同步 · 当前TMO目标P0 '+t.hdr_p0+'（输入亮度域，非实测nit） · 已随ABL增益联动':state.runtime?.active?'HDR映射待生效／预算为0；请核对应用状态':'HDR映射随统一预算自动联动；停止调试时一并恢复。nit仍为估算。';mapping.classList.toggle('availability-warning',!!state.runtime?.active&&!t.hdr_active&&state.runtime.budget>0)}
+ const discovery=state.adb_discovery;$('autoDeviceStatus').textContent=discovery?.message||'点击自动寻找并连接；无需填写IP';$('autoDeviceStatus').title=$('autoDeviceStatus').textContent;$('connect').disabled=state.busy;
  if(state.connected&&state.connection&&state.connection.port!==lastDisplayedAdbPort){lastDisplayedAdbPort=state.connection.port;$('port').value=lastDisplayedAdbPort}
  $('liveDebug').setAttribute('aria-pressed',String(state.live_debug));$('liveDebug').textContent=['restore-error','disconnect-error'].includes(state.debug_phase)?'恢复/断开未确认 · 重试关闭':state.live_debug?'● 关闭调试 · 恢复默认并断开':'○ 开启实时调试 · 自动连接ADB';$('liveDebug').disabled=liveDebugPending||['connecting','applying','restoring','disconnecting'].includes(state.debug_phase);
  const comparing=state.comparison?.default;$('compareConfig').setAttribute('aria-pressed',String(comparing===true));$('compareConfig').textContent=comparing===true?'显示器默认 · 切回调节':comparing===null?'切换未完成 · 重试默认':'调节后配置 · 对比默认';$('compareConfig').disabled=state.busy||!state.connected||!state.live_debug||!state.active||!state.initial_backup?.ready||state.wanted_sequence>state.ack_sequence;

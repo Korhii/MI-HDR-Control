@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),asse
 const root=path.resolve(__dirname,'..'),rows=[];
 function context(){
  const fields=new Map(),dialogs=[];
- const field=id=>{if(!fields.has(id))fields.set(id,{value:'3',hidden:true,disabled:false,events:{},style:{},dataset:{},classList:{toggle(){}},addEventListener(n,f){this.events[n]=f},getBoundingClientRect:()=>({left:0,top:0,width:900,height:360}),focus(){}});return fields.get(id)};
+ const field=id=>{if(!fields.has(id))fields.set(id,{value:'3',hidden:true,disabled:false,events:{},style:{},dataset:{},classList:{toggle(){}},setAttribute(n,v){this[n]=v},addEventListener(n,f){this.events[n]=f},getBoundingClientRect:()=>({left:0,top:0,width:900,height:360}),focus(){}});return fields.get(id)};
  const c=vm.createContext({console,Promise,Map,Set,JSON,Array,Object,Number,Math,String,URLSearchParams,location:{search:''},window:{},
   setTimeout:()=>1,clearTimeout(){},queueMicrotask(){},fetch:()=>new Promise(()=>{}),cancelAnimationFrame(){},requestAnimationFrame(){},
   $:field,installFeedback(){},inputNits:()=>4000,opticalFactory:()=>500,activeProfileKey:()=> '3:5',selectedProfileKey:()=> '3:5',copy:v=>JSON.parse(JSON.stringify(v)),

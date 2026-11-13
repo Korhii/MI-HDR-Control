@@ -2,7 +2,7 @@
 
 [中文](RELEASING.zh-CN.md)
 
-Keep personal configuration and research originals in the private package. Generate public files with the external release tool; never zip or commit the personal directory directly. {{SOURCE_VERSION}} is the current reviewed input. Later revisions use the same process, with review when unknown changes appear.
+Keep personal configuration and research originals in the private package. Generate public files with the external release tool; never zip or commit the personal directory directly. 0.9.30 is the current reviewed input. Later revisions use the same process, with review when unknown changes appear.
 
 ![Release boundary](assets/release-flow.svg)
 
@@ -88,9 +88,9 @@ The current 32U route is Control → Settings → Account & security → ADB deb
 - Preserve genuine offline states and unavailable readings. Do not fabricate RSA prompts, connection success, temperature or write receipts. Monitor menus permit cropping/privacy masking only. Unchanged pages from the same firmware may be reused with their source/version identified.
 - After image/data/tutorial changes, synchronize `provenance.json`, both languages, old Chinese entry points and templates. Also run `tests/test_documentation.py` for image format/appearance, legend-to-data correspondence, the two guide routes and template consistency. This check does not connect to a monitor.
 
-## Concrete boundary from {{SOURCE_VERSION}}
+## Concrete boundary from 0.9.30
 
-The policy binds pristine {{SOURCE_VERSION}} fingerprints to reviewed overlays. Unknown code, native binaries or assets return `REVIEW_REQUIRED` before export. Even a minor style update is diff-reviewed before refreshing its fingerprint/overlay, version and captures; never silently replace newer features with older code.
+The policy binds pristine 0.9.30 fingerprints to reviewed overlays. Unknown code, native binaries or assets return `REVIEW_REQUIRED` before export. Even a minor style update is diff-reviewed before refreshing its fingerprint/overlay, version and captures; never silently replace newer features with older code.
 
 Run the maintained Python suite, `tests/test_release_0926.js`, public-contract and documentation checks. Model checks require the publisher's own locally prepared inputs; missing fixtures must be reported, not filled by distributing the author's derived cache. ABL changes cover full off-state, one-snapshot submission, invalidated/late results, fixed/cyclic/unresolved outcomes, draw-only spacing and XY/ZY consistency. ADB changes cover foreign serials, private IPv4 ranges, connect/pair ports, authorization, duplicate transports and multiple devices. Simulations are not cross-device acceptance.
 
@@ -126,3 +126,10 @@ For each update: (1) exit the old controller and choose a new SOURCE, external O
 Replace SOURCE/OUTPUT/VERSION. Approval records one owner decision and never uploads; a new prepare returns to an unapproved candidate. Source commits do not update existing release assets. There is no automatic updater. Git identity is repository-local and uses the public handle/noreply address.
 
 GitHub Latest provides the current download entry. The title and project maturity remain “Experimental preview”. GitHub does not allow a prerelease to be Latest, so this channel leaves the Pre-release checkbox off. Verify the version/Latest link in the repository sidebar and that `releases/latest` resolves to this version. See [GitHub release settings](https://docs.github.com/en/rest/releases/releases#update-a-release).
+
+
+## HDR linking checks from 0.9.30
+
+The budget object, address preparer and resident helper must agree on HDR revision. The current layout has four bases and 32 original-value guards. Regenerate from the same fingerprinted owner inputs and verify byte-identical C/Python preparation. Run `tests/test_hdr_mapping.py`; the full model suite also checks coupling, A/B, existing backups and lease recovery.
+
+Native startup acceptance must wait for complete-page rendering, not only an HTTP health response. Track the changed public component set separately; private reboot records that include launcher components are references only. Retained screenshots of unchanged layouts keep their real capture version; explain new fields in current documentation without relabelling old pixels as new captures.

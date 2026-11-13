@@ -307,7 +307,7 @@ int WINAPI wWinMain(HINSTANCE instance,HINSTANCE,PWSTR,int){
  RECT work;SystemParametersInfoW(SPI_GETWORKAREA,0,&work,0);RECT bounds=DefaultMainBounds(work,GetDpiForSystem());
  if(moduleWindow){int width=min(900,work.right-work.left),height=min(750,work.bottom-work.top);bounds={work.left+(work.right-work.left-width)/2,work.top+(work.bottom-work.top-height)/2,work.left+(work.right-work.left+width)/2,work.top+(work.bottom-work.top+height)/2};}
  pinned=true;docked=StartupDockedExpanded();dockExpanded=docked;dockSide=docked?1:0;dockWasPinned=false;undockedBounds=bounds;dockOpenBounds=bounds;
- window=CreateWindowExW(OverlayStyle(),name.c_str(),(moduleWindow?(L"MI HDR Control 0.9.26-public-preview · "+ModuleTitle(moduleName)).c_str():L"MI HDR Control 0.9.26-public-preview · 显示调节工作台"),WS_POPUP|WS_THICKFRAME|WS_MINIMIZEBOX|WS_MAXIMIZEBOX|WS_SYSMENU|WS_CLIPCHILDREN,bounds.left,bounds.top,bounds.right-bounds.left,bounds.bottom-bounds.top,nullptr,nullptr,instance,nullptr);
+ window=CreateWindowExW(OverlayStyle(),name.c_str(),(moduleWindow?(L"MI HDR Control 0.9.30-public-preview · "+ModuleTitle(moduleName)).c_str():L"MI HDR Control 0.9.30-public-preview · 显示调节工作台"),WS_POPUP|WS_THICKFRAME|WS_MINIMIZEBOX|WS_MAXIMIZEBOX|WS_SYSMENU|WS_CLIPCHILDREN,bounds.left,bounds.top,bounds.right-bounds.left,bounds.bottom-bounds.top,nullptr,nullptr,instance,nullptr);
  if(docked)GetWindowRect(window,&dockOpenBounds);
  CreateChrome(instance);
  Theme(true);ShowWindow(window,pinned?SW_SHOWNOACTIVATE:SW_SHOW);UpdateWindow(window);std::filesystem::create_directories(root+L"\\tmp");readyFile=root+L"\\tmp\\desktop-"+std::to_wstring(GetCurrentProcessId())+L".txt";

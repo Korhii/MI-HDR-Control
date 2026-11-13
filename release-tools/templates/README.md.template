@@ -17,9 +17,9 @@
 下载 Releases 中的 `MI-HDR-Control-{{PUBLIC_VERSION}}-Windows.zip`，完整解压后运行。GitHub 自动生成的 Source code ZIP 用于查看源码，不含完整运行环境。
 
 
-**本次修订：** 顶栏默认/调节 A/B 切换、新解压包找回已有备份，以及模型进度文件占用修复。[更新记录](CHANGELOG.md) · [A/B 操作](docs/guide.zh-CN.md#comparison)
+**本次更新：** 统一预算与累计 ABL 自动联动原厂 HDR 映射；保留顶栏 A/B、已有备份恢复，并修复启动后服务与界面错误的分类。[更新记录](CHANGELOG.md) · [A/B 操作](docs/guide.zh-CN.md#comparison)
 
-[![{{SOURCE_VERSION}} · Dark MONO / 素·黑白 · SF / Alpha](docs/assets/screenshots/app-04-halo.png)](docs/assets/screenshots/app-04-halo.png)
+[![0.9.26 · Dark MONO / 素·黑白 · SF / Alpha](docs/assets/screenshots/app-04-halo.png)](docs/assets/screenshots/app-04-halo.png)
 
 <p align="center"><sub>实际本地界面，截图时未连接 ADB；灰色按钮和“—”保留原样。软件界面使用中文，提供中英文 README 与教程。</sub></p>
 
@@ -93,11 +93,19 @@ SF1=255 时，本例没有新增数字扩展；128 时，外一格是输入峰�
 
 **这些 nit 是当前软件模型的参考估算，没有新增亮度计测量。10% 是便于阅读的放大分段，不是固件固定触发点。** 16、24、41 是实验对照值，不构成推荐值或安全线。
 
+### 0.9.30：预算改变后，HDR 映射一起跟随
+
+提高背光预算后，原厂 TMO 若仍按旧的全屏能力映射，1000 与 1200 nit 等不同输入可能提前挤在同一输出上限。现在点击 **应用统一亮度设置** 时，软件会按当前 SF/Alpha 比较预算与原厂 24/86 的分区输出比例，同步 11 项原厂 APL 能力。原厂算法继续生成色调映射曲线；累计 ABL 降亮与恢复时，能力表跟随**本帧实际使用的增益**。
+
+[![HDR 映射联动：历史数字测点对照](docs/assets/research/hdr-mapping.zh.svg)](docs/assets/research/hdr-mapping.zh.svg)
+
+图中是 0.9.28 自用路径留下的 32U 数字记录，本次没有重测完整光学 EOTF。P0 属于 TMO 的输入亮度域；AW 是驱动数字读回，两者都不能直接当作屏幕实测 nit。现有参考 nit 未因此获得新的光学校准。[新状态与操作](docs/modules.zh-CN.md#hdr-mapping)
+
 ### EOTF 要单独看
 
 显示器的 **HGiG、明亮、层次、动态** 会改变内容的输入—输出映射，也会改变 EOTF。它与按画面负载或持续时间产生的 APL/ABL 限亮应分开理解。HGiG 是本项目接近标准 PQ 目标的参考，已有观察不能证明它完美跟随 EOTF。
 
-本软件可以调用显示器现有模式，**不编辑各模式完整的 EOTF**。预算研究主要讨论 **10000 nit PQ 输入条件下的输出上限**。10000 nit 是内容输入条件，不是显示器实测峰值，也不应直接填入 Windows HDR 校准的峰值栏。
+本软件可以调用显示器现有模式，**不编辑各模式完整的 EOTF**。0.9.30 增加预算/ABL 相关的能力表联动补偿，模式本身的内容重映射仍由原厂算法决定。预算研究主要讨论 **10000 nit PQ 输入条件下的输出上限**。10000 nit 是内容输入条件，不是显示器实测峰值，也不应直接填入 Windows HDR 校准的峰值栏。
 
 <details>
 <summary><strong>驱动输入、输出、raw 和 nit 怎样区分？</strong></summary>

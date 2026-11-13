@@ -79,6 +79,9 @@ def serve():
             if op=='predict':value=f.predict(**d)
             elif op=='forecast':value=forecast(**d)
             elif op=='fit':value=l.fit(**d)
+            elif op=='hdr-mapping':
+                from hdr_mapping import compute
+                value=compute(**d,model=model,tone=tone)
             elif op=='calibrated':value=f.calibrated(tone=tone,**d)
             elif op=='validate':value=l.validate_fit(**d)
             else:raise ValueError('未知模型操作')
@@ -86,4 +89,5 @@ def serve():
         except Exception as e:result=dict(error=str(e))
         gc.collect()
         print(json.dumps(result,ensure_ascii=False),flush=True)
+    l.close_fit_pool()
 if __name__=='__main__':serve()

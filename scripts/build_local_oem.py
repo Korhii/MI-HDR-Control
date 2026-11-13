@@ -21,12 +21,12 @@ def build(input_file,output_directory):
     def section(name,content,kind=1,flags=0,align=8,link=0,info=0,entsize=0):
         index=len(headers);off=len(names);names.extend(name.encode()+b'\0')
         headers.append([off,kind,flags,0,0,len(content),link,info,align,entsize]);data[index]=bytes(content);return index
-    cfg=section('.data.mi',struct.pack('<48IQQQ',24,0,0,0,0,0,0,0,0,18288,37491600,600,9760,31243,37491600,0,65535,0,0,0,22,0,0,1,0,0,65535,0,18288,31243,31243,65535,*([0]*16),0xffffffc002e97060,0xffffffc002e3b000,0),flags=3)
+    cfg=section('.data.mi',struct.pack('<48IQQQ',24,0,0,0,0,0,0,0,0,18288,37491600,600,9760,31243,37491600,0,65535,0,0,0,22,0,0,1,0,0,65535,0,18288,31243,31243,65535,*([0]*16),0xffffffc002e97060,0xffffffc002e3b000,0)+bytes(448-216),flags=3)
     strings=bytearray(data[ids['.strtab']]);symtab=bytearray(data[ids['.symtab']]);symbol_ids={s.name:i for i,s in enumerate(elf.get_section_by_name('.symtab').iter_symbols())}
     def symbol(name,index,value,size=0,typ=1):
         pos=len(symtab)//24;off=len(strings);strings.extend(name.encode()+b'\0');symtab.extend(struct.pack('<IBBHQQ',off,0x10|typ,0,index,value,size));symbol_ids[name]=pos;return pos
     hook_offset=0x400;hook=code.get_section_by_name('.mi_hook').data()
-    symbol('mi_cfg',cfg,0,216);symbol('mi_hook',ids['.text'],hook_offset,len(hook),2);symbol('mi_return',0xfff1,SITE+4)
+    symbol('mi_cfg',cfg,0,448);symbol('mi_hook',ids['.text'],hook_offset,len(hook),2);symbol('mi_return',0xfff1,SITE+4)
     post_offset=0x600;post=code.get_section_by_name('.mi_post').data()
     helper_offset=0x1000;helper_code=helper.get_section_by_name('.text').data()
     symbol('mi_post',ids['.text'],post_offset,len(post),2);symbol('mi_post_return',0xfff1,0xffffffc002e2ee30)
@@ -61,6 +61,11 @@ def build(input_file,output_directory):
     definitions=[('budget',cfg,0,0o644),('budget_used',cfg,4,0o444),('frames',cfg,8,0o444),('lease_end',cfg,16,0o644)]
     for name,index in [('enabled', 8), ('l_th', 9), ('e0', 10), ('divisor', 11), ('r_reset', 12), ('k', 13), ('energy', 14), ('r_prev', 15), ('gain_next', 16), ('load', 17), ('recovery', 18), ('charge', 19), ('delta', 20), ('triggered', 21), ('threshold', 22), ('generation', 23), ('gain_used', 26), ('active', 27), ('k_min', 28), ('k_max', 29), ('c_max', 30), ('g_base', 31), ('native_gain', 32), ('stat_floor', 33), ('native_calls', 34), ('factory_l_th', 35), ('factory_e0', 36), ('factory_divisor', 37), ('factory_r_reset', 38), ('factory_g_base', 39), ('budget_active', 40), ('source_format', 41), ('original_cap', 42), ('post_cap', 43), ('native_k',45), ('native_energy',46), ('native_r_prev',47)]:
         definitions.append((name,cfg,index*4,0o644 if name in ('enabled','l_th','e0','divisor','r_reset','generation') else 0o444))
+    for name,index in [('hdr_sync',56),('hdr_generation',57),('hdr_active',58),('hdr_revision',60),('hdr_tone',61),('hdr_level',62),('hdr_gain',108)]+[('hdr_scale'+str(i),80+i) for i in range(11)]:
+        definitions.append((name,cfg,index*4,0o644 if name in ('hdr_sync','hdr_generation','hdr_tone','hdr_level') or name.startswith('hdr_scale') else 0o444))
+    hdr_fields=[('hdr_apl'+str(i),0x100+4*i) for i in range(11)]+[('hdr_p0',0x198),('hdr_mode_actual',0x18c),('hdr_picture',0x188),('hdr_floor',0xf4),('hdr_peak_filter',0xe8)]
+    for name,offset in hdr_fields:
+        symbol('mi_'+name,0xfff1,0);definitions.append((name,None,0,0o444))
     for name,address in [('tick',0xffffffc009bc6980),('raw_apl',0xffffffc002e97228),('raw_spi',0xffffffc002e9722c),('window',0xffffffc002e97230),('level',0xffffffc002e97234)]:
         symbol('mi_'+name,0xfff1,address);definitions.append((name,None,0,0o444))
     labels=b''.join(name.encode()+b'\0' for name,*_ in definitions);name_section=section('.rodata.mi_names',labels,flags=2,align=1)
@@ -105,6 +110,7 @@ def build(input_file,output_directory):
         mapping={'mi_native_return':('text',0x3045c),'mi_return':('text',0x2f7e0),'mi_post_return':('text',0x2fe30),
                  'mi_raw_apl':('data',0x1c8),'mi_raw_spi':('data',0x1cc),
                  'mi_window':('data',0x1d0),'mi_level':('data',0x1d4)}
+        mapping.update({'mi_'+name:('hdr_data',offset) for name,offset in hdr_fields})
         if s.name in mapping:
             region,addend=mapping[s.name]
             assert s['st_shndx']=='SHN_ABS'
@@ -112,13 +118,14 @@ def build(input_file,output_directory):
     cfg_section=e.get_section_by_name('.data.mi')
     slot(cfg_section['sh_offset']+192,'data',0,0xffffffc002e97060)
     slot(cfg_section['sh_offset']+200,'bss',0,0xffffffc002e3b000)
-    assert len(entries)==15
+    slot(cfg_section['sh_offset']+216,'hdr_data',0x38,0)
+    assert len(entries)==32
     digest=hashlib.sha256(result).hexdigest()
-    manifest=dict(schema='mi-hdr-module-addresses-v1',module='mi_oemabl',bytes=len(result),sha256=digest,entries=entries)
+    manifest=dict(schema='mi-hdr-module-addresses-v2',module='mi_oemabl',bytes=len(result),sha256=digest,entries=entries)
     (D/'budget-relocation.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
     header='#define MODULE_BYTES '+str(len(result))+'\n#define MODULE_SHA256 "'+digest+'"\n'
     header+='static const struct slot slots[]={\n'
-    for x in entries:header+='  {%d,%d,0x%xULL,0x%xULL},\n'%(x['offset'],('text','bss','data').index(x['region']),x['addend'],x['expected'])
+    for x in entries:header+='  {%d,%d,0x%xULL,0x%xULL},\n'%(x['offset'],('text','bss','data','hdr_data').index(x['region']),x['addend'],x['expected'])
     (D/'budget_relocation.h').write_text(header+'};\n',encoding='utf-8')
     print(json.dumps({'output':str(path),'bytes':len(result),'parameters':[x[0] for x in definitions],'installed':False}))
 

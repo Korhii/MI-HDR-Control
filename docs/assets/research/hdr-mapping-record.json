@@ -1,0 +1,38 @@
+{
+  "source_version": "0.9.28",
+  "model": "REDMI G Pro 32U 2026",
+  "scope": "Historical owner digital observations, not a new optical measurement or complete EOTF.",
+  "source_record_sha256": "5e7e652502910d742c76df8445e21f9c0f01e4d71f2751cc32c466b4976eedd0",
+  "budget": 41,
+  "old_mapping": [
+    {
+      "input_nits": 1000,
+      "aw_raw": 65519
+    },
+    {
+      "input_nits": 1200,
+      "aw_raw": 65519
+    }
+  ],
+  "linked_mapping": [
+    {
+      "input_nits": 1000,
+      "aw_raw": 58896
+    },
+    {
+      "input_nits": 1200,
+      "aw_raw": 64109
+    },
+    {
+      "input_nits": 2000,
+      "aw_raw": 65519
+    }
+  ],
+  "p0_input_domain": {
+    "old_approx": 788,
+    "linked_approx_range": [
+      1268,
+      1290
+    ]
+  }
+}

@@ -35,3 +35,5 @@ jobs:
         run: python3 tests/test_comparison.py
       - name: Model progress under concurrent polling
         run: python3 tests/test_progress_files.py
+      - name: HDR capability mapping and applied-parameter coupling
+        run: python3 tests/test_hdr_mapping.py

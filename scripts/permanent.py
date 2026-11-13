@@ -126,7 +126,7 @@ def write_capability(model):
     models=json.loads((ROOT/'resources/models/registry.json').read_text(encoding='utf-8'))['models']
     if model not in models or accepted.get('adapter')!='mi_oemabl':raise ValueError('不支持的机型或永久适配器')
     components=accepted.get('component_sha256',{})
-    matches=bool(components) and all((ROOT/n).is_file() and hashlib.sha256((ROOT/n).read_bytes()).hexdigest()==h for n,h in components.items())
+    matches=bool(components) and all(path.is_file() and hashlib.sha256(path.read_bytes()).hexdigest()==h for n,h in components.items() for path in [budget_module() if n=='tools/mi-oem-runtime.ko' else ROOT/n])
     verified=matches and accepted.get('boot_verified') is True and accepted.get('model_id','32u-2026')==model
     return dict(enabled=True,boot_verified=verified,experimental=not verified,model_id=model)
 
@@ -137,7 +137,10 @@ def authorize_install(config,experimental_ack=False):
 
 def install(config,folder=None,*,experimental_ack=False):
     capability=authorize_install(config,experimental_ack)
-    config=validate_config(config);s=Session(folder);s.firmware();before=s.status()
+    config=validate_config(config)
+    sys.path.insert(0,str(ROOT/'lab'))
+    from hdr_mapping import attach_profiles
+    config=attach_profiles(config);s=Session(folder);s.firmware();before=s.status()
     import device_backup
     info=device_backup.read_info(s)
     model=json.loads((ROOT/'resources/models/registry.json').read_text(encoding='utf-8'))['models'][capability['model_id']]

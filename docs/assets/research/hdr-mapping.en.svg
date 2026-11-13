@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<rect width="1200" height="760" rx="14" fill="#0d1626"/>
+<text x="48" y="53" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="28" fill="#e3ebf7" text-anchor="start">Budget 41/86: recorded input points before and after HDR linking</text>
+<text x="48" y="91" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="20" fill="#a5b7cf" text-anchor="start">32U · historical private 0.9.28 digital observations · not remeasured here</text>
+<path d="M50 132h32" stroke="#ff9c95" stroke-width="4"/>
+<text x="93" y="139" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="20" fill="#ff9c95" text-anchor="start">Old mapping: both inputs saturated</text>
+<path d="M610 132h32" stroke="#55e0d1" stroke-width="4"/>
+<text x="653" y="139" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="20" fill="#55e0d1" text-anchor="start">Linked: distinct input levels</text>
+<path d="M135 586.0H1055" stroke="#34415a"/>
+<text x="116" y="593.0" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="18" fill="#a5b7cf" text-anchor="end">55000</text>
+<path d="M135 477.21974371143807H1055" stroke="#34415a"/>
+<text x="116" y="484.21974371143807" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="18" fill="#a5b7cf" text-anchor="end">58000</text>
+<path d="M135 368.43948742287614H1055" stroke="#34415a"/>
+<text x="116" y="375.43948742287614" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="18" fill="#a5b7cf" text-anchor="end">61000</text>
+<path d="M135 259.65923113431415H1055" stroke="#34415a"/>
+<text x="116" y="266.65923113431415" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="18" fill="#a5b7cf" text-anchor="end">64000</text>
+<path d="M135 204.0H1055" stroke="#34415a"/>
+<text x="116" y="211.0" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="18" fill="#a5b7cf" text-anchor="end">65535</text>
+<path d="M135.0 204V586" stroke="#27334a"/>
+<text x="135.0" y="619" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="20" fill="#c4d3e8" text-anchor="middle">1000</text>
+<path d="M319.0 204V586" stroke="#27334a"/>
+<text x="319.0" y="619" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="20" fill="#c4d3e8" text-anchor="middle">1200</text>
+<path d="M595.0 204V586" stroke="#27334a"/>
+<text x="595.0" y="619" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="20" fill="#c4d3e8" text-anchor="middle">1500</text>
+<path d="M1055.0 204V586" stroke="#27334a"/>
+<text x="1055.0" y="619" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="20" fill="#c4d3e8" text-anchor="middle">2000</text>
+<text x="135" y="182" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="20" fill="#c4d3e8" text-anchor="start">Global AW digital readback / raw</text>
+<text x="595" y="653" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="21" fill="#c4d3e8" text-anchor="middle">PQ input / nit (content input value)</text>
+<polyline points="135.0,204.58016136687235 319.0,204.58016136687235" fill="none" stroke="#ff9c95" stroke-width="3" stroke-dasharray="7 6"/>
+<circle cx="135.0" cy="204.58016136687235" r="7" fill="#ff9c95" stroke="#0d1626" stroke-width="2"/>
+<text x="135.0" y="232.58016136687235" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="19" fill="#ff9c95" text-anchor="start">≈65519</text>
+<circle cx="319.0" cy="204.58016136687235" r="7" fill="#ff9c95" stroke="#0d1626" stroke-width="2"/>
+<text x="319.0" y="232.58016136687235" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="19" fill="#ff9c95" text-anchor="middle">≈65519</text>
+<polyline points="135.0,444.73070716658754 319.0,255.70688182249648 1055.0,204.58016136687235" fill="none" stroke="#55e0d1" stroke-width="3" stroke-dasharray="7 6"/>
+<circle cx="135.0" cy="444.73070716658754" r="7" fill="#55e0d1" stroke="#0d1626" stroke-width="2"/>
+<text x="135.0" y="474.73070716658754" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="19" fill="#55e0d1" text-anchor="start">≈58896</text>
+<circle cx="319.0" cy="255.70688182249648" r="7" fill="#55e0d1" stroke="#0d1626" stroke-width="2"/>
+<text x="319.0" y="285.7068818224965" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="19" fill="#55e0d1" text-anchor="middle">≈64109</text>
+<circle cx="1055.0" cy="204.58016136687235" r="7" fill="#55e0d1" stroke="#0d1626" stroke-width="2"/>
+<text x="1055.0" y="234.58016136687235" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="19" fill="#55e0d1" text-anchor="end">≈65519</text>
+<text x="48" y="696" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="18" fill="#a5b7cf" text-anchor="start">Old P0≈788; linked≈1268–1290. P0 is an input-domain target, not measured screen nits.</text>
+<text x="48" y="730" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="18" fill="#a5b7cf" text-anchor="start">Dashed lines only join recorded points; these inputs do not define a complete EOTF.</text>
+</svg>

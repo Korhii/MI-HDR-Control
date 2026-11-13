@@ -78,11 +78,20 @@ Factory-response caching runs the original numerical algorithm on the PC. Indepe
 On a Ryzen 9 9950X (16 cores / 32 threads), the **32U / High / HGiG / 4000-nit PQ input** 729-combination cold build changed from **35.05 s to 4.59 s**, approximately **7.63×**. Warm cache reading took about **0.36 ms**. All 98,415 float results were byte-identical. Other computers, contexts and refinement stages will differ. This establishes numerical equivalence, not optical accuracy or hardware safety.
 
 <a id="budget"></a>
-## 01 / Global budget and cumulative ABL · {{SOURCE_VERSION}}
+## 01 / Global budget and cumulative ABL · 0.9.30
 
 The global budget bounds the digital output available at that moment. Cumulative ABL models what happens after a sustained high load. Larger windows tend to separate more when budget-constrained. The research figure's 10% split is a viewing aid, not a fixed firmware trigger.
 
 [![Global budget and the shared Apply button](assets/screenshots/app-17-budget-value.png)](assets/screenshots/app-17-budget-value.png)
+
+<a id="hdr-mapping"></a>
+### Linked HDR mapping: no separate switch
+
+**Sequence:** fix the local-dimming level, tone mode and input → edit budget/ABL → Apply once → check HDR status and fresh readback. Capability gains compare the current SF/Alpha at the selected budget against budget 24. Deliberate SF/Alpha dimming is not uniformly cancelled. Cumulative ABL uses this frame's G_prev for both decline and recovery. Its extra Peak Luma target low-pass is temporarily disabled during timing; other factory filters retain their logic.
+
+**P0** is a factory-TMO input-domain target, **hdr_gain** is the applied synchronization gain and **hdr_active** reports whether the override is active. They are not measured screen luminance. Pause, factory A/B, lease expiry and unloading restore capabilities, minimum-luminance parameters and the filter flag. Permanent saves include per-profile mapping metadata, renewed on the monitor without a PC frame loop.
+
+If mapping does not activate with the budget, this build stops the budget and renewal before reporting failure; drafts remain. Check the selected combination, module revision and firmware rather than repeatedly pressing Apply to infer success.
 
 ### A. Adjust the instantaneous budget first
 
@@ -121,7 +130,7 @@ This is an **offline PC-configuration example**, using budget 36 to make the con
 
 [![Fall speed and recovery controls](assets/screenshots/app-15-abl-controls.png)](assets/screenshots/app-15-abl-controls.png)
 
-### C. Read the {{SOURCE_VERSION}} graphs
+### C. Read the 0.9.30 graphs
 
 | Mark | Meaning |
 | :--- | :--- |

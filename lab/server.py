@@ -429,7 +429,7 @@ class Bridge:
         end=time.monotonic()+8
         while time.monotonic()<end:
             raw=self.device('shell','cat '+receipt,check=False)
-            if '__complete=1' in raw:
+            if '__lab_session_complete=1' in raw:
                 break
             time.sleep(.1)
         (folder/'result.txt').write_text(raw,encoding='utf-8')

@@ -9,6 +9,7 @@ from portable_server import PortableBridge
 class Presentation0917Tests(unittest.TestCase):
     def test_halo_pause_preserves_budget_and_connection_even_when_offline(self):
         b=PortableBridge.__new__(PortableBridge)
+        b.clear_comparison()
         b.shutdown_started=False;b.model_confirmed=True;b.model_id='32u-2026'
         b.state={'connected':False};b.live_debug=True;b.halo_realtime=True;b.budget_active=True
         b.active={'mode':'live'};b.operation_results={};b.last_operation=None;b.wanted_sequence=2;b.ack_sequence=1;b.risk_unlocked=False

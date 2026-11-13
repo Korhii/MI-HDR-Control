@@ -5,6 +5,7 @@ an estimate; historical DMA anchors correct the hardware-fixture discrepancy.
 from pathlib import Path
 from functools import lru_cache
 from array import array
+from collections import OrderedDict
 import base64,ctypes,hashlib,json,math,struct,threading,time,os,sys,multiprocessing
 from concurrent.futures import ProcessPoolExecutor
 import firmware_model as f
@@ -75,7 +76,7 @@ def mcu(level,device_type):
 
 class Engine:
     def __init__(self,c,level,q,tone_enabled=True,device_type=None):
-        self.c=json.loads(config_key(c));self.level=level;self.q=q;self.tone_enabled=tone_enabled;self.driver=scaler();self.scaled_cache={};self.alg=mcu(level,device_type or device_models.spec()['led_type']);self.original_calls=0
+        self.c=json.loads(config_key(c));self.level=level;self.q=q;self.tone_enabled=tone_enabled;self.driver=scaler();self.scaled_cache=OrderedDict();self.alg=mcu(level,device_type or device_models.spec()['led_type']);self.original_calls=0
         self.driver.width=self.driver.height=2;self.driver.put('gu16LedWidth',1);self.driver.put('gu16LedHeight',1)
     def spatial(self,area,c=None):
         c=c or self.c
@@ -88,6 +89,8 @@ class Engine:
             if key not in self.scaled_cache:
                 self.driver.u.mem_write(0x60100000,block);self.driver.call('MDrv_LD_AlgoScalingDown',0x60100000,0x60110000,0x60120000);self.original_calls+=1
                 self.scaled_cache[key]=struct.unpack('<H',self.driver.u.mem_read(0x60110000,2))[0]
+                if len(self.scaled_cache)>32768:self.scaled_cache.popitem(last=False)
+            else:self.scaled_cache.move_to_end(key)
             values.append(self.scaled_cache[key])
         source=V(*(values[i] for i in indices));out=V();LIB.spatial(source,S(*c['sf']),out);return bytes(out)
     def run(self,spatial,area,budget):
@@ -271,13 +274,57 @@ def alpha_penalty(config,policy):
     order=0. if policy['large_window_dim'] else .08*sum((max(0,alpha[i]-alpha[i+1])/16)**2 for i in range(1,7))/6
     return policy['high_weight']*sum(((16-a)/16)**2 for a in alpha[2:])/6+policy['a1_weight']*((16-alpha[1])/16)**2+order
 
+_fit_pool=None
+_fit_pool_context=None
+
+def close_fit_pool():
+    global _fit_pool,_fit_pool_context
+    if _fit_pool is not None:_fit_pool.shutdown(wait=True);_fit_pool=None;_fit_pool_context=None
+
+def fit_pool(c,level,q,key):
+    global _fit_pool,_fit_pool_context
+    if _fit_pool_context!=key:
+        close_fit_pool()
+        pythonw=Path(sys.executable).with_name('pythonw.exe')
+        if os.name=='nt' and pythonw.is_file():multiprocessing.set_executable(str(pythonw))
+        _fit_pool=ProcessPoolExecutor(max_workers=surface_workers(),mp_context=multiprocessing.get_context('spawn'),initializer=init_surface_worker,initargs=(c,level,q,device_models.ACTIVE_MODEL,device_models.ACTIVE_TONE))
+        _fit_pool_context=key
+    return _fit_pool
+
+def fit_matrix(e,config,knots,level,q):
+    if not hasattr(e,'sample'):e.sample=lru_cache(maxsize=16384)(e.run)
+    matrix=[[0.]*15 for _ in knots];before=e.original_calls
+    for i,area in enumerate(AUTO):
+        if not area:continue
+        spatial=e.spatial(area,config);factor=scale_nit((1.,0,0,0),config,level,area,q)
+        for j,b in enumerate(knots):
+            if not b:continue
+            m=e.sample(spatial,area,b);matrix[j][i]=m[0]*factor
+            if area<10:
+                h,dark=spill(m,config,level,area,q);matrix[j][13]+=h/65535/7;matrix[j][14]+=dark/65535/7
+    return matrix,e.original_calls-before
+
+def fit_matrix_task(task):
+    e=_surface_engine
+    return fit_matrix(e,*task,e.level,e.q)
+
+
+@lru_cache(maxsize=2)
+def fit_engine(context,key,level,q):
+    # Only fitting consumes cached metrics, never the MCU RAM needed by hist().
+    # Context includes model, tone, input and frozen parameters; buffers are exact.
+    engine=Engine(json.loads(key),level,q)
+    engine.sample=lru_cache(maxsize=16384)(engine.run)
+    return engine
+
+
 def fit(c,level,q,targets,ceiling):
     with LOCK:
         started=time.monotonic();seed=json.loads(config_key(c));seed['alpha'][2:]=[16]*6
         policy=alpha_policy(targets,[f.factory_nits(level,a,q) if a else 0. for a in AUTO])
         values,report=surface(seed,level,q);result=(ctypes.c_double*21)();goal=(ctypes.c_double*13)(*targets)
         data=(ctypes.c_float*len(values)).from_buffer(values);LIB.solve(data,goal,ceiling,result)
-        e=Engine(c,level,q);cache={};calls_before=e.original_calls
+        e=fit_engine(report['context'],config_key(c),level,q);cache={};calls_before=e.original_calls
         knots=[b for b in KNOTS if b<=ceiling]
         if knots[-1]!=ceiling:knots.append(next(b for b in KNOTS if b>ceiling))
         def loss(pred):
@@ -285,23 +332,28 @@ def fit(c,level,q,targets,ceiling):
             return sum(errors)/12+.5*max(errors)
         def objective(p):return p['score']+alpha_penalty(p['config'],policy)+.0005*(p['halo']+2*p['black'])
         def choose(points):return min(points,key=lambda p:(objective(p),p['score']))
+        parallel_calls=0
+        def prepare(configs):
+            nonlocal parallel_calls
+            missing={}
+            for config in configs:
+                key=config_key(preferred_config(config,policy));matrix_key=(report['context'],key,tuple(knots))
+                if key not in cache and matrix_key not in FIT_MATRICES:missing.setdefault(matrix_key,config)
+            if not missing:return
+            tasks=[(config,knots) for config in missing.values()]
+            parallel=len(tasks)>1 and surface_workers()>1
+            if parallel:results=fit_pool(c,level,q,report['context']).map(fit_matrix_task,tasks)
+            else:results=(fit_matrix(e,config,knots,level,q) for config in missing.values())
+            # Ordered map preserves the old first-candidate and tie-breaking order.
+            for matrix_key,(matrix,calls) in zip(missing,results):
+                if len(FIT_MATRICES)>=512:FIT_MATRICES.pop(next(iter(FIT_MATRICES)))
+                FIT_MATRICES[matrix_key]=matrix;parallel_calls+=calls if parallel else 0
         def evaluate(config):
             key=config_key(preferred_config(config,policy))
             if key in cache:return cache[key]
             matrix_key=(report['context'],key,tuple(knots))
             matrix=FIT_MATRICES.get(matrix_key)
-            if matrix is None:
-                matrix=[[0.]*15 for _ in knots]
-                for i,area in enumerate(AUTO):
-                    if not area:continue
-                    spatial=e.spatial(area,config);factor=scale_nit((1.,0,0,0),config,level,area,q)
-                    for j,b in enumerate(knots):
-                        if not b:continue
-                        m=e.run(spatial,area,b);matrix[j][i]=m[0]*factor
-                        if area<10:
-                            h,dark=spill(m,config,level,area,q);matrix[j][13]+=h/65535/7;matrix[j][14]+=dark/65535/7
-                if len(FIT_MATRICES)>=512:FIT_MATRICES.pop(next(iter(FIT_MATRICES)))
-                FIT_MATRICES[matrix_key]=matrix
+            if matrix is None:prepare([config]);matrix=FIT_MATRICES[matrix_key]
             points=[];j=0
             for b in range(ceiling+1):
                 while j<len(knots)-2 and knots[j+1]<b:j+=1
@@ -329,17 +381,21 @@ def fit(c,level,q,targets,ceiling):
                         start=(((i*9+j)*9+k)*9+m)*15;row=values[start:start+15]
                         points.append(dict(config=draft,budget=b,score=loss(row[:13]),halo=row[13],black=row[14]))
                     ordered.append(choose(points))
-        starts=[evaluate(x) for x in (dense,full,c)]+[evaluate(p['config']) for p in sorted(ordered,key=objective)[:3]]
+        initial=[dense,full,c]+[p['config'] for p in sorted(ordered,key=objective)[:3]];prepare(initial)
+        starts=[evaluate(x) for x in initial]
         def joint_refine(point):
             damping=.01
             for iteration in range(6):
-                config=point['config'];position=[a/16 for a in config['alpha']]+[config['sf'][0]/255];columns=[]
+                config=point['config'];position=[a/16 for a in config['alpha']]+[config['sf'][0]/255];columns=[];probes=[]
                 for i in range(9):
                     draft=json.loads(config_key(config));current=config['alpha'][i] if i<8 else config['sf'][0];step=1 if i<8 else 8;maximum=16 if i<8 else 255
                     value=current+step if current+step<=maximum else max(0,current-step)
                     if i<8:draft['alpha'][i]=value
                     else:draft['sf'][0]=value
-                    probe=evaluate(draft);du=(value-current)/maximum
+                    probes.append((draft,(value-current)/maximum))
+                prepare([draft for draft,du in probes])
+                for draft,du in probes:
+                    probe=evaluate(draft)
                     columns.append([(v-u)/max(100,t)/du for v,u,t in zip(probe['peak'][1:],point['peak'][1:],targets[1:])])
                 residual=[(t-v)/max(100,t) for t,v in zip(targets[1:],point['peak'][1:])]
                 worst=max(map(abs,residual),default=0.)
@@ -358,9 +414,10 @@ def fit(c,level,q,targets,ceiling):
                     for j in range(9):
                         if j!=i:
                             factor=augmented[j][i];augmented[j]=[a-factor*b for a,b in zip(augmented[j],augmented[i])]
-                delta=[max(-.35,min(.35,row[-1])) for row in augmented];trials=[point]
+                delta=[max(-.35,min(.35,row[-1])) for row in augmented];trials=[point];drafts=[]
                 for amount in (1.,.5,.25):
-                    draft=json.loads(config_key(config));draft['alpha']=[max(0,min(16,round((v+amount*d)*16))) for v,d in zip(position[:8],delta[:8])];draft['sf'][0]=max(0,min(255,round((position[8]+amount*delta[8])*255)));trials.append(evaluate(draft))
+                    draft=json.loads(config_key(config));draft['alpha']=[max(0,min(16,round((v+amount*d)*16))) for v,d in zip(position[:8],delta[:8])];draft['sf'][0]=max(0,min(255,round((position[8]+amount*delta[8])*255)));drafts.append(draft)
+                prepare(drafts);trials.extend(evaluate(draft) for draft in drafts)
                 next_point=choose(trials)
                 if config_key(next_point['config'])==config_key(point['config']):
                     if damping>=1.:break
@@ -375,14 +432,17 @@ def fit(c,level,q,targets,ceiling):
             for i in (2,3,4,5,6,7,1,0):
                 current=best['config']['alpha'][i]
                 trial_values=range(17) if pass_index==0 else sorted({0,16,*range(max(0,current-2),min(16,current+2)+1)})
-                trials=[best]
+                trials=[best];drafts=[]
                 for value in trial_values:
-                    draft=json.loads(config_key(best['config']));draft['alpha'][i]=value;trials.append(evaluate(draft))
+                    draft=json.loads(config_key(best['config']));draft['alpha'][i]=value;drafts.append(draft)
+                prepare(drafts);trials.extend(evaluate(draft) for draft in drafts)
                 best=choose(trials);candidates.extend(trials)
             current=best['config']['sf'][0]
             trial_values=sorted({*SF,0,255,*range(max(0,current-5),min(255,current+5)+1)})
+            drafts=[]
             for value in trial_values:
-                draft=json.loads(config_key(best['config']));draft['sf'][0]=value;candidates.append(evaluate(draft))
+                draft=json.loads(config_key(best['config']));draft['sf'][0]=value;drafts.append(draft)
+            prepare(drafts);candidates.extend(evaluate(draft) for draft in drafts)
             best=choose(candidates)
         # Enumerate the final budget with the original function at every integer;
         # interpolation is only a search accelerator, never the delivered curve.
@@ -390,14 +450,14 @@ def fit(c,level,q,targets,ceiling):
         for budget in range(ceiling+1):
             pred=[];halo=black=0.
             for area in AUTO:
-                m=e.run(spatials[area],area,budget) if area and budget else (0.,0.,0.,0.)
+                m=e.sample(spatials[area],area,budget) if area and budget else (0.,0.,0.,0.)
                 pred.append(scale_nit(m,draft,level,area,q) if area else 0.)
                 if 0<area<10:
                     h,dark=spill(m,draft,level,area,q);halo+=h/65535/7;black+=dark/65535/7
             score=loss(pred)
             exact.append(dict(config=draft,budget=budget,peak=pred,long=pred,score=score,halo=halo,black=black))
         best=choose(exact);score=best['score']
-        report={**report,'all_alpha_candidates':len(cache),'refinement_arm_calls':e.original_calls-calls_before,'fit_seconds':round(time.monotonic()-started,3),'loss':'mean-square plus half worst-window-square','free_alpha':list(range(8)),'alpha_policy':policy,'bright_endpoint_nits':starts[1]['peak'],
+        report={**report,'all_alpha_candidates':len(cache),'refinement_arm_calls':e.original_calls-calls_before+parallel_calls,'fit_seconds':round(time.monotonic()-started,3),'fit_workers':surface_workers(),'loss':'mean-square plus half worst-window-square','free_alpha':list(range(8)),'alpha_policy':policy,'bright_endpoint_nits':starts[1]['peak'],
                 'note':'先以Alpha2–7=16搜索SF1/Alpha0/1的729组原厂函数响应平面与73984组插值候选，再用耦合阻尼最小二乘与坐标搜索联合细化全部Alpha0–7和SF1；预算逐值搜索，最后整数预算原函数回算。平均与最差窗口误差共同计算，并加入强Alpha2–7=16正则、较弱Alpha1=16正则；通常Alpha按序不下降（高位为软偏好）。仅明确先升后降再回升的目标放开Alpha1<Alpha0；大窗低于默认15%的极暗目标放松高Alpha正则与高位顺序。再兼顾光晕/黑场；报告仍展示不含正则的真实拟合误差。高Alpha组合多为原厂函数估计，不是新增实机或光学标定。'}
         best.update(recipe='native-all-alpha',mode='global',ceiling=ceiling,input_nits=q,context=report['context'],level=level,rmse=round(math.sqrt(sum(((v-t)/max(100,t))**2 for v,t in zip(best['peak'][1:],targets[1:]))/12)*100,3),worst_error=round(max(abs(v-t)/max(100,t) for v,t in zip(best['peak'][1:],targets[1:]))*100,3),report=report,scope='SF1、全部Alpha与统一预算联合；SF2–5/DC/Blend/Dynamic冻结，累计ABL不参与。')
         token=hashlib.sha256(json.dumps(best,sort_keys=True).encode()).hexdigest()[:24];best['fit_id']=token;FIT_RESULTS[token]=best

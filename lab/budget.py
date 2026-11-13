@@ -8,7 +8,7 @@ import uuid
 from mi_probe import ROOT,ENV,REMOTE,adb,tv_command
 
 
-def sample(folder, value=None, running=None, policy=None):
+def sample(folder, value=None, running=None, policy=None, mapping=None, mapping_read=False):
     if value is not None and (type(value) is not int or not 0<=value<=86):raise ValueError('高档预算范围0～86')
     if running is not None and type(running) is not bool:raise ValueError('无效会话状态')
     folder.mkdir(parents=True,exist_ok=True)
@@ -29,6 +29,10 @@ def sample(folder, value=None, running=None, policy=None):
     if policy is not None:
         if not all(c in '0123456789,' for c in policy):raise ValueError('无效累计ABL数据')
         variables.append('MI_OEM_ABL_CONFIG='+policy)
+    if mapping is not None:
+        if not all(c in '0123456789,' for c in mapping):raise ValueError('无效HDR映射数据')
+        variables.append('MI_HDR_MAPPING_CONFIG='+mapping)
+    if mapping_read:variables.append('MI_HDR_READ_ANCHORS=1')
     private='/data/data/mitv.service/cache/MIResearch-bsp-budget.so'
     script=folder/'read.sh'
     script.write_text('{\ncp '+remote+'/bridge.so '+private+'\ntimeout 5 env '+' '.join(variables)
@@ -50,8 +54,10 @@ def sample(folder, value=None, running=None, policy=None):
     if value is not None and (values.get('write_return')!='1' or result['budget']!=value):raise RuntimeError('预算设置值回读不一致')
     if running is not None and values.get('lease_write_return')!='1':raise RuntimeError('心跳写入失败；十秒到期将退回24')
     if policy is not None and values.get('policy_write_return')!='1':raise RuntimeError('累计ABL写入未完成')
-    for name in ('enabled', 'l_th', 'e0', 'divisor', 'r_reset', 'k', 'energy', 'r_prev', 'gain_next', 'load', 'recovery', 'charge', 'delta', 'triggered', 'threshold', 'generation', 'gain_used', 'active', 'k_min', 'k_max', 'c_max', 'g_base', 'native_gain', 'stat_floor', 'factory_l_th', 'factory_e0', 'factory_divisor', 'factory_r_reset', 'factory_g_base', 'original_cap', 'post_cap', 'native_k', 'native_energy', 'native_r_prev'):
+    if mapping is not None and values.get('mapping_write_return')!='1':raise RuntimeError('HDR映射联动未完成；未确认预算生效')
+    for name in ('budget_active','source_format','hdr_revision','hdr_active','hdr_p0','hdr_gain','hdr_mode_actual','hdr_picture','hdr_floor','hdr_peak_filter',*('hdr_apl'+str(i) for i in range(11)),'enabled', 'l_th', 'e0', 'divisor', 'r_reset', 'k', 'energy', 'r_prev', 'gain_next', 'load', 'recovery', 'charge', 'delta', 'triggered', 'threshold', 'generation', 'gain_used', 'active', 'k_min', 'k_max', 'c_max', 'g_base', 'native_gain', 'stat_floor', 'factory_l_th', 'factory_e0', 'factory_divisor', 'factory_r_reset', 'factory_g_base', 'original_cap', 'post_cap', 'native_k', 'native_energy', 'native_r_prev'):
         if values.get(name,'').isdigit():result[name]=int(values[name])
+    if 'hdr_peak_filter' in result:result['hdr_peak_filter']&=255
     result.update(raw=result['raw_apl'],captured_at=datetime.now(timezone.utc).isoformat(),status='live-driver',
                   effective_high_only=False,effective_levels=[1,2,3],unit='internal driver units; not optical nits')
     (folder/'result.json').write_text(json.dumps(result,indent=2),encoding='utf-8')

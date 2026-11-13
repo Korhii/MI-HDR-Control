@@ -1,98 +1,200 @@
 {
-  "schema": "mi-hdr-module-addresses-v1",
+  "schema": "mi-hdr-module-addresses-v2",
   "module": "mi_oemabl",
-  "bytes": 133696,
-  "sha256": "fa56d7421623ac8bdf8f1d36cb5b6c8f46029f6235b296c8681f73179a0cacf2",
+  "bytes": 135680,
+  "sha256": "5282f980e563741f22f82421c6f625243099db25ca45affd4356f96a1d4a3163",
   "entries": [
     {
-      "offset": 106600,
+      "offset": 103600,
       "region": "text",
       "addend": 194524,
       "expected": 18446743798880069596
     },
     {
-      "offset": 106608,
+      "offset": 103608,
       "region": "text",
       "addend": 196140,
       "expected": 18446743798880071212
     },
     {
-      "offset": 106616,
+      "offset": 103616,
       "region": "text",
       "addend": 197720,
       "expected": 18446743798880072792
     },
     {
-      "offset": 106696,
+      "offset": 103696,
       "region": "text",
       "addend": 194524,
       "expected": 18446743798880069596
     },
     {
-      "offset": 106704,
+      "offset": 103704,
       "region": "text",
       "addend": 196140,
       "expected": 18446743798880071212
     },
     {
-      "offset": 106712,
+      "offset": 103712,
       "region": "text",
       "addend": 197720,
       "expected": 18446743798880072792
     },
     {
-      "offset": 119424,
+      "offset": 116416,
       "region": "text",
       "addend": 194528,
       "expected": 18446743798880069600
     },
     {
-      "offset": 119472,
+      "offset": 116464,
       "region": "text",
       "addend": 196144,
       "expected": 18446743798880071216
     },
     {
-      "offset": 119520,
+      "offset": 116512,
       "region": "text",
       "addend": 197724,
       "expected": 18446743798880072796
     },
     {
-      "offset": 119664,
+      "offset": 116632,
+      "region": "hdr_data",
+      "addend": 256,
+      "expected": 0
+    },
+    {
+      "offset": 116656,
+      "region": "hdr_data",
+      "addend": 260,
+      "expected": 0
+    },
+    {
+      "offset": 116680,
+      "region": "hdr_data",
+      "addend": 264,
+      "expected": 0
+    },
+    {
+      "offset": 116704,
+      "region": "hdr_data",
+      "addend": 268,
+      "expected": 0
+    },
+    {
+      "offset": 116728,
+      "region": "hdr_data",
+      "addend": 272,
+      "expected": 0
+    },
+    {
+      "offset": 116752,
+      "region": "hdr_data",
+      "addend": 276,
+      "expected": 0
+    },
+    {
+      "offset": 116776,
+      "region": "hdr_data",
+      "addend": 280,
+      "expected": 0
+    },
+    {
+      "offset": 116800,
+      "region": "hdr_data",
+      "addend": 284,
+      "expected": 0
+    },
+    {
+      "offset": 116824,
+      "region": "hdr_data",
+      "addend": 288,
+      "expected": 0
+    },
+    {
+      "offset": 116848,
+      "region": "hdr_data",
+      "addend": 292,
+      "expected": 0
+    },
+    {
+      "offset": 116872,
+      "region": "hdr_data",
+      "addend": 296,
+      "expected": 0
+    },
+    {
+      "offset": 116896,
+      "region": "hdr_data",
+      "addend": 408,
+      "expected": 0
+    },
+    {
+      "offset": 116920,
+      "region": "hdr_data",
+      "addend": 396,
+      "expected": 0
+    },
+    {
+      "offset": 116944,
+      "region": "hdr_data",
+      "addend": 392,
+      "expected": 0
+    },
+    {
+      "offset": 116968,
+      "region": "hdr_data",
+      "addend": 244,
+      "expected": 0
+    },
+    {
+      "offset": 116992,
+      "region": "hdr_data",
+      "addend": 232,
+      "expected": 0
+    },
+    {
+      "offset": 117040,
       "region": "data",
       "addend": 456,
       "expected": 18446743798880498216
     },
     {
-      "offset": 119688,
+      "offset": 117064,
       "region": "data",
       "addend": 460,
       "expected": 18446743798880498220
     },
     {
-      "offset": 119712,
+      "offset": 117088,
       "region": "data",
       "addend": 464,
       "expected": 18446743798880498224
     },
     {
-      "offset": 119736,
+      "offset": 117112,
       "region": "data",
       "addend": 468,
       "expected": 18446743798880498228
     },
     {
-      "offset": 125048,
+      "offset": 122632,
       "region": "data",
       "addend": 0,
       "expected": 18446743798880497760
     },
     {
-      "offset": 125056,
+      "offset": 122640,
       "region": "bss",
       "addend": 0,
       "expected": 18446743798880120832
+    },
+    {
+      "offset": 122656,
+      "region": "hdr_data",
+      "addend": 56,
+      "expected": 0
     }
   ]
 }

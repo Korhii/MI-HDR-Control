@@ -248,9 +248,19 @@ class PortableBridge(lab.Bridge):
         pass
 
     def read_budget(self,value=None,running=None,configure=False,config=None):
+        applied_budget=self.budget_value if value is None else value
         packet=abl_packet(self.native_abl if config is None else config,(time.monotonic_ns()//1000000)%2147483647) if configure else None
+        mapping=None
+        if configure and (not self.factory_budget or getattr(self,'comparison_config',None) is not None):
+            from hdr_mapping import packet as mapping_packet
+            data=model_worker.call('hdr-mapping',config=getattr(self,'comparison_config',None) or self.draft,level=self.backlight_level,budget=applied_budget,model_id=self.model_id,tone=self.tone)
+            mapping=mapping_packet(data,(time.monotonic_ns()//1000000)%2147483647)
         previous=self.telemetry
-        self.telemetry=budget.sample(self.folder/'budget-io',value,running,packet)
+        self.telemetry=budget.sample(self.folder/'budget-io',value,running,packet,mapping)
+        if mapping is not None and applied_budget>0 and self.telemetry.get('hdr_mode_actual')==self.tone and self.telemetry.get('level')==self.backlight_level and not self.telemetry.get('hdr_active'):
+            self.budget_active=False
+            self.read_budget(running=False)
+            raise RuntimeError('HDR映射没有随预算生效；已停止自定义预算，未宣称应用成功')
         if previous.get('status')=='live-driver' and self.telemetry['tick']!=previous.get('tick'):
             elapsed=(self.telemetry['tick']-previous['tick'])&0xffffffff;frames=(self.telemetry['frames']-previous['frames'])&0xffffffff
             rate=frames*250/elapsed
@@ -636,7 +646,7 @@ class PortableBridge(lab.Bridge):
         if not self.state['connected']:raise ValueError('ADB未连接；草稿已保留，请连接后再开启实时调试')
         if not self.device_model.get('verified') or not (self.initial_backup and self.initial_backup.get('ready')):raise ValueError('请先完成机型复核与初始备份，再开启实时调试')
         self.clear_comparison()
-        if not self.runtime_loaded and not self.factory_budget:self._perform('runtime-load',{})
+        if not self.factory_budget and (not self.runtime_loaded or self.telemetry.get('hdr_revision')!=2):self._perform('runtime-load',{})
         native=self.state.get('native',{})
         same_context=native.get('g_video__vid_local_dimming')==str(self.backlight_level) and native.get('g_video__vid_hdr_tone_mapping_mode')==str(self.tone)
         if self.active and self.active.get('mode')=='live' and same_context:self.request_live(self.draft)
@@ -668,7 +678,7 @@ class PortableBridge(lab.Bridge):
             # Turning OFF must never be blocked by the current high-value draft.
             if op!='live-debug' or data.get('enabled'):self.check_risk(op,data)
             routed=op
-            if op in ('quick-halo','update','quick-budget','runtime-set','apply-profile','auto-apply','profile-defaults','all-defaults','restore') or op=='module-defaults' and data.get('module')!='pattern':
+            if op in ('quick-halo','update','quick-budget','runtime-set','apply-profile','auto-apply','profile-defaults','all-defaults','restore') or op=='module-defaults' and data.get('module') not in ('pattern','sensors'):
                 self.clear_comparison()
             if op=='risk-unlock':
                 if data.get('acknowledged') is not True:raise ValueError('必须明确确认风险说明')
@@ -886,7 +896,8 @@ class PortableBridge(lab.Bridge):
             self.event('累计ABL草稿已保存；统一设置按应用才写入')
         elif op=='runtime-load':
             self.finish();self.preflight()
-            try:self.read_budget()
+            try:
+                if self.read_budget().get('hdr_revision')!=2:raise RuntimeError('旧模块缺少HDR映射联动，需要升级')
             except RuntimeError:
                 self.count+=1;budget.module('load',self.folder/f'budget-load-{self.count}');self.runtime_loaded_by_pc=True
                 self.read_budget()

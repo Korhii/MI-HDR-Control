@@ -17,9 +17,16 @@ launch_runtime() {
  export LD_PRELOAD="$b/libmi-persistence.so"
  exec /system/bin/app_process /system/bin MIHDRRuntime
 }
-if [ "$op" = apply ] && [ -d /sys/module/mi_oemabl ]; then
+if [ "$op" = apply ] && [ -d /sys/module/mi_oemabl ] && [ "$(cat /sys/module/mi_oemabl/parameters/hdr_revision 2>/dev/null)" = 2 ]; then
  echo __reused_budget_module=1
  launch_runtime
+fi
+if [ "$op" = apply ]; then
+ echo __waiting_for_hdr_driver=1
+ while [ ! -d /sys/module/kdrv_ldm_sys ] || [ ! -d /sys/module/adaptive_hdr_algo ]; do
+  [ -f "$b/enabled" ] && [ ! -f "$b/stop" ] || exit 0
+  sleep 1
+ done
 fi
 echo __waiting_for_misight=1
 attempt=0

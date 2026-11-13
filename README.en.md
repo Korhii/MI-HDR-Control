@@ -6,7 +6,7 @@
 
 ### Tune the balance between small highlights, bloom and sustained output.
 
-**Windows portable tool · Dimming only · 0.9.26-public-preview.2 · Experimental preview**
+**Windows portable tool · Dimming only · 0.9.30-public-preview · Experimental preview**
 
 [简体中文](README.md) · [First-use workflow](docs/guide.en.md) · [Module reference](docs/modules.en.md) · [Research](docs/RESEARCH.en.md) · [Safety](docs/SAFETY.en.md)
 
@@ -14,10 +14,10 @@
 
 **[Download Windows portable](https://github.com/Korhii/MI-HDR-Control/releases/latest) · [All releases](https://github.com/Korhii/MI-HDR-Control/releases)**
 
-Download `MI-HDR-Control-0.9.26-public-preview.2-Windows.zip` from Releases and extract the complete folder. GitHub’s automatic Source code ZIP is for source inspection and does not include the complete runtime.
+Download `MI-HDR-Control-0.9.30-public-preview-Windows.zip` from Releases and extract the complete folder. GitHub’s automatic Source code ZIP is for source inspection and does not include the complete runtime.
 
 
-**This revision:** top-bar default/tuned A/B switching, existing-backup recovery in fresh extractions and a fix for model-progress file contention. [Changelog](CHANGELOG.md) · [A/B steps](docs/guide.en.md#comparison)
+**This update:** budget/ABL-linked factory HDR mapping, retained top-bar A/B and existing-backup recovery, and corrected startup service/UI error reporting. [Changelog](CHANGELOG.md) · [A/B steps](docs/guide.en.md#comparison)
 
 [![0.9.26 · Dark MONO / 素·黑白 · SF / Alpha](docs/assets/screenshots/app-04-halo.png)](docs/assets/screenshots/app-04-halo.png)
 
@@ -93,11 +93,19 @@ Conditions: **32U 2026 / High / HGiG / 10000-nit PQ input / cumulative ABL off**
 
 **Nits are estimates from the current software model, not new meter measurements. The 10% split is a viewing aid, not a fixed firmware trigger.** The values are experimental comparisons, not recommendations or certified safety limits.
 
+### 0.9.30: HDR mapping follows the changed budget
+
+With a higher backlight budget, a TMO still using the old full-screen capability can saturate different inputs too early. **应用统一亮度设置** now compares the selected budget against factory 24/86 with the current SF/Alpha and synchronizes eleven factory APL capability entries. The factory algorithm still generates its tone curve. Cumulative ABL follows the **gain actually used in this frame**, including recovery.
+
+[![Recorded digital HDR-mapping points](docs/assets/research/hdr-mapping.en.svg)](docs/assets/research/hdr-mapping.en.svg)
+
+These are historical 32U digital observations from the private 0.9.28 path, not a new full optical EOTF measurement. P0 belongs to the TMO input-luminance domain; AW is a driver readback. Neither is measured screen luminance. Existing reference nits have not received a new optical calibration. [Status and steps](docs/modules.en.md#hdr-mapping)
+
 ### Keep EOTF remapping separate
 
 The monitor's **HGiG, Bright, Gradation and Dynamic** modes change the content's input/output mapping and EOTF. This differs from load- or time-dependent APL/ABL limiting. HGiG is the project's reference closer to standard PQ; existing observations do not establish perfect EOTF tracking.
 
-The software can select existing monitor modes; **it does not edit their complete EOTF curves**. Budget research mainly concerns the output ceiling under **10000-nit PQ input**. That is a content-input condition, not measured monitor peak luminance or a value to copy into Windows HDR peak calibration.
+The software can select existing monitor modes; **it does not edit their complete EOTF curves**. Version 0.9.30 adds budget/ABL-linked capability compensation; each mode retains its factory content-remapping algorithm. Budget research mainly concerns the output ceiling under **10000-nit PQ input**. That is a content-input condition, not measured monitor peak luminance or a value to copy into Windows HDR peak calibration.
 
 <details>
 <summary><strong>Driver input, output, raw and nits: what is different?</strong></summary>

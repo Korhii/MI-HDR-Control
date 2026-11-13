@@ -14,9 +14,9 @@ class ModulePreparationTests(unittest.TestCase):
         self.manifest=json.loads(budget_manifest().read_text(encoding='utf-8'))
         self.text=0xffffffc003454000
     def test_each_address_slot(self):
-        bases=dict(text=self.text,bss=self.text+0x3c000,data=self.text+0x98060)
+        bases=dict(text=self.text,bss=self.text+0x3c000,data=self.text+0x98060,hdr_data=0xffffffc010000000)
         result=prepare(self.source,self.manifest,**bases)
-        self.assertEqual(len(self.manifest['entries']),15)
+        self.assertEqual(len(self.manifest['entries']),32)
         self.assertEqual(len(result),len(self.source))
         for slot in self.manifest['entries']:
             self.assertEqual(struct.unpack_from('<Q',result,slot['offset'])[0],bases[slot['region']]+slot['addend'])

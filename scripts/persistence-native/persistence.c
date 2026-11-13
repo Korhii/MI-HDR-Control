@@ -3,6 +3,7 @@
 extern void *dlopen(const char*,int);
 extern void *dlsym(void*,const char*);
 extern int snprintf(char*,unsigned long,const char*,...);
+#include "../hdr_mapping_packet.h"
 static void *cfg;
 static int (*get)(void*,const char*,char*,int);
 static int (*put)(void*,const char*,const char*);
@@ -46,10 +47,19 @@ JNIEXPORT jintArray JNICALL Java_MIHDRRuntime_budget(JNIEnv *e,jclass cls,jint v
  }
  if(value>=0&&!write_value("budget",(unsigned)value))goto fail;
  if(running>=0){unsigned tick=0;if(running&&!read_value("tick",&tick))goto fail;if(!write_value("lease_end",running?tick+2500:0))goto fail;}
- const char *names[]={"budget","budget_used","raw_apl","window","frames","tick","lease_end","level","raw_spi","gain_used"};
- jint data[10];
- for(unsigned i=0;i<10;i++){unsigned n;if(!read_value(names[i],&n))goto fail;data[i]=(jint)n;}
- jintArray out=(*e)->NewIntArray(e,10);if(out)(*e)->SetIntArrayRegion(e,out,0,10,data);return out;
+ const char *names[]={"budget","budget_used","raw_apl","window","frames","tick","lease_end","level","raw_spi","gain_used","hdr_revision","hdr_active","hdr_p0","hdr_gain"};
+ jint data[14];
+ for(unsigned i=0;i<14;i++){unsigned n;if(!read_value(names[i],&n))goto fail;data[i]=(jint)n;}
+ jintArray out=(*e)->NewIntArray(e,14);if(out)(*e)->SetIntArrayRegion(e,out,0,14,data);return out;
 fail:
  (*e)->ThrowNew(e,(*e)->FindClass(e,"java/lang/IllegalStateException"),"Owned budget module read/write failed; lease will expire");return 0;
+}
+
+JNIEXPORT void JNICALL Java_MIHDRRuntime_mapping(JNIEnv *e,jclass cls,jstring packet){
+ (void)cls;unsigned revision;
+ if(!packet||!initialize()||!read_value("hdr_revision",&revision)||revision!=2)goto fail;
+ const char*s=(*e)->GetStringUTFChars(e,packet,0);if(!s)return;
+ int ok=write_mapping(s,cfg,put);(*e)->ReleaseStringUTFChars(e,packet,s);if(ok)return;
+fail:
+ (*e)->ThrowNew(e,(*e)->FindClass(e,"java/lang/IllegalStateException"),"HDR mapping not committed; custom budget not started");
 }

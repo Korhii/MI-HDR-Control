@@ -1,80 +1,114 @@
-[
-  {
-    "file": "tools/bsp-budget-parameters.so",
-    "old_sha256": "f485481df994d7fb69bf48f99ebd242e676007be24f7ecd3377751201ecd61be",
-    "new_sha256": "077ae9a6155ba90b78b38e7e4765c8a15eb71a98cdf0912e1ffc6709946c040f",
-    "all_PT_LOAD_bytes_unchanged": true
-  },
-  {
-    "file": "tools/event961.so",
-    "old_sha256": "29773eefbf48e1eb1673cba5d4482bdd2e1eadf2f3ba8480f759d6b42cc346d8",
-    "new_sha256": "996fdaaf13ccfd451f3e127a9a7e00f7526b1034be4ace25c293cd0fbfe87d12",
-    "all_PT_LOAD_bytes_unchanged": true
-  },
-  {
-    "file": "tools/event962.so",
-    "old_sha256": "dfc897e47098299b8c6dd50cc9c8ca53aa56cb17ad3e643141050f03ba91d918",
-    "new_sha256": "ea8b17f7378c7b9302bed028651cfb2ec82ab1573cd08084ee05b5dd8e1b153d",
-    "all_PT_LOAD_bytes_unchanged": true
-  },
-  {
-    "file": "tools/event963.so",
-    "old_sha256": "955d2b04b1b22d63fd45c64c0acc708db26a5d70d88f5857d45ac7b39bcccc29",
-    "new_sha256": "b6e5588a52e90e8e0078d7cbcba73e7625bedad57f10d650eb2d8b13c5365336",
-    "all_PT_LOAD_bytes_unchanged": true
-  },
-  {
-    "file": "tools/event964.so",
-    "old_sha256": "c30c95d15e812e2115db7bf56e4400991bc9bf2b9bc83605b7bc1013f8e4b58b",
-    "new_sha256": "1ef96d18abf1afd5f9f24a3e93b8eb82808ecae8868d9c8ae1ceffd753214c73",
-    "all_PT_LOAD_bytes_unchanged": true
-  },
-  {
-    "file": "tools/event966.so",
-    "old_sha256": "d1f404423cac566098b9f6c0707cbee50bfefd03a5011f5e2559be1f39644556",
-    "new_sha256": "c07e10edac1a85a957603e5366836ca8a50ace6928fda775e088b133fe7c0b39",
-    "all_PT_LOAD_bytes_unchanged": true
-  },
-  {
-    "file": "tools/event967.so",
-    "old_sha256": "29db36443eb209c34391d6dc1ce8cdca01964b99d8994eb49cf6ecb35bcb2313",
-    "new_sha256": "c1c130064c2a886a45606e3796fb2ef2b3b5295d1e8510012326a2e55ceac54e",
-    "all_PT_LOAD_bytes_unchanged": true
-  },
-  {
-    "file": "tools/libmi-persistence.so",
-    "old_sha256": "f862af2efcc6306255246eace7de3385d21235096d936b5562fd7c7feba7c4a5",
-    "new_sha256": "3723ebaa50001082fea2ac4abc85b7b6673a1182d45f8fcd0ce5e76a35600a4a",
-    "all_PT_LOAD_bytes_unchanged": true
-  },
-  {
-    "file": "tools/mi-budget-prepare",
-    "old_sha256": "b20584d771bb51cb3e9d93652dc63153b4e385978547b23d1febab7a715095a9",
-    "new_sha256": "923bb45354c68fc995209d465fb496be6fe361a6a5b6b07c4fd189b05a3d845e",
-    "all_PT_LOAD_bytes_unchanged": true
-  },
-  {
-    "file": "tools/mi-ldm-lab",
-    "old_sha256": "34065a62f87b7a0d8054b6566f4d173810610d3d88f64dfa27efe36ec3e92e61",
-    "new_sha256": "96d4b0e6e5a523b4ee66daf4de3c0c6897183f3f2ebfdab5a3764da660161928",
-    "all_PT_LOAD_bytes_unchanged": true
-  },
-  {
-    "file": "tools/mi-ldm-probe",
-    "old_sha256": "0a831c370fdce7400ca04a76f06c64bc493cc1538af861b21bc59de84d9e0d2f",
-    "new_sha256": "93a9ea79882d3c6ab43932633573261e2ab879be26cff05d05e722e5604876fe",
-    "all_PT_LOAD_bytes_unchanged": true
-  },
-  {
-    "file": "tools/mi-service-call-args.so",
-    "old_sha256": "b01744ce5492035ce4f8494943824c756b5654942266d229c5397f03a3dac1a1",
-    "new_sha256": "846e4960249aba2f31b36e97076136ea67a13336d9520d3840b7c154eb89cc75",
-    "all_PT_LOAD_bytes_unchanged": true
-  },
-  {
-    "file": "tools/mi-temporary-access",
-    "old_sha256": "3bf094818154ca170a6f0cc09baf9f923694ecc6a5441b106aca3b5fd3d22e03",
-    "new_sha256": "23ba4d58df05684021b629dd571739234cd30fd11981dd0706c87a447d04bfcb",
-    "all_PT_LOAD_bytes_unchanged": true
-  }
-]
+{
+  "previous": [
+    {
+      "file": "tools/bsp-budget-parameters.so",
+      "old_sha256": "f485481df994d7fb69bf48f99ebd242e676007be24f7ecd3377751201ecd61be",
+      "new_sha256": "077ae9a6155ba90b78b38e7e4765c8a15eb71a98cdf0912e1ffc6709946c040f",
+      "all_PT_LOAD_bytes_unchanged": true
+    },
+    {
+      "file": "tools/event961.so",
+      "old_sha256": "29773eefbf48e1eb1673cba5d4482bdd2e1eadf2f3ba8480f759d6b42cc346d8",
+      "new_sha256": "996fdaaf13ccfd451f3e127a9a7e00f7526b1034be4ace25c293cd0fbfe87d12",
+      "all_PT_LOAD_bytes_unchanged": true
+    },
+    {
+      "file": "tools/event962.so",
+      "old_sha256": "dfc897e47098299b8c6dd50cc9c8ca53aa56cb17ad3e643141050f03ba91d918",
+      "new_sha256": "ea8b17f7378c7b9302bed028651cfb2ec82ab1573cd08084ee05b5dd8e1b153d",
+      "all_PT_LOAD_bytes_unchanged": true
+    },
+    {
+      "file": "tools/event963.so",
+      "old_sha256": "955d2b04b1b22d63fd45c64c0acc708db26a5d70d88f5857d45ac7b39bcccc29",
+      "new_sha256": "b6e5588a52e90e8e0078d7cbcba73e7625bedad57f10d650eb2d8b13c5365336",
+      "all_PT_LOAD_bytes_unchanged": true
+    },
+    {
+      "file": "tools/event964.so",
+      "old_sha256": "c30c95d15e812e2115db7bf56e4400991bc9bf2b9bc83605b7bc1013f8e4b58b",
+      "new_sha256": "1ef96d18abf1afd5f9f24a3e93b8eb82808ecae8868d9c8ae1ceffd753214c73",
+      "all_PT_LOAD_bytes_unchanged": true
+    },
+    {
+      "file": "tools/event966.so",
+      "old_sha256": "d1f404423cac566098b9f6c0707cbee50bfefd03a5011f5e2559be1f39644556",
+      "new_sha256": "c07e10edac1a85a957603e5366836ca8a50ace6928fda775e088b133fe7c0b39",
+      "all_PT_LOAD_bytes_unchanged": true
+    },
+    {
+      "file": "tools/event967.so",
+      "old_sha256": "29db36443eb209c34391d6dc1ce8cdca01964b99d8994eb49cf6ecb35bcb2313",
+      "new_sha256": "c1c130064c2a886a45606e3796fb2ef2b3b5295d1e8510012326a2e55ceac54e",
+      "all_PT_LOAD_bytes_unchanged": true
+    },
+    {
+      "file": "tools/libmi-persistence.so",
+      "old_sha256": "f862af2efcc6306255246eace7de3385d21235096d936b5562fd7c7feba7c4a5",
+      "new_sha256": "3723ebaa50001082fea2ac4abc85b7b6673a1182d45f8fcd0ce5e76a35600a4a",
+      "all_PT_LOAD_bytes_unchanged": true
+    },
+    {
+      "file": "tools/mi-budget-prepare",
+      "old_sha256": "b20584d771bb51cb3e9d93652dc63153b4e385978547b23d1febab7a715095a9",
+      "new_sha256": "923bb45354c68fc995209d465fb496be6fe361a6a5b6b07c4fd189b05a3d845e",
+      "all_PT_LOAD_bytes_unchanged": true
+    },
+    {
+      "file": "tools/mi-ldm-lab",
+      "old_sha256": "34065a62f87b7a0d8054b6566f4d173810610d3d88f64dfa27efe36ec3e92e61",
+      "new_sha256": "96d4b0e6e5a523b4ee66daf4de3c0c6897183f3f2ebfdab5a3764da660161928",
+      "all_PT_LOAD_bytes_unchanged": true
+    },
+    {
+      "file": "tools/mi-ldm-probe",
+      "old_sha256": "0a831c370fdce7400ca04a76f06c64bc493cc1538af861b21bc59de84d9e0d2f",
+      "new_sha256": "93a9ea79882d3c6ab43932633573261e2ab879be26cff05d05e722e5604876fe",
+      "all_PT_LOAD_bytes_unchanged": true
+    },
+    {
+      "file": "tools/mi-service-call-args.so",
+      "old_sha256": "b01744ce5492035ce4f8494943824c756b5654942266d229c5397f03a3dac1a1",
+      "new_sha256": "846e4960249aba2f31b36e97076136ea67a13336d9520d3840b7c154eb89cc75",
+      "all_PT_LOAD_bytes_unchanged": true
+    },
+    {
+      "file": "tools/mi-temporary-access",
+      "old_sha256": "3bf094818154ca170a6f0cc09baf9f923694ecc6a5441b106aca3b5fd3d22e03",
+      "new_sha256": "23ba4d58df05684021b629dd571739234cd30fd11981dd0706c87a447d04bfcb",
+      "all_PT_LOAD_bytes_unchanged": true
+    }
+  ],
+  "revision": "0.9.30",
+  "files": [
+    {
+      "path": "tools/bsp-budget-parameters.so",
+      "original_sha256": "8f4b206adb1e0f94093ff5b41b88e746ee0e38dd8edcd4a257871fd79c16c4d1",
+      "sha256": "e7e03005703e62b1ad5a3ddfea5ec4970aa69d2f8fc0f8dd3f5f77a0a6f68fe7",
+      "debug_prefixes_redacted": 2,
+      "all_loadable_bytes_unchanged": true
+    },
+    {
+      "path": "tools/libmi-persistence.so",
+      "original_sha256": "31fd97a887f86c5bb6bc967ebfeb9b26b7e1a7c4a91b3bf5eb152dbe91c5074a",
+      "sha256": "81ccc0853c33497c8dad018302a8103a422ff95e7a905973917a96734840fe92",
+      "debug_prefixes_redacted": 7,
+      "all_loadable_bytes_unchanged": true
+    },
+    {
+      "path": "tools/mi-budget-prepare",
+      "original_sha256": "5f6702101080200eebf36fe00894ac72b6b4a11538a28375647a03f72c080151",
+      "sha256": "5f6702101080200eebf36fe00894ac72b6b4a11538a28375647a03f72c080151",
+      "debug_prefixes_redacted": 0,
+      "all_loadable_bytes_unchanged": true
+    },
+    {
+      "path": "resources/preparation/oem-budget.o",
+      "original_sha256": "2438a7bca3fe0673069f9ab08f5a38f08c5b76628b2cc9fe8e57ba9aed6e456a",
+      "sha256": "2438a7bca3fe0673069f9ab08f5a38f08c5b76628b2cc9fe8e57ba9aed6e456a",
+      "debug_prefixes_redacted": 0,
+      "all_loadable_bytes_unchanged": true
+    }
+  ],
+  "method": "Only non-loaded debug path prefixes; no PT_LOAD changes."
+}

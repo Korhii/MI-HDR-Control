@@ -1,42 +1,31 @@
 {
   "adapter": "mi_oemabl",
   "model_id": "32u-2026",
+  "mapping_revision": 2,
   "boot_verified": false,
-  "test_date_hk": "2026-11-11",
-  "firmware": "OS3.0.120.0.UFFMAMN",
-  "kernel": "5.15.148-android14-11-g37010446f523",
-  "native_ready_after_boot_seconds": 337.49,
-  "pc_budget_heartbeat_required": false,
-  "manual_adb_required_for_observed_boot": false,
-  "scope": "One software reboot, high local dimming / HGiG, budget 20, no optical/electrical/thermal/lifetime safety or separate power-cut test; 27-inch remains experimental",
+  "runtime_device_verified": false,
   "component_sha256": {
-    "tools/MIHDRRuntime.jar": "b1cc95639463471c3b58fed311c5d25dc1a08ebb448d944d258fc58326a610d0",
-    "tools/MIHDRBridge.jar": "03a80e082c23306c061666490b442f989697b4ba785bbb808089dfcc41f51ea5",
-    "tools/libmi-persistence.so": "3723ebaa50001082fea2ac4abc85b7b6673a1182d45f8fcd0ce5e76a35600a4a",
-    "tools/mi-hdr-persistence.apk": "b98b99f3f3a6932bf82e4250d5dfc2fc195dbd9f36a05dd1b8c568df51c2fe2b",
-    "tools/mi-budget-prepare": "923bb45354c68fc995209d465fb496be6fe361a6a5b6b07c4fd189b05a3d845e",
-    "resources/persistence/boot.sh": "e7bf9616afa1d09f8614439bde702ed1666f70dcb5f2f2a9534d5c83ab6a9929",
-    "resources/persistence/boot-root.sh": "5453760a2bfd82120087bb0ae3442ea5564acf0ce1fe7992d46db2e40ae670ad",
+    "tools/MIHDRRuntime.jar": "7559fa4d19e73a5faab99dc4f06547ccabc3e29f06fc9d71d41ac4287301655b",
+    "tools/libmi-persistence.so": "81ccc0853c33497c8dad018302a8103a422ff95e7a905973917a96734840fe92",
+    "tools/mi-budget-prepare": "5f6702101080200eebf36fe00894ac72b6b4a11538a28375647a03f72c080151",
+    "resources/persistence/boot.sh": "4f1cbc0b8ae520317920b2c23de8d5d746f2324a66d152ac96332239b78cea88",
+    "resources/persistence/boot-root.sh": "556e64684cac5c52ed049584dc0fc7074b0188f655152103bdece5f4ba8067e3",
     "resources/persistence/start.sh": "ddfc18f5d2fe6182fdf73c6fe6945610522b2f5896f0c774ef1c804e038cbfda",
-    "scripts/oem_native_budget.c": "60d8753586159d4c0fc5ff62cfbc2a18ef08c85cd36a660ad06440883ee1f2c2",
-    "resources/preparation/oem-budget.o": "fc918de3d67038fd0bd099824bb87b86cd7d5fa944f1a47e4c159ae350b4660e",
-    "resources/preparation/oem-hooks.o": "1bd7880b0f46e7102258b23e1471a1a2c0c7d4c8951c72160aa648189f6edf89"
+    "tools/mi-hdr-persistence.apk": "b98b99f3f3a6932bf82e4250d5dfc2fc195dbd9f36a05dd1b8c568df51c2fe2b",
+    "tools/mi-oem-runtime.ko": "5282f980e563741f22f82421c6f625243099db25ca45affd4356f96a1d4a3163"
   },
-  "generated_module_sha256": "fa56d7421623ac8bdf8f1d36cb5b6c8f46029f6235b296c8681f73179a0cacf2",
-  "restoration": {
-    "original_files": 36,
-    "native_fields": 11,
-    "permanent_enabled": false,
-    "module_loaded": false,
-    "selinux": "Enforcing"
+  "reason": "本次为无桌面改造的公开组件；尚未对这组完整公开组件重新进行开机验收。",
+  "private_reference": {
+    "version": "0.9.28",
+    "date_hk": "2026-11-13",
+    "model_id": "32u-2026",
+    "boot_verified": true,
+    "includes_private_launcher_components": true,
+    "not_a_public_component_acceptance": true
   },
-  "optical_nits_measured": false,
-  "power_cut_separately_tested": false,
-  "reason": "最终清理版已回读本次开机自动运行；ADB手动重开后，无干扰持续复验被另一版本控制器暂停打断。保留实验确认，不把前一轮完整验收套用为最终构建的完整验收。",
-  "boot_autostart_observed": true,
-  "manual_adb_reenabled_for_readback": true,
-  "uninterrupted_final_followup_verified": false,
-  "device_restoration_verified": true,
-  "final_restored_files": 36,
-  "final_restored_native_fields": 11
+  "limitations": [
+    "27U remains inferred and has no physical boot acceptance",
+    "No new optical calibration or electrical/thermal/lifetime certification",
+    "Power-cut cold boot is untested"
+  ]
 }

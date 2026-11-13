@@ -28,13 +28,16 @@ chmod 600 "$policy"
 [ "$(sha256sum /vendor/lib/modules/kdrv_ldm_sys.ko | cut -d ' ' -f1)" = eabc6d525ddd76cfaa9855b137af2df7247bccd4ec7166edef4d0dbfae5db4cd ] || exit 5
 cat /proc/sys/kernel/kptr_restrict >"$r/kptr.@RUN_ID@.before"
 if [ @OPERATION@ = apply ]; then
+ if [ -d /sys/module/mi_oemabl ] && [ "$(cat /sys/module/mi_oemabl/parameters/hdr_revision 2>/dev/null)" != 2 ]; then rmmod mi_oemabl || exit 14;fi
  if [ ! -d /sys/module/mi_oemabl ]; then
   cat /proc/sys/kernel/kptr_restrict >"$r/kptr.@RUN_ID@.before"
   printf 0 >/proc/sys/kernel/kptr_restrict
   text=$(cat /sys/module/kdrv_ldm_sys/sections/.text)
   bss=$(cat /sys/module/kdrv_ldm_sys/sections/.bss)
   data=$(cat /sys/module/kdrv_ldm_sys/sections/.data)
-  "$b/mi-budget-prepare" "$b/mi-oem-runtime.ko" "$r/prepared.ko" "$text" "$bss" "$data"
+  [ "$(sha256sum /vendor/lib/modules/adaptive_hdr_algo.ko | cut -d ' ' -f1)" = a061cd3df4a500965299be2e32c3acd4ac34ed9653e44c8ae9667b17c4e994bf ] || exit 15
+  hdr_data=$(cat /sys/module/adaptive_hdr_algo/sections/.data)
+  "$b/mi-budget-prepare" "$b/mi-oem-runtime.ko" "$r/prepared.ko" "$text" "$bss" "$data" "$hdr_data"
   rc=$?;echo prepare_exit=$rc;[ "$rc" = 0 ] || exit 7
   insmod "$r/prepared.ko"
   rc=$?;echo insmod_exit=$rc;rm -f "$r/prepared.ko";[ "$rc" = 0 ] || exit 8

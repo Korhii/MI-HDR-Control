@@ -207,3 +207,13 @@ Researchers with prepared local inputs can run the following. Ordinary use does 
 ```
 
 `RUNTIME` is a complete portable directory with lawfully obtained and locally prepared originals; `OUTPUT` is a new output directory. The public bundle excludes the author's prepared cache. Fixtures replace hardware getters and establish static initial state; they do not represent every real-driver timing, thermal or protection condition. This page supplies no physical 27-inch validation.
+
+
+### 0.9.30: HDR mapping follows the changed budget
+
+With a higher backlight budget, a TMO still using the old full-screen capability can saturate different inputs too early. **应用统一亮度设置** now compares the selected budget against factory 24/86 with the current SF/Alpha and synchronizes eleven factory APL capability entries. The factory algorithm still generates its tone curve. Cumulative ABL follows the **gain actually used in this frame**, including recovery.
+
+[![Recorded digital HDR-mapping points](assets/research/hdr-mapping.en.svg)](assets/research/hdr-mapping.en.svg)
+
+These are historical 32U digital observations from the private 0.9.28 path, not a new full optical EOTF measurement. P0 belongs to the TMO input-luminance domain; AW is a driver readback. Neither is measured screen luminance. Existing reference nits have not received a new optical calibration. [Status and steps](modules.en.md#hdr-mapping)
+
